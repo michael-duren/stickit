@@ -33,7 +33,8 @@ CREATE TABLE EXERCISES (
     DIRECTIONS VARCHAR(512) [] NOT NULL,
     REMEMBER VARCHAR(512) [],
     MINIMUM_TIME_MINUTES DECIMAL NOT NULL,
-    BPM_RANGE VARCHAR(100) NOT NULL,
+    BPM_MIN INT NOT NULL,
+    BPM_MAX INT NOT NULL,
     VIDEO_LINK VARCHAR(1096)
 );
 
@@ -68,7 +69,8 @@ INSERT INTO
         DIRECTIONS,
         REMEMBER,
         MINIMUM_TIME_MINUTES,
-        BPM_RANGE,
+        BPM_MIN,
+        BPM_MAX,
         VIDEO_LINK
     )
 VALUES
@@ -102,7 +104,8 @@ and repeat"}',
         '{"1. Go slow!", "2.Strive for an even sound between both hands.", "3.If the stick falls out of your hand,
 that''s okay. It means you are not gripping the stick too hard."}',
         5.0,
-        '80 - 100 BPM',
+        80,
+        100,
         null
     );
 
