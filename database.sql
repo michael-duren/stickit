@@ -15,7 +15,8 @@ DROP TABLE IF EXISTS EXERCISES;
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "role" VARCHAR(20) DEFAULT 'user'
 );
 
 -- table for all exercises
@@ -111,11 +112,12 @@ that''s okay. It means you are not gripping the stick too hard."}',
 
 -- Dummy Data
 INSERT INTO
-    "user" ("username", "password")
+    "user" ("username", "password", "role")
 VALUES
     (
         'michael',
-        '$2a$10$lm0PBXwkXLo.LDNthIwaL.GlgomiP6M49nodueisQjnFTmOTgk7ra'
+        '$2a$10$lm0PBXwkXLo.LDNthIwaL.GlgomiP6M49nodueisQjnFTmOTgk7ra',
+        'admin'
     );
 
 INSERT INTO
