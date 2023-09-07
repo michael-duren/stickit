@@ -5,10 +5,10 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 //GET method for reading an exercise by its ID
-router.get('/exercises', (req, res) => {
-  let requestExercise = 'SELECT * FROM "EXERCISES" WHERE ID = $1;';
-
-  pool.query(requestExercise, [req.exercises.id])
+router.get('/:id', (req, res) => {
+  let requestExercise = 'SELECT * FROM "exercises" WHERE ID = $1;';
+  console.log(req.params.id)
+  pool.query(requestExercise, [req.params.id])
   .then((result) => {
     res.status(200).send(result.rows);
   })
