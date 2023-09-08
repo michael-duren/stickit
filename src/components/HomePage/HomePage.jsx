@@ -12,10 +12,10 @@ function MainPage() {
         <div className="background-primary-grey">
                 <Grid className="main-page-padding">
                     <Grid container>
-                        <Grid item lg={1}>
+                        <Grid item sm={6} lg={1}>
                             <SideNav />
                         </Grid>
-                        <Grid item justifyContent={'center'} lg={11}>
+                        <Grid item justifyContent={'center'} sm={6} lg={11}>
                         <div className="main-page-content-container text-center">
                             <Grid item justifyContent={'center'} lg={3}>
                                 <h2>Hi, {user.username}.</h2>

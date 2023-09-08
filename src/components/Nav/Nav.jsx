@@ -18,7 +18,7 @@ function Nav() {
       <Link to="/home">
         <div className='display-flex'>
           <img src={logoImg} alt="" />
-          <h2 className="nav-title">Prime Solo Project</h2>
+          <h2 className="nav-title">StickIt</h2>
         </div>
       </Link>
       <div>
