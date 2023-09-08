@@ -1,0 +1,11 @@
+.main-page-padding {
+    padding: 1rem;
+}
+
+.main-page-content-container {
+    background-color: var(--primary-white);
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
