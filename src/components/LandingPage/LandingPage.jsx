@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import "./LandingPage.css";
 import logoImg from "../../images/Logo.svg";
 import LoginForm from "../LoginForm/LoginForm";
 // CUSTOM COMPONENTS
 import RegisterForm from "../RegisterForm/RegisterForm";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function LandingPage() {
   const [heading, setHeading] = useState("Welcome");

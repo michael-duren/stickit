@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import  Button  from "@mui/material/Button";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function LoginForm() {
@@ -10,6 +11,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -74,7 +76,16 @@ function LoginForm() {
     </form>
     <div className="text-center formPanel">
       <p>or,</p>
-      <Button variant="outlined" fullWidth>Create Account</Button>
+      <Button 
+      variant="outlined" f
+      fullWidth
+      className="btn btn_asLink"
+      onClick={() => {
+        history.push('/registration');
+      }}
+      >
+        Create Account
+        </Button>
     </div>
 
     </>
