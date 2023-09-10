@@ -1,4 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
+import { SESSION_ACTIONS } from '../actions/session.reducer.actions';
 import { SESSION_FORM_SAGA_ACTIONS } from '../actions/session-form.saga.actions';
 
 // worker Saga: will be fired on "FETCH_USER" actions
@@ -18,7 +19,7 @@ function* postSessionForm(action) {
     const session = yield response.json();
 
     // set session exercises in session reducer
-    yield put({ type: 'SET_EXERCISES', payload: session });
+    yield put({ type: SESSION_ACTIONS.SET_EXERCISES, payload: session });
   } catch (error) {
     console.log('Session post request failed', error);
   }
