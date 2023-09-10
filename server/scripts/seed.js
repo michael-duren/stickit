@@ -20,8 +20,8 @@ async function seedExercises() {
     for (let i = 0; i < 200; i++) {
       const exercise = {
         name: faker.lorem.words(3),
-        type_id: faker.number.int({ min: 1, max: 12 }),
-        focus_id: faker.number.int({ min: 1, max: 4 }),
+        focus_id: faker.number.int({ min: 1, max: 12 }),
+        type_id: faker.number.int({ min: 1, max: 4 }),
         warmup: faker.datatype.boolean(),
         cooldown: faker.datatype.boolean(),
         genre: faker.music.genre(),
@@ -37,7 +37,7 @@ async function seedExercises() {
       };
 
       const queryText = `
-            INSERT INTO exercises(name, type_id, focus_id, warmup, cooldown, genre, instrument, teacher,
+            INSERT INTO exercises(name, focus_id, type_id, warmup, cooldown, genre, instrument, teacher,
                 description, directions, remember, minimum_time_minutes, bpm_min, bpm_max, video_link)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
             `;
