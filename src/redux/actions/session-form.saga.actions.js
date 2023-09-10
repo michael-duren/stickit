@@ -1,0 +1,3 @@
+export const SESSION_FORM_SAGA_ACTIONS = {
+  POST_SESSION: 'POST_SESSION',
+};
