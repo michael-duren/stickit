@@ -30,9 +30,7 @@ async function seedExercises() {
         description: faker.lorem.paragraph(),
         directions: `{${faker.lorem.sentence()},${faker.lorem.sentence()}}`,
         remember: `{${faker.lorem.sentence()},${faker.lorem.sentence()}}`,
-        minimum_time_minutes:
-          faker.number.int({ min: 1, max: 60 }) +
-          faker.number.float({ min: 0, max: 0.9 }).toFixed(2),
+        minimum_time_minutes: faker.number.int({ min: 1, max: 60 }),
         bpm_min: faker.number.int({ min: 60, max: 100 }),
         bpm_max: faker.number.int({ min: 101, max: 200 }),
         video_link: faker.internet.url(),
