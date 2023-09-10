@@ -14,9 +14,9 @@ DROP TABLE IF EXISTS "user";
 
 DROP TABLE IF EXISTS EXERCISES;
 
-DROP TABLE IF EXISTS TYPE;
-
 DROP TABLE IF EXISTS FOCUS;
+
+DROP TABLE IF EXISTS TYPE;
 
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:
