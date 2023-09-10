@@ -30,7 +30,7 @@ function RegisterForm() {
   return (
     <>
       <form className="formPanel" onSubmit={registerUser}>
-        <h2>Create Account</h2>
+        <h2 style={{textAlign: 'center'}}>Create Account</h2>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {errors.registrationMessage}
@@ -72,7 +72,7 @@ function RegisterForm() {
               fullWidth
               type="text"
               name="username"
-              placeholder='Username'
+              placeholder='Email'
               id='outlined-size-small'
               size='small'
               value={username}
@@ -100,7 +100,7 @@ function RegisterForm() {
           <Button fullWidth variant='contained' className="btn" type="submit" name="submit" value="Create Account">Create Account</Button>
         </div>
       </form>
-      <div className='text-center formPanel'>
+      {/* <div className='text-center formPanel'>
         <p>Already have an account?</p>
         <Button
           variant='outlined'
@@ -112,7 +112,7 @@ function RegisterForm() {
         >
           Login
         </Button>
-      </div>
+      </div> */}
 
     </>
 

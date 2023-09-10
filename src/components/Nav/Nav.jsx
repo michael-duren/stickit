@@ -10,7 +10,7 @@ function Nav() {
   const { pathname } = useLocation();
   console.log(pathname);
   // you can check a more conditions here
-  if (pathname === "/login") return null;
+  if (pathname === "/login" || "/registration") return null;
   const user = useSelector((store) => store.user);
 
   return (

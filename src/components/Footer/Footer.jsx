@@ -11,7 +11,7 @@ function Footer() {
   const { pathname } = useLocation();
   console.log(pathname);
   // you can check a more conditions here
-  if (pathname === "/login") return null;
+  if (pathname === "/login" || "/registration") return null;
   return <footer> Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending</footer>;
 }
 
