@@ -102,17 +102,17 @@ VALUES
     ('Foot Speed', 1),
     ('Rudiments', 1),
     --     Creativity & Improvisation
+    ('Improvisation', 2),
+    ('Constraints', 2),
+    ('Sound Exploration', 2),
+    --     Style & Vocabulary
+    ('Transcriptions', 3),
+    ('Fills', 3),
+    ('Grooves', 3),
+    --     Precision & Timekeeping
     ('Metronome Games', 2),
     ('Play Along Tracks', 2),
-    ('Vocalizing Rhythms', 2),
-    --     Style & Vocabulary
-    ('Groove', 3),
-    ('Fills', 3),
-    ('Soloing', 3),
-    --     Precision & Timekeeping
-    ('Independence', 4),
-    ('Coordination', 4),
-    ('Technique', 4);
+    ('Vocalizing Rhythms', 2);
 
 -- EXERCISE GIVEN BY LUKE
 INSERT INTO

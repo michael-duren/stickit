@@ -9,8 +9,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const exercisesRouter = require('./routes/exercises.router');
-const sessionRouter = require('/routes/session.router');
-const sessionNotesRouter = require('/routes/sessionNotes.router');
+const sessionRouter = require('./routes/session.router');
+const sessionNotesRouter = require('./routes/sessionNotes.router');
 
 // Express middleware
 app.use(express.json());
