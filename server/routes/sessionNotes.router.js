@@ -10,9 +10,10 @@ router.get('/:id', (req, res) => {
   WHERE user_session_exercises.user_id = $1
   AND user_session_exercises.session_id = $2;`;
 
-  pool.query(sessionNotesQuery, [req.user.id, req.params.id])
-  .then((result) => {
+  pool.query(sessionNotesQuery, [req.user.id, req.params.id]).then((result) => {
     console.log('Error with get sessionNotesQuery', error);
-    res.sendStatus(500)
+    res.sendStatus(500);
   });
 });
+
+module.exports = router;
