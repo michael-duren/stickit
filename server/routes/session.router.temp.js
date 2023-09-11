@@ -1,39 +1,41 @@
-/**
- * Represents a session form.
- * @typedef {Object} SessionForm
- *
- * @property {string[]} focus - The focus of the session.
- * @property {string[]} speedAndAgilityTypes - The types for speed and agility.
- * @property {string[]} creativityAndImprovisationTypes - The types for creativity and improvisation.
- * @property {string[]} styleAndVocabularyTypes - The types for style and vocabulary.
- * @property {string[]} precisionAndTimekeepingTypes - The types for precision and timekeeping.
- * @property {number} timeInMinutes - The time duration of the session in minutes.
- */
-
 const express = require('express');
-const pool = require('../modules/pool');
-
 const router = express.Router();
+const createDrumSession = require('../modules/create-drum-session');
+const pool = require('../modules/pool');
+const sessionFormType = require('../types/session-form');
+const sessionObjTypes = require('../types/session-object');
 
-router.post('/', (req, res) => {
-  /** @type {SessionForm} */
-  const {
-    focus,
-    speedAndAgilityTypes,
-    creativityAndImprovisationTypes,
-    styleAndVocabularyTypes,
-    precisionAndTimekeepingTypes,
-    timeInMinutes,
-  } = req.body;
-
-  console.log(
-    focus,
-    speedAndAgilityTypes,
-    creativityAndImprovisationTypes,
-    styleAndVocabularyTypes,
-    precisionAndTimekeepingTypes,
-    timeInMinutes
-  );
-
-  res.sendStatus(201);
+router.get('/', async (req, res) => {
+  const exercises = await pool.query('SELECT * FROM exercises LIMIT 10;');
+  console.log('exercises:', exercises.rows);
+  res.sendStatus(200);
 });
+
+router.post('/', async (req, res) => {
+  /** @type {sessionFormType.SessionForm} */
+  const sessionForm = req.body;
+  const { focusAndTypeChoice, timeInMinutes } = sessionForm;
+
+  if (!focusAndTypeChoice || !timeInMinutes) {
+    return res.status(400).send({
+      message: 'Missing required fields',
+      statusCode: 400,
+    });
+  }
+
+  try {
+    /** @type {sessionObjTypes.SessionObject} */
+    const session = await createDrumSession(sessionForm, req.user.id);
+
+    res.status(201).send(session);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      message:
+        'Something went wrong when determining the smart session. Please reach out to support',
+      statusCode: 500,
+    });
+  }
+});
+
+module.exports = router;
