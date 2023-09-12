@@ -31,7 +31,7 @@ function LandingPage() {
           </Grid>
         </Grid>
     <LoginForm />
-        <div className="text-center login-footer primary-white">
+        <div className="text-center primary-white">
           <p>
             Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending
           </p>

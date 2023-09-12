@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { useLocation } from "react-router-dom";
 
 function Nav() {
-  const { pathname } = useLocation();
-  console.log(pathname);
-  // you can check a more conditions here
-  if (pathname === "/login" || "/registration") return null;
   const user = useSelector((store) => store.user);
+  const { pathname } = useLocation();
+  // you can check a more conditions here
+  if (pathname === "/login" || pathname === "/registration") return null;
+
 
   return (
     <div className="nav">

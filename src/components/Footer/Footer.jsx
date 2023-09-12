@@ -8,10 +8,10 @@ import { useLocation } from "react-router-dom";
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
   console.log(pathname);
   // you can check a more conditions here
-  if (pathname === "/login" || "/registration") return null;
+  if (pathname === "/login" || pathname === "/registration") return null;
   return <footer> Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending</footer>;
 }
 

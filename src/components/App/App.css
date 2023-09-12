@@ -112,6 +112,12 @@ input {
   margin-bottom: 10px;
 }
 
+/* Clean Up styling Here Reminder!! */
+
+.main-container {
+  height: 100dvh;
+}
+
 :root {
  --primary-blue: #005E83;
  --primary-white: #FFFFFF;
@@ -143,19 +149,9 @@ h1 {
   font-size: 3.75rem;
 }
 
+/* Utility Classes */
 .m-b-xl {
   margin-bottom: 1.25rem;
-}
-
-
-.login-footer {
-  bottom: 5px;
-  position: relative;
-  text-align: center;
-}
-
-.main-container {
-  height: 100dvh;
 }
 
 .display-flex {
