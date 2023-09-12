@@ -1,0 +1,3 @@
+export const REGISTER_SAGA_ACTIONS = {
+  REGISTER: 'REGISTER',
+};

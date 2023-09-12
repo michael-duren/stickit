@@ -14,6 +14,10 @@ DROP TABLE IF EXISTS "user";
 
 DROP TABLE IF EXISTS EXERCISES;
 
+DROP TABLE IF EXISTS FOCUS;
+
+DROP TABLE IF EXISTS TYPE;
+
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
@@ -27,12 +31,23 @@ CREATE TABLE "user" (
     "role" VARCHAR(20) DEFAULT 'user'
 );
 
+CREATE TABLE TYPE (
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE FOCUS (
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL,
+    TYPE_ID INT REFERENCES TYPE ON DELETE CASCADE
+);
+
 -- table for all exercises
 CREATE TABLE EXERCISES (
     ID SERIAL PRIMARY KEY,
     NAME VARCHAR(100) NOT NULL,
-    TYPE VARCHAR(100) NOT NULL,
-    FOCUS VARCHAR(100) NOT NULL,
+    TYPE_ID INT REFERENCES TYPE ON DELETE CASCADE,
+    FOCUS_ID INT REFERENCES FOCUS ON DELETE CASCADE,
     WARMUP BOOLEAN NOT NULL,
     COOLDOWN BOOLEAN NOT NULL,
     GENRE VARCHAR(100),
@@ -73,12 +88,40 @@ CREATE TABLE USER_FAVORITE_EXERCISES(
     EXERCISE_ID INT REFERENCES EXERCISES ON DELETE CASCADE
 );
 
+INSERT INTO
+    TYPE (NAME)
+VALUES
+    ('Speed & Agility'),
+    ('Creativity & Improvisation'),
+    ('Style & Vocabulary'),
+    ('Precision & Timekeeping');
+
+INSERT INTO
+    FOCUS (NAME, TYPE_ID)
+VALUES
+    --     Speed & Agility
+    ('Hand Speed', 1),
+    ('Foot Speed', 1),
+    ('Rudiments', 1),
+    --     Creativity & Improvisation
+    ('Improvisation', 2),
+    ('Constraints', 2),
+    ('Sound Exploration', 2),
+    --     Style & Vocabulary
+    ('Transcriptions', 3),
+    ('Fills', 3),
+    ('Grooves', 3),
+    --     Precision & Timekeeping
+    ('Metronome Games', 2),
+    ('Play Along Tracks', 2),
+    ('Vocalizing Rhythms', 2);
+
 -- EXERCISE GIVEN BY LUKE
 INSERT INTO
     EXERCISES (
         NAME,
-        TYPE,
-        FOCUS,
+        TYPE_ID,
+        FOCUS_ID,
         WARMUP,
         COOLDOWN,
         GENRE,
@@ -95,63 +138,8 @@ INSERT INTO
 VALUES
     (
         'Full Strokes',
-        'Speed & Agility',
-        'Hand Speed',
-        true,
-        false,
-        null,
-        'Practice Pad',
-        null,
-        'The objective of this warmup is to throw the stick with effort
-and allow the stick to rebound back to its original position. Make sure your wrist is returning to its original position before the stick does,
-otherwise it will get in the way of the stick''s natural rebound.',
-        '{"1. 1 full stroke with right hand (RH),
-followed by 1 full stroke with left hand (LH).Repeat 16x,
-creating constant eighth notes.", 
-"2. 2 full strokes RH,
-2 full strokes LH.Repeat 8x",
-"3. 3 full strokes RH,
-3 full strokes LH.Repeat 8x",
-"4. 4 full strokes RH,
-4 full strokes LH.Repeat 8x",
-"5. 5 full strokes RH,
-5 full strokes LH.Repeat 8x",
-"6. 6 full strokes RH,
-6 full strokes LH.Repeat 8x",
-"7.Increase tempo by 5 bmp
-and repeat"}',
-        '{"1. Go slow!", "2.Strive for an even sound between both hands.", "3.If the stick falls out of your hand,
-that''s okay. It means you are not gripping the stick too hard."}',
-        5.0,
-        80,
-        100,
-        null
-    );
-
--- DUMMY EXERCISE
-INSERT INTO
-    EXERCISES (
-        NAME,
-        TYPE,
-        FOCUS,
-        WARMUP,
-        COOLDOWN,
-        GENRE,
-        INSTRUMENT,
-        TEACHER,
-        DESCRIPTION,
-        DIRECTIONS,
-        REMEMBER,
-        MINIMUM_TIME_MINUTES,
-        BPM_MIN,
-        BPM_MAX,
-        VIDEO_LINK
-    )
-VALUES
-    (
-        'Dummy exercise',
-        'Speed & Agility',
-        'Hand Speed',
+        1,
+        1,
         true,
         false,
         null,
@@ -212,27 +200,6 @@ VALUES
     (
         1,
         1,
-        1,
-        'I felt like I could have done better in several areas.',
-        TRUE,
-        NOW(),
-        100
-    );
-
-INSERT INTO
-    USER_SESSION_EXERCISES(
-        USER_ID,
-        EXERCISE_ID,
-        SESSION_ID,
-        EXERCISE_NOTES,
-        COMPLETED,
-        COMPLETED_AT,
-        COMPLETED_TEMPO
-    )
-VALUES
-    (
-        1,
-        2,
         1,
         'I felt like I could have done better in several areas.',
         TRUE,
