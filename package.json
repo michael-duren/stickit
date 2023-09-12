@@ -7,14 +7,11 @@
     "node": "18.x"
   },
   "dependencies": {
-
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@faker-js/faker": "^8.0.2",
     "@mui/material": "^5.14.8",
     "@mui/styled-engine-sc": "^5.14.8",
-
-    "@faker-js/faker": "^8.0.2",
-
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",

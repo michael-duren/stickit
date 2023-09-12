@@ -173,10 +173,18 @@ that''s okay. It means you are not gripping the stick too hard."}',
 
 -- Dummy Data
 INSERT INTO
-    "user" ("username", "password", "role")
+    "user" (
+        "username",
+        "firstName",
+        "lastName",
+        "password",
+        "role"
+    )
 VALUES
     (
+        'michaelduren@michae.com',
         'michael',
+        'duren',
         '$2a$10$lm0PBXwkXLo.LDNthIwaL.GlgomiP6M49nodueisQjnFTmOTgk7ra',
         'admin'
     );
