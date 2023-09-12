@@ -1,16 +1,25 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import logoImg from "../../images/Logo.svg";
 import { useSelector } from 'react-redux';
+import { useLocation } from "react-router-dom";
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const { pathname } = useLocation();
+  // you can check a more conditions here
+  if (pathname === "/login" || pathname === "/registration") return null;
+
 
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <div className='display-flex'>
+          <img src={logoImg} alt="" />
+          <h2 className="nav-title">StickIt</h2>
+        </div>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

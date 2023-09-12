@@ -5,8 +5,9 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
+  background-color: #F8F8F8;
 }
 
 img {
@@ -102,7 +103,7 @@ Form Treatment
   padding: 25px;
   margin: 0 auto 20px;
   background-color: #efefef;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
 
@@ -110,3 +111,50 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+/* Clean Up styling Here Reminder!! */
+
+.main-container {
+  height: 100dvh;
+}
+
+:root {
+ --primary-blue: #005E83;
+ --primary-white: #FFFFFF;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.background-primary-blue {
+  background-color: var(--primary-blue);
+}
+
+.primary-blue {
+  color: var(--primary-blue);
+}
+
+.primary-white {
+  color: var(--primary-white);
+}
+
+/* import open sans font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans';
+  /* font-feature-settings: 'clig' off, 'liga' off; */
+}
+
+h1 {
+  font-size: 3.75rem;
+}
+
+/* Utility Classes */
+.m-b-xl {
+  margin-bottom: 1.25rem;
+}
+
+.display-flex {
+  display: flex;
+}
+
