@@ -36,8 +36,16 @@ router.post('/', async (req, res) => {
     });
   }
 
+  if (!req.user) {
+    return res.status(401).send({
+      message: 'Error, you might be signed in to access this resource',
+      statusCode: 401,
+    });
+  }
+
   try {
     /** @type {sessionObjTypes.SessionObject} */
+    console.log('user id', req.user.id);
     const session = await createDrumSession(sessionForm, req.user.id);
 
     res.status(201).send(session);
