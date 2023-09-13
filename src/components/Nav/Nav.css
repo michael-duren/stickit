@@ -14,8 +14,12 @@
 }
 
 .nav-title {
+<<<<<<< HEAD
   font-size: 24px;
   font-family: "OpenSans", sans-serif;
+=======
+  font-size: 1.75rem;
+>>>>>>> main
   font-weight: 700;
   color: #f2f2f2;
   padding-left: 10px;
@@ -39,6 +43,12 @@
   outline: 0;
 }
 
-.navLink:hover {
-  background-color: #008183;
+.sign-out:hover {
+  border-bottom: 1px solid white;
+}
+
+.logo-img {
+  width: 33px;
+  height: 33px;
+  padding-left: 1.25rem;
 }

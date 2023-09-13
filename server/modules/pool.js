@@ -20,6 +20,10 @@ if (process.env.DATABASE_URL) {
       rejectUnauthorized: false,
     },
   });
+} else if (process.env.DATABASE_LOCAL) {
+  pool = new pg.Pool({
+    connectionString: process.env.DATABASE_LOCAL,
+  });
 }
 // When we're running this app on our own computer
 // we'll connect to the postgres database that is
