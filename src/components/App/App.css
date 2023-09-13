@@ -4,8 +4,21 @@ body,
   height: 100%;
 }
 
+@font-face {
+  font-family: "OpenSansItalic";
+  src: local("OpenSans-Italic"),
+  url("../../fonts/OpenSans-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans")
+  url("../../fonts/OpenSans.ttf") format("truetype");
+}
+
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'OpenSans', sans-serif;
   margin: 0px;
   background-color: #F8F8F8;
 }
@@ -140,14 +153,15 @@ input {
 }
 
 /* import open sans font */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Open Sans';
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'OpenSans', sans-serif;
   /* font-feature-settings: 'clig' off, 'liga' off; */
 }
 
 h1 {
   font-size: 3.75rem;
 }
+
 
 /* Utility Classes */
 .m-b-xl {

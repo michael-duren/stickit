@@ -23,6 +23,8 @@ import HomePage from '../HomePage/HomePage'
 
 
 import './App.css';
+import '../../fonts/OpenSans-Italic.ttf';
+import '../../fonts/OpenSans.ttf';
 
 function App() {
   const dispatch = useDispatch();
