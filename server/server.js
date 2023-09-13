@@ -14,6 +14,9 @@ const exercisesRouter = require('./routes/exercises.router');
 const sessionRouter = require('./routes/session.router');
 const sessionNotesRouter = require('./routes/sessionNotes.router');
 
+const typeRouter = require('./routes/type.router');
+const typeFocusRouter = require('./routes/typeFocus.router')
+
 
 // Express middleware
 app.use(express.json());
@@ -32,6 +35,9 @@ app.use('/api/exercises', exercisesRouter);
 
 app.use('/api/user/sessions', sessionRouter);
 app.use('/api/user/sessionNotes', sessionNotesRouter);
+
+app.use('/api/types', typeRouter)
+app.use('/api/typefocus', typeFocusRouter)
 
 
 // Serve static files
