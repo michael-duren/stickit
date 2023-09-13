@@ -19,15 +19,15 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import HomePage from '../HomePage/HomePage'
-
+import HomePage from '../HomePage/HomePage';
 
 import './App.css';
+import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -35,25 +35,21 @@ function App() {
 
   return (
     <Router>
-        
       <div>
-          <Nav />
+        <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/login" />
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/home" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* Visiting localhost:3000/about will show the about page. */}
@@ -63,7 +59,6 @@ function App() {
             path="/about"
           >
             <AboutPage />
-            
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -94,35 +89,35 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
             exact
-            path="/login"
+            path="/session/type"
           >
-            {user.id ?
-              // If the user is already logged in, 
+            <TypeSelectionPage />
+          </ProtectedRoute>
+
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/home" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/home" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
-
-          
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

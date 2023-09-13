@@ -1,7 +1,7 @@
 import { SESSION_FORM_ACTIONS } from '../actions/session-form.reducer.actions';
 
 const initialState = {
-  focus: [],
+  types: [],
   speedAndAgilityTypes: [],
   creativityAndImprovisationTypes: [],
   styleAndVocabularyTypes: [],
@@ -11,7 +11,7 @@ const initialState = {
 
 const sessionFormReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SESSION_FORM_ACTIONS.SET_FOCUS:
+    case SESSION_FORM_ACTIONS.SET_TYPES:
       return {
         ...state,
         focus: action.payload,
