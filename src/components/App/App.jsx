@@ -101,6 +101,10 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute path="/session/type/">
+            <TypeSelectionPage />
+          </ProtectedRoute>
+
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
           </ProtectedRoute>
