@@ -26,8 +26,13 @@ import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
 
 import './App.css';
+<<<<<<< HEAD
+import '../../fonts/OpenSans-Italic.ttf';
+import '../../fonts/OpenSans.ttf';
+=======
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import NotFound from '../NotFoundPage/NotFoundPage';
+>>>>>>> main
 
 function App() {
   const dispatch = useDispatch();
