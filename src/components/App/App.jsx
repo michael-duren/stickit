@@ -19,9 +19,13 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+
 import HomePage from '../HomePage/HomePage';
+import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
 import './App.css';
+import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
+import NotFound from '../NotFoundPage/NotFoundPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 
 function App() {
@@ -74,6 +78,14 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/time-selection"
+          >
+            <TimeSelectionPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/home"
@@ -89,12 +101,8 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/session/type"
-          >
-            <TypeSelectionPage />
+          <ProtectedRoute path="/session/focus/:id">
+            <FocusSelectionPage />
           </ProtectedRoute>
 
           <Route exact path="/login">
@@ -121,7 +129,7 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <NotFound />
           </Route>
         </Switch>
         <Footer />
