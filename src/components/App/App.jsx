@@ -19,7 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import HomePage from '../HomePage/HomePage';
+
+import HomePage from '../HomePage/HomePage'
+import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
+
+
 
 import './App.css';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
@@ -72,6 +76,14 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/time-selection"
+          >
+            <TimeSelectionPage />
           </ProtectedRoute>
 
           <ProtectedRoute
