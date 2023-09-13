@@ -1,0 +1,12 @@
+.select-time-hours {
+  margin-bottom: 1rem;
+}
+
+.time-title {
+  margin-left: 1rem;
+}
+
+select {
+  border: 0;
+  background-color: rgb(242, 250, 250);
+}
