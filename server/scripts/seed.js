@@ -32,7 +32,7 @@ async function seedExercises() {
   try {
     // create random exercises with appropritate types and focuses
     for (let i = 1; i < 5; i++) {
-      for (let j = 0; j < 30; j++) {
+      for (let j = 0; j < 60; j++) {
         const exercise = {
           name: faker.lorem.words(3),
           type_id: focuses[i][faker.number.int({ min: 0, max: 2 })],
