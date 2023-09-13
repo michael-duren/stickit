@@ -154,9 +154,24 @@ h1 {
   font-size: 3.75rem;
 }
 
+.empty-button {
+  border: none;
+  background-color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* UTILITY CLASSES */
 .m-b-xl {
   margin-bottom: 1.25rem;
+}
+
+.m-t-xl {
+  margin-top: 1.25rem;
+}
+
+.p-r-xl {
+  margin-right: 1.25rem;
 }
 
 .display-flex {
