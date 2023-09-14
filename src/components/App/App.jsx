@@ -20,19 +20,15 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import HomePage from '../HomePage/HomePage'
+import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
-
-
 import './App.css';
-<<<<<<< HEAD
 import '../../fonts/OpenSans-Italic.ttf';
 import '../../fonts/OpenSans.ttf';
-=======
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
-import NotFound from '../NotFoundPage/NotFoundPage';
->>>>>>> main
+import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -105,6 +101,10 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/session/type/">
+            <TypeSelectionPage />
           </ProtectedRoute>
 
           <ProtectedRoute path="/session/focus/:id">
