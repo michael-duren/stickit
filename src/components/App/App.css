@@ -157,7 +157,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   font-family: 'OpenSans', sans-serif;
   /* font-feature-settings: 'clig' off, 'liga' off; */
 }
