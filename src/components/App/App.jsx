@@ -24,9 +24,11 @@ import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
 import './App.css';
+import '../../fonts/OpenSans-Italic.ttf';
+import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
-import NotFound from '../NotFoundPage/NotFoundPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
+
 
 function App() {
   const dispatch = useDispatch();
