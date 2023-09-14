@@ -5,15 +5,14 @@ body,
 }
 
 @font-face {
-  font-family: "OpenSansItalic";
-  src: local("OpenSans-Italic"),
-  url("../../fonts/OpenSans-Italic.ttf") format("truetype");
+  font-family: 'OpenSansItalic';
+  src: local('OpenSans-Italic'),
+    url('../../fonts/OpenSans-Italic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "OpenSans";
-  src: local("OpenSans")
-  url("../../fonts/OpenSans.ttf") format("truetype");
+  font-family: 'OpenSans';
+  src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
 }
 
 body {
@@ -153,18 +152,13 @@ input {
 }
 
 /* import open sans font */
-<<<<<<< HEAD
-h1, h2, h3, h4, h5, h6, p {
-  font-family: 'OpenSans', sans-serif;
-=======
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Open Sans';
->>>>>>> main
+  font-family: 'OpenSans', sans-serif;
   /* font-feature-settings: 'clig' off, 'liga' off; */
 }
 
@@ -172,10 +166,7 @@ h1 {
   font-size: 3.75rem;
 }
 
-<<<<<<< HEAD
-
 /* Utility Classes */
-=======
 .empty-button {
   border: none;
   background-color: #ffffff;
@@ -184,7 +175,6 @@ h1 {
 }
 
 /* UTILITY CLASSES */
->>>>>>> main
 .m-b-xl {
   margin-bottom: 1.25rem;
 }

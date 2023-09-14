@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
+import NotFound from '../NotFoundPage/NotFoundPage';
 
 import './App.css';
 import '../../fonts/OpenSans-Italic.ttf';
@@ -144,7 +145,6 @@ function App() {
 }
 
 export default App;
-
 
 //create endpoint to update exercise when someone completes and exercise
 //
