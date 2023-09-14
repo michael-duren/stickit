@@ -1,4 +1,5 @@
 import React from 'react';
+import TypeButton from '../TypeButton/TypeButton';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -8,9 +9,14 @@ import React from 'react';
 function InfoPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      
+      <div className='typeButton-container'>
+      <TypeButton></TypeButton>
+      </div>
     </div>
   );
 }
 
 export default InfoPage;
+
+//there was an <p>Info Page</p> inserted under the <div className="container"> on line 12. removed to center the typeButton
