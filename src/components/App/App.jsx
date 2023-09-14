@@ -29,7 +29,6 @@ import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 
-
 function App() {
   const dispatch = useDispatch();
 
