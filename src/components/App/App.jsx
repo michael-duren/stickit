@@ -20,15 +20,17 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import HomePage from '../HomePage/HomePage'
+import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
-
-
+import NotFound from '../NotFoundPage/NotFoundPage';
 
 import './App.css';
+import '../../fonts/OpenSans-Italic.ttf';
+import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
-import NotFound from '../NotFoundPage/NotFoundPage';
+import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
+import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: SESSION_FORM_SAGA_ACTIONS.GET_TYPES }); // get types on intial load
   }, [dispatch]);
 
   return (
@@ -103,6 +106,10 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute path="/session/type/">
+            <TypeSelectionPage />
+          </ProtectedRoute>
+
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
           </ProtectedRoute>
@@ -145,3 +152,6 @@ function App() {
 }
 
 export default App;
+
+//create endpoint to update exercise when someone completes and exercise
+//

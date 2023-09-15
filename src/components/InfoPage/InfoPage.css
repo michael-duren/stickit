@@ -1,0 +1,7 @@
+.typeButton-container {
+    /* Adjust container alignment */
+    display: flex;
+    justify-content: center; /* Horizontal center alignment */
+    align-items: center; /* Vertical center alignment */
+  }
+  

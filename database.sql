@@ -112,9 +112,9 @@ VALUES
     ('Fills', 3),
     ('Grooves', 3),
     --     Precision & Timekeeping
-    ('Metronome Games', 2),
-    ('Play Along Tracks', 2),
-    ('Vocalizing Rhythms', 2);
+    ('Metronome Games', 4),
+    ('Play Along Tracks', 4),
+    ('Vocalizing Rhythms', 4);
 
 -- EXERCISE GIVEN BY LUKE
 INSERT INTO

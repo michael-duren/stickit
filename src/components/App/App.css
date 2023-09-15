@@ -4,8 +4,20 @@ body,
   height: 100%;
 }
 
+@font-face {
+  font-family: 'OpenSansItalic';
+  src: local('OpenSans-Italic'),
+    url('../../fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
+}
+
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'OpenSans', sans-serif;
   margin: 0px;
   background-color: #f8f8f8;
 }
@@ -119,9 +131,48 @@ input {
 }
 
 :root {
-  --primary-blue: #005e83;
+  --primary-blue: #005e83; /* brand base */
   --primary-white: #ffffff;
+  --landing-gradient: linear-gradient(180deg, #005e83 0%, #5fa2bb 95.54%);
+  --brand-base: #005e83;
+  --brand-surface: #f2fafc;
+  --brand-border: #005e83;
+  --brand-hover: #00384f;
+  --brand-focus: #151819;
+  --brand-pressed: #001c27;
+  --brand-disabled: #005e83;
 }
+
+/* import open sans font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: 'OpenSans', sans-serif;
+  /* font-feature-settings: 'clig' off, 'liga' off; */
+}
+
+h1 {
+  font-size: 3.75rem;
+}
+
+h2 {
+  color: var(--neutral-600, #5e5f61);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+
+  /* Subtitle 2 */
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.875rem */
+  letter-spacing: 0.00938rem;
+}
+
+/* Utility Classes */
 
 .text-center {
   text-align: center;
@@ -137,21 +188,6 @@ input {
 
 .primary-white {
   color: var(--primary-white);
-}
-
-/* import open sans font */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Open Sans';
-  /* font-feature-settings: 'clig' off, 'liga' off; */
-}
-
-h1 {
-  font-size: 3.75rem;
 }
 
 .empty-button {
@@ -241,4 +277,53 @@ h1 {
 }
 .text-primary-blue {
   color: var(--primary-blue);
+}
+.grid {
+  display: grid;
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.mt-16 {
+  margin-top: 1rem;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+.collapse {
+  visibility: collapse;
+}
+
+/*
+* Animation for loading spinner
+*/
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.main-button-width {
+  width: 25rem;
 }

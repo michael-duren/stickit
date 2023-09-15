@@ -1,0 +1,30 @@
+/* TypeButton.css */
+
+.type-button {
+    border-radius: 24px;
+    border: 1px solid var(--brand-border, #005e83);
+    background: var(--brand-surface, #f2fafc);
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 24px;
+    flex: 1 0 0;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif; /* Enclose the font name in single or double quotes */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+    color: var(--brand-base, #005E83); /* Text color */
+    text-align: center; /* Center text horizontally */
+    font-feature-settings: 'clig' off, 'liga' off; /* Font feature settings */
+  }
+  
+  
+
+.type-button-container {
+  /* Adjust container alignment */
+  display: flex;
+  justify-content: center; /* Horizontal center alignment */
+  align-items: center; /* Vertical center alignment */
+}

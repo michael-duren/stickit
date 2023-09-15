@@ -43,7 +43,7 @@ function LoginForm() {
             fullWidth
             type="text"
             name="username"
-            placeholder="Username"
+            placeholder="Email"
             id="outlined-size-small"
             size="small"
             required

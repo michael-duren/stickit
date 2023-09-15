@@ -14,7 +14,8 @@
 }
 
 .nav-title {
-  font-size: 1.75rem;
+  font-size: 24px;
+  font-family: 'OpenSans', sans-serif;
   font-weight: 700;
   color: #f2f2f2;
   padding-left: 10px;
