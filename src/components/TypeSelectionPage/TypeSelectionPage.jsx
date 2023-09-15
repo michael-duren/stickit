@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
-import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -10,11 +8,6 @@ export default function TypeSelectionPage() {
   const { selectedTypes } = useSelector((store) => store.sessionForm);
   const history = useHistory();
   const { types } = useSelector((store) => store.sessionForm);
-
-  useEffect(() => {
-    dispatch({ type: SESSION_FORM_SAGA_ACTIONS.GET_TYPES });
-    console.log('types from type', types);
-  }, []);
 
   const selectType = (type) =>
     dispatch({

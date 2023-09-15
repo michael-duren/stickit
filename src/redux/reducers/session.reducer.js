@@ -1,16 +1,21 @@
 import { SESSION_ACTIONS } from '../actions/session.reducer.actions';
 
 const initialState = {
+  sessionId: 0,
+  user_id: 0,
+  duration: 0,
+  completed: false,
   exercises: [],
-  isComplete: false,
 };
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SESSION_ACTIONS.SET_SESSION:
+      return action.payload;
     case SESSION_ACTIONS.SET_EXERCISES:
       return {
         ...state,
-        exercises: action.payload,
+        session: action.payload,
       };
     case SESSION_ACTIONS.SET_IS_COMPLETE:
       return {

@@ -29,6 +29,7 @@ import '../../fonts/OpenSans-Italic.ttf';
 import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
+import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: SESSION_FORM_SAGA_ACTIONS.GET_TYPES }); // get types on intial load
   }, [dispatch]);
 
   return (

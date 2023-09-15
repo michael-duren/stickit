@@ -5,7 +5,7 @@ import { SESSION_FORM_ACTIONS } from '../actions/session-form.reducer.actions';
 
 function* postSessionForm(action) {
   try {
-    const response = yield fetch('/api/user', {
+    const response = yield fetch('/api/user/sessions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ function* postSessionForm(action) {
     const session = yield response.json();
 
     // set session exercises in session reducer
-    yield put({ type: SESSION_ACTIONS.SET_EXERCISES, payload: session });
+    yield put({ type: SESSION_ACTIONS.SET_SESSION, payload: session });
   } catch (error) {
     console.log('Session post request failed', error);
   }
