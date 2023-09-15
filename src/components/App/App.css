@@ -131,8 +131,9 @@ input {
 }
 
 :root {
-  --primary-blue: #005e83;
+  --primary-blue: #005e83; /* brand base */
   --primary-white: #ffffff;
+  --landing-gradient: linear-gradient(180deg, #005e83 0%, #5fa2bb 95.54%);
 }
 
 .text-center {
