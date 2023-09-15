@@ -3,8 +3,9 @@ import { SESSION_FORM_ACTIONS } from '../actions/session-form.reducer.actions';
 const initialState = {
   types: [],
   selectedTypes: [], // will be an array of type ids
+  typeHistory: [], // will be an array of type ids
   focusAndTypeChoice: { 1: [], 2: [], 3: [], 4: [] },
-  timeInMinutes: 0,
+  timeInMinutes: 30,
 };
 
 const sessionFormReducer = (state = initialState, action) => {
@@ -62,9 +63,18 @@ const sessionFormReducer = (state = initialState, action) => {
     case SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE:
       return {
         ...state,
+        typeHistory: [...state.typeHistory, action.payload], // add to history
         selectedTypes: [
           ...state.selectedTypes.filter((type) => type !== action.payload),
         ],
+      };
+    case SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE_FROM_HISTORY:
+      return {
+        ...state,
+        typeHistory: [
+          ...state.typeHistory.filter((type) => type !== action.payload),
+        ],
+        selectedTypes: [...state.selectedTypes, action.payload],
       };
     case SESSION_FORM_ACTIONS.SET_TIME_IN_MINUTES:
       return {

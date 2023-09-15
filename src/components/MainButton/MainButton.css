@@ -1,0 +1,22 @@
+.main-button {
+  display: flex;
+  width: 25rem;
+  padding: var(--spacing-base-02, 0.5rem) var(--spacing-base-04, 1rem);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-base-02, 0.5rem);
+  color: var(--primary-white);
+  border-radius: var(--border-radius-04, 0.25rem);
+  background: var(--brand-base, #005e83);
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.main-button:hover {
+  background: var(--brand-base-dark, #004c66);
+}
+.main-button:active {
+  background: var(--brand-base-darker, #00394d);
+  scale: 105%;
+}

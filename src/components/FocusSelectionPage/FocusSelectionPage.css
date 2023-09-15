@@ -1,11 +1,23 @@
 .btn-focus-select {
   display: flex;
   width: 15rem;
-  padding: 1rem 1.5rem;
-  flex-direction: column;
-  align-items: center;
+  padding: 0.75rem 1.5rem;
   gap: 0.4375rem;
   border-radius: 1.5rem;
   border: 1px solid var(--brand-border, #005e83);
   background: var(--brand-surface, #f2fafc);
+  color: var(--brand-text, #005e83);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-focus-select-check {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-focus-select-active {
+  background: var(--brand-base, #005e83);
+  color: var(--brand-surface, #f2fafc);
 }
