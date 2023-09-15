@@ -1,0 +1,11 @@
+.session-container {
+  display: flex;  
+  flex-direction: row;
+  align-items: center;
+}
+
+.exercise {
+  background-color: #f4fafc;
+  border-radius: 15%;
+  
+}

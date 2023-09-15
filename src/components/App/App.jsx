@@ -27,6 +27,7 @@ import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
 import './App.css';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
+import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
 import NotFound from '../NotFoundPage/NotFoundPage';
 
 function App() {
@@ -104,6 +105,10 @@ function App() {
 
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/session/summary">
+            <SessionSelectionPage />
           </ProtectedRoute>
 
           <Route exact path="/login">
