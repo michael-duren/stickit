@@ -26,13 +26,11 @@ import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
 
 
 import './App.css';
-<<<<<<< HEAD
 import '../../fonts/OpenSans-Italic.ttf';
 import '../../fonts/OpenSans.ttf';
-=======
-import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
-import NotFound from '../NotFoundPage/NotFoundPage';
->>>>>>> main
+import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage.jsx';
+import NotFound from '../NotFoundPage/NotFoundPage'
+import SessionPage from '../SessionPage/SessionPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +43,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='background-primary-grey full-height'>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -109,6 +107,10 @@ function App() {
 
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute exact path='/session'>
+            <SessionPage />
           </ProtectedRoute>
 
           <Route exact path="/login">

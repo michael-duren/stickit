@@ -1,0 +1,12 @@
+.session-page-padding {
+  padding: 3rem;
+}
+
+.session-page-content-container {
+  background-color: var(--primary-white);
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  font-family: 'OpenSans';
+}
