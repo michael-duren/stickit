@@ -28,6 +28,7 @@ import './App.css';
 import '../../fonts/OpenSans-Italic.ttf';
 import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
+import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 
@@ -111,6 +112,10 @@ function App() {
 
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/session/summary">
+            <SessionSelectionPage />
           </ProtectedRoute>
 
           <Route exact path="/login">

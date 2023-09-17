@@ -152,6 +152,7 @@ h5,
 h6,
 p {
   font-family: 'OpenSans', sans-serif;
+  margin: 0px;
   /* font-feature-settings: 'clig' off, 'liga' off; */
 }
 
@@ -232,6 +233,15 @@ h2 {
 .justify-between {
   justify-content: space-between;
 }
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
