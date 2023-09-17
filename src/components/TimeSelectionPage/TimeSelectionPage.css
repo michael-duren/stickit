@@ -2,11 +2,18 @@
   margin-bottom: 1rem;
 }
 
-.time-title {
-  margin-left: 1rem;
-}
-
 select {
   border: 0;
+  width: 4rem;
   background-color: rgb(242, 250, 250);
+}
+
+time-title {
+  font-family: 'Open Sans';
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.875rem */
+  letter-spacing: 0.00938rem;
+  font-feature-settings: 'clig' off, 'liga' off;
 }

@@ -44,7 +44,14 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -85,7 +92,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/time-selection"
+            path="/session/time-selection"
           >
             <TimeSelectionPage />
           </ProtectedRoute>
