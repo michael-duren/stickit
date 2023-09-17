@@ -167,6 +167,16 @@ h1 {
   font-size: 3.75rem;
 }
 
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
 
 /* Utility Classes */
 .m-b-xl {
