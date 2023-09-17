@@ -337,3 +337,6 @@ h2 {
 .main-button-width {
   width: 25rem;
 }
+.p-2 {
+  padding: 0.5rem;
+}
