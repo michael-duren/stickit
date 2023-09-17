@@ -1,0 +1,85 @@
+/* .session-container {
+  display: flex;  
+  flex-direction: row;
+  align-items: center;
+} */
+
+.exercise {
+  background-color: #f4fafc;
+  border-radius: 10%;
+}
+
+/*added margin-bottom of 10px to separate subsequent containers. this spacing
+wasn't indicated explicitly in Figma. Chose something that looked similar*/
+.session-container {
+  display: flex;
+  padding: 4px 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  border-radius: 16px;
+  background: var(--brand-surface, #F2FAFC);
+  margin-bottom: 10px;
+}
+
+.exercise-info {
+  padding: 0 1rem;
+  margin: 0px;
+  gap: 6px;
+  font-weight: 400;
+}
+
+.exercise-title {
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 18px */
+  letter-spacing: 0.1px;
+  color: var(--neutral-700, #393939);
+}
+
+/*increased font-size from 12 t0 16. This appeared smaller than what's in figma.
+I copied straight from figma, but it didn't seem to change for some reason*/
+.exercise-description {
+  color: var(--neutral-700, #393939);
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* Body Base Emphasis */
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  /* 24px */
+  letter-spacing: 0.25px;
+}
+
+.exercise-duration {
+  color: var(--neutral-700, #393939);
+  text-align: right;
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* Body XS */
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 18px */
+  letter-spacing: 0.1px;
+}
+
+/*added margin-right of 33px to move this elemnt to the left more. Was not explicitly
+indicated in figma*/
+.total-time {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 24px */
+  letter-spacing: 0.25px;
+  color: var(--neutral-700, #393939);
+  text-align: right;
+  margin-right: 33px;
+}

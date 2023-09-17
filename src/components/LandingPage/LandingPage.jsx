@@ -6,6 +6,8 @@ import LoginForm from "../LoginForm/LoginForm";
 // CUSTOM COMPONENTS
 import RegisterForm from "../RegisterForm/RegisterForm";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import TypeButton from "../TypeButton/TypeButton";
+
 
 function LandingPage() {
   const [heading, setHeading] = useState("Welcome");
@@ -28,6 +30,7 @@ function LandingPage() {
               </Grid>
             </Grid>
             <p>Practice better.</p>
+            
           </Grid>
         </Grid>
     <LoginForm />
