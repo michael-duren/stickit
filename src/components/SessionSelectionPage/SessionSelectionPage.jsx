@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import './SessionSelectionPage.css';
 import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
+import MainButton from '../MainButton/MainButton';
 
 export default function SessionSelectionPage() {
   const { id } = useParams();
@@ -28,27 +29,27 @@ export default function SessionSelectionPage() {
             <div className="main-page-content-container">
               <Grid item lg={5}>
                 <h2 className='text-center' >Your smart session:</h2>
-                <div className='display-flex justify-center'>
-                  <div className="session-container exercise">
+                <div className='display-flex items-center justify-center'>
+                  <div className="session-container exercise main-button-width justify-around">
                     <div>
-                      <InfoIcon />
+                      <InfoIcon className='primary-blue'/>
                     </div>
-                    <div className="exercise-info">
-                      <p>Warmup</p>
-                      <p>Full Strokes</p>
+                    <div className="exercise-info flex flex-col flex-1">
+                      <p className="exercise-title">Warmup</p>
+                      <p className="exersice-description">Full Strokes</p>
                     </div>
                     <div>
                       <p className="exercise-duration">5 min</p>
                     </div>
-                    
+
                   </div>
                   <div className="sync-icon">
-                    <SyncIcon />
+                    <SyncIcon className='primary-blue'/>
                   </div>
                 </div>
                 <div className="total-time">5 min</div>
-                <Button fullWidth variant="contained" className="btn" type="submit" name="submit" value="Sign In" >Begin Session</Button>
-                <div>
+                <MainButton type="button">Begin Session</MainButton>
+                <div className="button-container">
                   <button className='m-t-xl empty-button primary-blue'>Back</button>
                 </div>
               </Grid>
