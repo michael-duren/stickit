@@ -1,0 +1,62 @@
+.session-page-padding {
+  padding: 3rem;
+}
+
+.session-page-content-container {
+  background-color: var(--primary-white);
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: left;
+  font-family: 'OpenSans';
+}
+
+.tempo-box {
+  background-color: #F2FAFC;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.buttons {
+  color: var(--primary-blue);
+}
+
+.end-session {
+  color: var(--primary-blue);
+}
+
+.completed {
+  color: #5E5F61;
+}
+
+.play-video {
+  margin-right: 20px;
+}
+
+.exercise-name {
+  margin: 1px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.instrument {
+  background-color: #878787;
+  color: white;
+  border-radius: 4px;
+  padding: 5px;
+  width: fit-content;
+  letter-spacing: 0.25px;
+  margin: 1px;
+}
+
+.start-button {
+  text-align: right;
+}

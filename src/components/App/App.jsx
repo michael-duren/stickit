@@ -44,7 +44,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='background-primary-grey full-height'>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -112,6 +112,10 @@ function App() {
 
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute exact path='/session'>
+            <SessionPage />
           </ProtectedRoute>
 
           <ProtectedRoute path="/session/summary">
