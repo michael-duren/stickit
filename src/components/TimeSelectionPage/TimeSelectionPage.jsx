@@ -1,18 +1,32 @@
 import './TimeSelectionPage.css';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
+import { useHistory } from 'react-router-dom';
 
 function TimeSelectionPage() {
+  const history = useHistory();
   const [minutes, setMinutes] = useState(30);
   const [hours, setHours] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
   const disptach = useDispatch();
-  const { timeInMinutes } = useSelector((state) => state.sessionForm);
   const minuteRange = [0, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   const hourRange = [0, 1, 2, 3, 4];
 
-  const handleTimeChange = (e) => {};
+  useEffect(() => {
+    setTotalTime(hours * 60 + minutes);
+  }, [minutes, hours]);
+
+  const setTimeAndNavigate = () => {
+    disptach({
+      type: SESSION_FORM_ACTIONS.SET_TIME_IN_MINUTES,
+      payload: totalTime,
+    });
+
+    history.push('/session/type');
+  };
 
   return (
     <MainLayout showNav={true} exitButton={true}>
@@ -20,7 +34,11 @@ function TimeSelectionPage() {
         <p>How much time do you have?</p>
         <div className="gap-16 flex flex-col">
           <div className="flex gap-16 items-center">
-            <select className="time-title">
+            <select
+              value={hours}
+              onChange={(e) => setHours(e.target.value)}
+              className="time-title"
+            >
               hours
               {hourRange.map((hour) => (
                 <option value={hour} key={hour}>
@@ -31,7 +49,10 @@ function TimeSelectionPage() {
             <span className="time-title">hours</span>
           </div>
           <div className="flex gap-16 items-center">
-            <select>
+            <select
+              value={minutes}
+              onChange={(e) => setMinutes(e.target.value)}
+            >
               {minuteRange.map((minute) => (
                 <option value={minute} key={minute}>
                   {minute}
@@ -41,7 +62,18 @@ function TimeSelectionPage() {
             <span className="time-title">minutes</span>
           </div>
         </div>
-        <MainButton>Next</MainButton>
+        <div>
+          {totalTime < 15 && (
+            <p className="text-error">Please Select at least 15 Minutes</p>
+          )}
+        </div>
+        <MainButton
+          disabled={totalTime < 15}
+          type="button"
+          onClick={setTimeAndNavigate}
+        >
+          Next
+        </MainButton>
       </div>
     </MainLayout>
   );

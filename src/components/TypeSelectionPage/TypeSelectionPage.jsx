@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import MainLayout from '../../layouts/MainLayout';
+import MainButton from '../MainButton/MainButton';
 
 export default function TypeSelectionPage() {
   const dispatch = useDispatch();
@@ -25,8 +27,8 @@ export default function TypeSelectionPage() {
   };
 
   return (
-    <div className="main-page-content-container">
-      <div className="flex flex-col items-center">
+    <MainLayout showExitButton={true} showNav={true}>
+      <div className="w-full items-center flex flex-col gap-16">
         <div>
           <h2>What would you like to work on today?</h2>
           <p>Select which areas you'd like to focus your practice on.</p>
@@ -42,24 +44,18 @@ export default function TypeSelectionPage() {
             );
           })}
         </div>
-        <div className="flex mt-16 flex-col gap-16 w-full">
-          <Button
-            fullWidth
+        <div className="flex flex-col items-center justify-center w-full mt-16">
+          <MainButton
             onClick={routeToNextPage}
             disabled={selectedTypes.length === 0}
-            variant="contained"
-            className="btn"
-            type="submit"
-            name="submit"
-            value="Sign In"
           >
             Next
-          </Button>
-          <div>
+          </MainButton>
+          <div className="flex main-button-width">
             <button className="m-t-xl empty-button primary-blue">Back</button>
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
