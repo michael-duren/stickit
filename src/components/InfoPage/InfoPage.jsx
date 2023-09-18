@@ -1,5 +1,9 @@
-import React from 'react';
-import TypeButton from '../TypeButton/TypeButton';
+import React from "react";
+import TypeButton from "../TypeButton/TypeButton";
+import { ReactComponent as Rabbit } from '../../images/rabbitIcon.svg';
+import { ReactComponent as Innovation } from '../../images/innovationIcon.svg';
+import { ReactComponent as ABC } from '../../images/abcIcon.svg';
+import { ReactComponent as Target } from '../../images/targetIcon.svg';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -9,9 +13,14 @@ import TypeButton from '../TypeButton/TypeButton';
 function InfoPage() {
   return (
     <div className="container">
-      
-      <div className='typeButton-container'>
-      <TypeButton></TypeButton>
+      <div className="typeButton-container">
+        <TypeButton icon={<Rabbit />} label="Speed and Agility" />
+        <TypeButton icon={<Innovation />} label="Creativity & Improvisation" />
+        <TypeButton icon={<ABC />} label="Style and Vocabulary" />
+        <TypeButton icon={<Target />} label="Precision & Timekeeping" />
+
+
+        
       </div>
     </div>
   );
