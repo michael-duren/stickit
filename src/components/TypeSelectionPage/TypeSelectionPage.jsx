@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
-import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';

@@ -62,6 +62,8 @@ export default function FocusSelectionPage() {
         type: SESSION_FORM_SAGA_ACTIONS.POST_SESSION,
         payload: { focusAndTypeChoice, timeInMinutes },
       });
+      const path = '/session/summary';
+      history.push(path);
     } else {
       const path = `/session/focus/${selectedTypes[0]}`;
       console.log(path);

@@ -29,7 +29,7 @@ function TimeSelectionPage() {
   };
 
   return (
-    <MainLayout showNav={true} exitButton={true}>
+    <MainLayout showNav={true}>
       <div className="flex flex-col gap-16 items-center">
         <p>How much time do you have?</p>
         <div className="gap-16 flex flex-col">
