@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SessionPage from '../SessionPage/SessionPage';
 
 import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
@@ -44,6 +45,9 @@ function App() {
 
   return (
     <Router>
+
+      <div className='background-primary-grey full-height'>
+
       <div
         style={{
           height: '100vh',
@@ -52,6 +56,7 @@ function App() {
           flexDirection: 'column',
         }}
       >
+
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -119,6 +124,10 @@ function App() {
 
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute exact path='/session'>
+            <SessionPage />
           </ProtectedRoute>
 
           <ProtectedRoute path="/session/summary">

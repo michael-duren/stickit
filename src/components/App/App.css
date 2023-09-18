@@ -19,7 +19,7 @@ body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: 'OpenSans', sans-serif;
   margin: 0px;
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
 }
 
 img {
@@ -162,7 +162,6 @@ h1 {
 
 h2 {
   color: var(--neutral-600, #5e5f61);
-  text-align: center;
   font-feature-settings: 'clig' off, 'liga' off;
 
   /* Subtitle 2 */
@@ -181,6 +180,10 @@ h2 {
 
 .background-primary-blue {
   background-color: var(--primary-blue);
+}
+
+.background-primary-grey {
+  background-color: var(--primary-grey);
 }
 
 .primary-blue {
@@ -203,12 +206,10 @@ h2 {
   margin-bottom: 1.25rem;
 }
 
-.m-t-xl {
-  margin-top: 1.25rem;
-}
 
-.p-r-xl {
-  margin-right: 1.25rem;
+/* Utility Classes */
+.m-b-xl {
+  margin-bottom: 1.25rem;
 }
 
 .display-flex {
