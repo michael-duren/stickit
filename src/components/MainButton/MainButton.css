@@ -20,3 +20,7 @@
   background: var(--brand-base-darker, #00394d);
   scale: 105%;
 }
+
+.main-button:disabled {
+  background: #d4d4d8;
+}
