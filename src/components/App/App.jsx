@@ -31,6 +31,7 @@ import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
+import Routes from '../Routes/Routes'
 
 function App() {
   const dispatch = useDispatch();
@@ -48,13 +49,13 @@ function App() {
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to={Routes.Login} />
 
-          <Route exact path="/login">
+          <Route exact path={Routes.Login}>
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/home" />
+              <Redirect to={Routes.Home} />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />
@@ -64,8 +65,8 @@ function App() {
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
+            exact 
+            path={Routes.About}
           >
             <AboutPage />
           </Route>
@@ -77,7 +78,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path={Routes.User}
           >
             <UserPage />
           </ProtectedRoute>
@@ -85,7 +86,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/time-selection"
+            path={Routes.TimeSelection}
           >
             <TimeSelectionPage />
           </ProtectedRoute>
@@ -93,7 +94,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/home"
+            path={Routes.Home}
           >
             <HomePage />
           </ProtectedRoute>
@@ -101,39 +102,39 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path={Routes.Info}
           >
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute path="/session/type/">
+          <ProtectedRoute path={Routes.SessionType}>
             <TypeSelectionPage />
           </ProtectedRoute>
 
-          <ProtectedRoute path="/session/focus/:id">
+          <ProtectedRoute path={Routes.SessionFocus}>
             <FocusSelectionPage />
           </ProtectedRoute>
 
-          <ProtectedRoute path="/session/summary">
+          <ProtectedRoute path={Routes.SessionSummary}>
             <SessionSelectionPage />
           </ProtectedRoute>
 
-          <Route exact path="/login">
+          <Route exact path={Routes.Login}>
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/home" />
+              <Redirect to={Routes.Home} />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path="/registration">
+          <Route exact path={Routes.Registration}>
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/home" />
+              <Redirect to={Routes.Home} />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
