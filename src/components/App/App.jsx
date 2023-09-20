@@ -45,9 +45,6 @@ function App() {
 
   return (
     <Router>
-
-      <div className='background-primary-grey full-height'>
-
       <div
         style={{
           height: '100vh',
@@ -56,7 +53,6 @@ function App() {
           flexDirection: 'column',
         }}
       >
-
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -125,8 +121,8 @@ function App() {
           <ProtectedRoute path="/session/focus/:id">
             <FocusSelectionPage />
           </ProtectedRoute>
-          
-          <ProtectedRoute exact path='/session'>
+
+          <ProtectedRoute exact path="/session">
             <SessionPage />
           </ProtectedRoute>
 

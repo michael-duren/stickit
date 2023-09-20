@@ -1,0 +1,61 @@
+.metronome {
+  padding: var(--spacing-base-04, 1rem);
+  font-weight: 400;
+  color: #57534e;
+}
+
+.metronome * {
+  transition: all 0.2s ease-in-out;
+}
+
+.tempo-select {
+  padding: 0.35rem 0;
+  border-radius: var(--spacing-base-02, 0.5rem);
+  border: 1px solid var(--brand-border, #005e83);
+  background: var(--neutral-000, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+  min-height: 4.25rem;
+}
+
+.play-button {
+  min-height: 4rem;
+}
+.play-button button {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  height: 4.25rem;
+  padding: 2.5rem 3.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+  border-radius: var(--spacing-base-02, 0.5rem);
+  border: 1px solid var(--brand-base, #005e83);
+  background: var(--neutral-000, #fff);
+}
+
+.play-button button:hover {
+  background: #d1d1d1;
+}
+
+.play-button button:active {
+  scale: 0.95;
+  background: #d1d1d1;
+}
+
+.metronome input {
+  width: 4rem;
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--neutral-900, #1a1a1a);
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
