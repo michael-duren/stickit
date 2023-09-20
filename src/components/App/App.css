@@ -201,9 +201,26 @@ h2 {
   padding: 0;
 }
 
+.logout-button {
+  border: none;
+}
+
+.text-black {
+  color: #262626;
+}
+
 /* UTILITY CLASSES */
-.m-b-xl {
-  margin-bottom: 1.25rem;
+
+.p-l-l {
+  padding-left: 1rem;
+}
+
+.m-t-l {
+  margin-top: 1rem;
+}
+
+.m-t-xl {
+  margin-top: 1.25rem;
 }
 
 

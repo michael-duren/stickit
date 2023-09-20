@@ -1,6 +1,6 @@
 .main-button {
   display: flex;
-  width: 25rem;
+  width: 100%;
   padding: var(--spacing-base-02, 0.5rem) var(--spacing-base-04, 1rem);
   flex-direction: column;
   justify-content: center;

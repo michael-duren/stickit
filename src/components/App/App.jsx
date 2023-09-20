@@ -48,14 +48,14 @@ function App() {
 
       <div className='background-primary-grey full-height'>
 
-      <div
+      {/* <div
         style={{
           height: '100vh',
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
         }}
-      >
+      > */}
 
         <Nav />
         <Switch>
