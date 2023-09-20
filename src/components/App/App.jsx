@@ -46,7 +46,7 @@ function App() {
   return (
     <Router>
 
-      <div className='background-primary-grey full-height'>
+      {/* <div className='background-primary-grey full-height'> */}
 
       <div
         style={{
@@ -164,8 +164,8 @@ function App() {
         <Footer />
       </div>
     </Router>
-  );
-}
+  )
+};
 
 export default App;
 
