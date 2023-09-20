@@ -16,6 +16,7 @@ export default function Metronome({ tempo }) {
   const [setting, setSetting] = useState(MetronomeOptions.setting[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   // const [playerValue, setPlayerValue] = useState(null);
+  const [repeatId, setRepeatId] = useState(null);
 
   useEffect(() => {
     Transport.bpm.value = tempoState;
@@ -35,13 +36,18 @@ export default function Metronome({ tempo }) {
 
   const handlePlayToggle = async () => {
     if (isPlaying) {
+      Transport.clear(repeatId);
       Transport.stop();
     } else {
+      let repeatIdHeld;
       await Tone.start();
-      Transport.scheduleRepeat((time) => {
-        players[sound].start(time);
-      }, '4n');
+      if (!repeatId) {
+        repeatIdHeld = Transport.scheduleRepeat((time) => {
+          players[sound].start(time);
+        }, '4n');
+      }
       Transport.start();
+      setRepeatId(repeatIdHeld);
     }
     setIsPlaying(!isPlaying);
   };
