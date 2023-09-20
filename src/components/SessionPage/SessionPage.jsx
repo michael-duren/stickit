@@ -71,13 +71,22 @@ function SessionPage() {
   return (
     <div className="background-primary-grey">
       <Grid container className="session-page-padding">
-        <Grid container className="session-page-content-container" justifyContent='space-between'>
-          <Grid item sm={12}
+        <Grid
+          container
+          className="session-page-content-container"
+          justifyContent="space-between"
+        >
+          <Grid
+            item
+            sm={12}
             sx={{ display: 'inline-flex', marginBottom: '10px' }}
-            justifyContent={"space-between"}
+            justifyContent={'space-between'}
+
           >
             <Grid item>
-              <h2 className="exercise-name">Exercise Name <FavoriteBorderOutlinedIcon /></h2>
+              <h2 className="exercise-name">
+                Exercise Name <FavoriteBorderOutlinedIcon />
+              </h2>
               <p className="instrument">Instrument</p>
             </Grid>
             <Grid>
@@ -96,12 +105,6 @@ function SessionPage() {
                 >Pause
                 </Button>
               )}
-
-
-
-
-
-
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6}
@@ -113,32 +116,35 @@ function SessionPage() {
               sx={{
                 marginTop: '10px'
               }}>
+
               <Button
                 variant="outlined"
                 size="small"
                 sx={{
-                  marginRight: '5px'
+                  marginRight: '5px',
                 }}
               >
                 Play Video
                 <PlayArrowIcon />
               </Button>
-              <Button
-                variant="outlined"
-                size="small">
+              <Button variant="outlined" size="small">
                 Resource Sheet
                 <InsertDriveFileIcon />
               </Button>
             </Grid>
           </Grid>
-          <Grid className="tempo-box" item xs={12} sm={6}
+          <Grid
+            className="tempo-box"
+            item
+            xs={12}
+            sm={6}
             sx={{
-              marginBottom: '8px'
+              marginBottom: '8px',
             }}
           >
-            <p>Metronome box</p>
+            <Metronome tempo={120} />
           </Grid>
-          <Grid item xs={12} sm={6}  >
+          <Grid item xs={12} sm={6}>
             <h3>Directions:</h3>
             <p>
               <ol>
@@ -147,19 +153,25 @@ function SessionPage() {
               </ol>
             </p>
           </Grid>
-          <Grid item xs={12} sm={6}
+          <Grid
+            item
+            xs={12}
+            sm={6}
             sx={{
-              marginBottom: '10px'
-            }}>
+              marginBottom: '10px',
+            }}
+          >
+
             <TextField
               fullWidth
               id="outlined-multiline-static"
               label="Write a note..."
               multiline
               rows={6}
-              placeholder="Write a note..." />
+              placeholder="Write a note..."
+            />
           </Grid>
-          <Grid item xs={12} sm={6}  >
+          <Grid item xs={12} sm={6}>
             <h3>Remember:</h3>
             <p>
               <ol>
@@ -172,10 +184,9 @@ function SessionPage() {
             <h4 className="end-session">End Session (Exit)</h4>
           </Grid>
         </Grid>
-
       </Grid>
     </div>
-  )
+  );
 }
 
 export default SessionPage;

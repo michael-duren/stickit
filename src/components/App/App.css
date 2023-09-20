@@ -19,7 +19,7 @@ body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: 'OpenSans', sans-serif;
   margin: 0px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 img {
@@ -206,7 +206,6 @@ h2 {
   margin-bottom: 1.25rem;
 }
 
-
 /* Utility Classes */
 .m-b-xl {
   margin-bottom: 1.25rem;
@@ -263,6 +262,12 @@ h2 {
 }
 .gap-16 {
   gap: 1rem;
+}
+.gap-12 {
+  gap: 0.75rem;
+}
+.gap-8 {
+  gap: 0.5rem;
 }
 .border-none {
   border: none;
