@@ -1,4 +1,4 @@
-import { Player, Transport } from 'tone';
+import { Transport } from 'tone';
 import * as Tone from 'tone';
 import { useEffect, useState } from 'react';
 import { ReactComponent as PlayIcon } from '../../images/play.svg';
@@ -15,7 +15,6 @@ export default function Metronome({ tempo }) {
   const [meter, setMeter] = useState(MetronomeOptions.meter[2]);
   const [setting, setSetting] = useState(MetronomeOptions.setting[0]);
   const [isPlaying, setIsPlaying] = useState(false);
-  // const [playerValue, setPlayerValue] = useState(null);
   const [repeatId, setRepeatId] = useState(null);
 
   useEffect(() => {
@@ -29,10 +28,6 @@ export default function Metronome({ tempo }) {
   useEffect(() => {
     Transport.bpm.value = tempoState;
   }, [tempoState]);
-
-  // useEffect(() => {
-  //   player.load(soundFiles[sound]);
-  // }, [sound]);
 
   const handlePlayToggle = async () => {
     if (isPlaying) {
