@@ -5,6 +5,7 @@ const Routes = {
  Login: '/login',
  Registration: '/registration',
  SessionFocus: '/session/focus/:id',
+ SessionPage: '/session',
  SessionSummary: '/session/summary',
  SessionType: '/session/type',
  TimeSelection: '/time-selection',
@@ -13,10 +14,4 @@ const Routes = {
 
 
 export default Routes
-
-
-
-
-
-
 

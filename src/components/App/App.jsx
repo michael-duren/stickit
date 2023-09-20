@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SessionPage from '../SessionPage/SessionPage';
 
 import HomePage from '../HomePage/HomePage';
 import TimeSelectionPage from '../TimeSelectionPage/TimeSelectionPage';
@@ -45,7 +46,14 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -115,6 +123,10 @@ function App() {
             <FocusSelectionPage />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path={Routes.SessionPage}>
+            <SessionPage />
+          </ProtectedRoute>
+
           <ProtectedRoute path={Routes.SessionSummary}>
             <SessionSelectionPage />
           </ProtectedRoute>
@@ -149,8 +161,8 @@ function App() {
         <Footer />
       </div>
     </Router>
-  );
-}
+  )
+};
 
 export default App;
 

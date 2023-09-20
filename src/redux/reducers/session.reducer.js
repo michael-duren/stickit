@@ -6,6 +6,7 @@ const initialState = {
   duration: 0,
   completed: false,
   exercises: [],
+  currentExercise: 0,
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         isComplete: action.payload,
+      };
+    case SESSION_ACTIONS.SET_CURRENT_EXERCISE:
+      return {
+        ...state,
+        currentExercise: action.payload,
       };
     case SESSION_ACTIONS.RESET_SESSION:
       return initialState;

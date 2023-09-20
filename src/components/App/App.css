@@ -162,7 +162,6 @@ h1 {
 
 h2 {
   color: var(--neutral-600, #5e5f61);
-  text-align: center;
   font-feature-settings: 'clig' off, 'liga' off;
 
   /* Subtitle 2 */
@@ -181,6 +180,10 @@ h2 {
 
 .background-primary-blue {
   background-color: var(--primary-blue);
+}
+
+.background-primary-grey {
+  background-color: var(--primary-grey);
 }
 
 .primary-blue {
@@ -203,12 +206,9 @@ h2 {
   margin-bottom: 1.25rem;
 }
 
-.m-t-xl {
-  margin-top: 1.25rem;
-}
-
-.p-r-xl {
-  margin-right: 1.25rem;
+/* Utility Classes */
+.m-b-xl {
+  margin-bottom: 1.25rem;
 }
 
 .display-flex {
@@ -262,6 +262,12 @@ h2 {
 }
 .gap-16 {
   gap: 1rem;
+}
+.gap-12 {
+  gap: 0.75rem;
+}
+.gap-8 {
+  gap: 0.5rem;
 }
 .border-none {
   border: none;
@@ -336,4 +342,11 @@ h2 {
 
 .main-button-width {
   width: 25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.text-error {
+  color: #ef4444;
+  font-weight: 700;
 }
