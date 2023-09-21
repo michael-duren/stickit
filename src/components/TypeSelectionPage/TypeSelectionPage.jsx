@@ -3,6 +3,7 @@ import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.a
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';
+import Grid from '@mui/material/Grid';
 
 export default function TypeSelectionPage() {
   const dispatch = useDispatch();
@@ -27,8 +28,11 @@ export default function TypeSelectionPage() {
 
   return (
     <MainLayout showExitButton={true} showNav={true}>
-      <div className="w-full items-center flex flex-col gap-16">
-        <div>
+      <Grid>
+        <Grid justifyContent={'center'} container>
+          <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
+          <div>
+        <div className='m-b-xl'>
           <h2>What would you like to work on today?</h2>
           <p>Select which areas you'd like to focus your practice on.</p>
         </div>
@@ -43,18 +47,22 @@ export default function TypeSelectionPage() {
             );
           })}
         </div>
-        <div className="flex flex-col items-center justify-center w-full mt-16">
+        <div className="m-t-xl">
           <MainButton
             onClick={routeToNextPage}
             disabled={selectedTypes.length === 0}
           >
             Next
           </MainButton>
-          <div className="flex main-button-width">
+          {/* <div className="flex main-button-width">
             <button className="m-t-xl empty-button primary-blue">Back</button>
-          </div>
+          </div> */}
         </div>
       </div>
+          </Grid>
+        </Grid>
+      </Grid>
+      
     </MainLayout>
   );
 }
