@@ -126,12 +126,13 @@ export default function FocusSelectionPage() {
                     );
                   })}
               </div>
-              <div className="justify-center m-b-xl m-t-xl">
+              <div className="display-flex flex-wrap justify-center m-b-xl m-t-xl">
                 {focuses.map((focus) => {
                   return (
                     <div key={focus.id}>
+                      {/* Need to create some logic here to only add if there is a following value */}
                       {focusAndTypeChoice[id].includes(focus.id) && (
-                        <p>{focus.name}</p>
+                        <p className='p-r-xs'>{focus.name + ','}</p>
                       )}
                     </div>
                   );
