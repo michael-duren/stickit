@@ -8,7 +8,7 @@ const Routes = {
  SessionPage: '/session',
  SessionSummary: '/session/summary',
  SessionType: '/session/type',
- TimeSelection: '/time-selection',
+ TimeSelection: '/session/time-selection',
  User: '/user',
 }
 
