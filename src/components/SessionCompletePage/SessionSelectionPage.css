@@ -18,7 +18,7 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
   align-items: center;
   flex: 1 0 0;
   border-radius: 16px;
-  background: var(--brand-surface, #f2fafc);
+  background: var(--brand-surface, #F2FAFC);
   margin-bottom: 10px;
 }
 
@@ -30,7 +30,7 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
 }
 
 .exercise-title {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -72,7 +72,7 @@ I copied straight from figma, but it didn't seem to change for some reason*/
 /*added margin-right of 33px to move this elemnt to the left more. Was not explicitly
 indicated in figma*/
 .total-time {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
