@@ -211,6 +211,10 @@ h2 {
 
 /* UTILITY CLASSES */
 
+.text-left {
+  text-align: left;
+}
+
 .full-width {
   width: 100%;
 }

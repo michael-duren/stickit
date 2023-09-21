@@ -18,17 +18,9 @@ import Box from "@mui/material/Box";
 
 //drawer elements used
 import Drawer from "@mui/material/Drawer";
-import CloseIcon from "@mui/icons-material/Close";
-import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import FolderIcon from "@mui/icons-material/Folder";
-import ImageIcon from "@mui/icons-material/Image";
-import DescriptionIcon from "@mui/icons-material/Description";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import Button from "@mui/material/Button";
+
 
 
 
@@ -63,9 +55,9 @@ function Nav() {
         <Toolbar className='display-flex nav-spacing'>
 
           <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, flexGrow: 1, fontWeight: 700 }}>
-            <div className='display-flex'>
+            <div className='display-flex items-center'>
               <img className='logo-img' src={logoImg} alt="" />
-              <p>Stickit</p>
+              <p className='nav-title'>Stickit</p>
             </div>
 
           </Typography>
