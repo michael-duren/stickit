@@ -9,8 +9,13 @@
   overflow: hidden;
 }
 
+.nav-spacing {
+  justify-content: space-between;
+}
+
 .nav a {
   text-decoration: none;
+  display: flex;
 }
 
 .nav-title {
@@ -39,12 +44,34 @@
   outline: 0;
 }
 
-.sign-out:hover {
-  border-bottom: 1px solid white;
+.sign-out {
+  background-color: none;
 }
 
 .logo-img {
   width: 33px;
   height: 33px;
   padding-left: 1.25rem;
+
 }
+
+.logo-img-black {
+  width: 33px;
+  height: 33px;
+
+}
+
+.side-nav-title {
+  font-size: 1.75rem;
+}
+
+.drawer-width {
+  width: 75%;
+}
+
+.full-nav-logo {
+  filter: grayscale(100%) brightness(0) invert(0) sepia(100%) saturate(10000%) hue-rotate(0deg);
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
