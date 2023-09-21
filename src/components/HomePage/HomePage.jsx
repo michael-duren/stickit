@@ -15,7 +15,7 @@ function MainPage() {
     <>
     <MainLayout showNav>
       <Grid container justifyContent={'center'}>
-        <Grid item  lg={4} xl={3}>
+      <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
         <div>
         <div className='m-b-xl'>
           <h2>Hi, {user.firstName}.</h2>

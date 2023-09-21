@@ -211,8 +211,16 @@ h2 {
 
 /* UTILITY CLASSES */
 
+.full-width {
+  width: 100%;
+}
+
 .p-l-l {
   padding-left: 1rem;
+}
+
+.p-r-l {
+  padding-right: 1rem;
 }
 
 .m-t-l {
@@ -223,7 +231,10 @@ h2 {
   margin-top: 1.25rem;
 }
 
-/* Utility Classes */
+.m-b-l {
+  margin-bottom: 1rem;
+}
+
 .m-b-xl {
   margin-bottom: 1.25rem;
 }
