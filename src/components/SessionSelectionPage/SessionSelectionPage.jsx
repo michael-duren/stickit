@@ -46,7 +46,9 @@ export default function SessionSelectionPage() {
         <div className="total-time">{duration} min</div>
 
         <div className="flex flex-col items-center justify-center w-full mt-16">
-          <MainButton type="button">Begin Session</MainButton>
+          <Link to={'/session'}>
+            <MainButton type="button">Begin Session</MainButton>
+          </Link>
           <div className="flex main-button-width">
             <Link to="/session/type">
               <button className="m-t-xl empty-button primary-blue">Back</button>
