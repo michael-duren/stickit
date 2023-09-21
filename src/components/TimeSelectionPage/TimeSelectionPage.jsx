@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import { useHistory } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
 
 function TimeSelectionPage() {
   const history = useHistory();
@@ -30,51 +31,59 @@ function TimeSelectionPage() {
 
   return (
     <MainLayout showNav={true}>
-      <div className="flex flex-col gap-16 items-center">
-        <p>How much time do you have?</p>
-        <div className="gap-16 flex flex-col">
-          <div className="flex gap-16 items-center">
-            <select
-              value={hours}
-              onChange={(e) => setHours(e.target.value)}
-              className="time-title"
-            >
-              hours
-              {hourRange.map((hour) => (
-                <option value={hour} key={hour}>
-                  {hour}
-                </option>
-              ))}
-            </select>
-            <span className="time-title">hours</span>
-          </div>
-          <div className="flex gap-16 items-center">
-            <select
-              value={minutes}
-              onChange={(e) => setMinutes(e.target.value)}
-            >
-              {minuteRange.map((minute) => (
-                <option value={minute} key={minute}>
-                  {minute}
-                </option>
-              ))}
-            </select>
-            <span className="time-title">minutes</span>
-          </div>
-        </div>
-        <div>
-          {totalTime < 15 && (
-            <p className="text-error">Please Select at least 15 Minutes</p>
-          )}
-        </div>
-        <MainButton
-          disabled={totalTime < 15}
-          type="button"
-          onClick={setTimeAndNavigate}
-        >
-          Next
-        </MainButton>
-      </div>
+      <Grid>
+        <Grid justifyContent={'center'} container>
+         <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
+            <div className='full-width'>
+              <p className='m-b-xl'>How much time do you have?</p>
+              <div>
+                <div className='m-b-l'>
+                  <select
+                    value={hours}
+                    onChange={(e) => setHours(e.target.value)}
+                    className="time-title"
+                  >
+                   hours
+                    {hourRange.map((hour) => (
+                      <option value={hour} key={hour}>
+                        {hour}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="time-title p-l-l">hours</span>
+                </div>
+                <div className='m-b-xl'>
+                  <select
+                    value={minutes}
+                    onChange={(e) => setMinutes(e.target.value)}
+                  >
+                    {minuteRange.map((minute) => (
+                      <option value={minute} key={minute}>
+                        {minute}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="time-title p-l-l">minutes</span>
+                </div>
+              </div>
+              <div>
+                {totalTime < 15 && (
+                  <p className="text-error">Please Select at least 15 Minutes</p>
+                )}
+              </div>
+              <MainButton
+                disabled={totalTime < 15}
+                type="button"
+                onClick={setTimeAndNavigate}
+              >
+                Start
+              </MainButton>
+            </div>
+          </Grid>
+
+        </Grid>
+
+      </Grid>
     </MainLayout>
   );
 }
