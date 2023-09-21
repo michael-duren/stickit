@@ -81,7 +81,7 @@ export default function FocusSelectionPage() {
   };
 
   return (
-    <MainLayout showNav={true} exitButton={true}>
+    <MainLayout showNav={true} showExitButton={true}>
       <Grid>
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>

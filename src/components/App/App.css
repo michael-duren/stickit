@@ -209,8 +209,16 @@ h2 {
   color: #262626;
 }
 
+.exit-btn-width {
+  max-width: max-content;
+}
+
 
 /* UTILITY CLASSES */
+
+.text-bold {
+  font-weight: bold;
+}
 
 .text-left {
   text-align: left;
