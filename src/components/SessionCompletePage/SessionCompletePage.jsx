@@ -1,24 +1,28 @@
 import './SessionSelectionPage.css';
 import InfoIcon from '@mui/icons-material/Info';
-import SyncIcon from '@mui/icons-material/Sync';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { ReactComponent as GreenCheck } from '../../images/green-check.svg';
 
-export default function SessionSelectionPage() {
-  const { duration, exercises } = useSelector((store) => store.session);
+export default function SessionCompletePage() {
+  const { duration, completedExercises } = useSelector(
+    (store) => store.session
+  );
 
   return (
     <MainLayout showExitButton={true} showNav={true}>
       <div className="flex flex-col w-full items-center gap-16">
-        <h2 className="text-center">Your smart session:</h2>
-        {exercises.length === 0 && (
+        <h2 className="text-center">
+          Great work! Way to use your practice time efficiently
+        </h2>
+        {completedExercises.length === 0 && (
           <div className="flex flex-col items-center justify-center w-full mt-16">
             <p>Nothing here yet, please start over to generate a session</p>
           </div>
         )}
-        {exercises.map((exercise, i) => (
+        {completedExercises.map((exercise, i) => (
           <div
             key={exercise.id + i}
             className="display-flex items-center justify-center main-button-width"
@@ -35,25 +39,28 @@ export default function SessionSelectionPage() {
                 <p className="exersice-description">{exercise.name}</p>
               </div>
               <div>
-                <p className="exercise-duration">5 min</p>
+                <p className="exercise-duration">
+                  {Math.floor(exercise.minimum_time_minutes)} min
+                </p>
               </div>
             </div>
             <div className="sync-icon">
-              <SyncIcon className="primary-blue" />
+              <GreenCheck className="primary-blue" />
             </div>
           </div>
         ))}
         <div className="total-time">{duration} min</div>
 
-        <div className="flex flex-col items-center justify-center w-full mt-16">
+        <div className="flex flex-col gap-16 items-center justify-center w-full mt-16">
           <Link to={'/session/current/'}>
-            <MainButton type="button">Begin Session</MainButton>
+            <MainButton type="button">Share Your Practice</MainButton>
           </Link>
-          <div className="flex main-button-width">
-            <Link to="/session/type">
-              <button className="m-t-xl empty-button primary-blue">Back</button>
-            </Link>
-          </div>
+          <Link to={'/session/current/'}>
+            <MainButton type="button">View Activity</MainButton>
+          </Link>
+          <Link to={'/home'}>
+            <MainButton type="button">Back To Home</MainButton>
+          </Link>
         </div>
       </div>
     </MainLayout>

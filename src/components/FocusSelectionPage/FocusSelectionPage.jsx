@@ -2,13 +2,13 @@ import { useParams, useHistory } from 'react-router-dom';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Grid from '@mui/material/Grid';
 import './FocusSelectionPage.css';
 import { useSelector } from 'react-redux';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
+import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
 
 export default function FocusSelectionPage() {
   const { id } = useParams();
@@ -71,6 +71,9 @@ export default function FocusSelectionPage() {
       dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
         payload: Number(id),
+      });
+      dispatch({
+        type: SESSION_ACTIONS.RESET_COMPLETED_EXERCISES,
       });
       history.push(path);
     }

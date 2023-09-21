@@ -1,6 +1,6 @@
 import { Transport } from 'tone';
 import * as Tone from 'tone';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { ReactComponent as PlayIcon } from '../../images/play.svg';
 import { ReactComponent as PauseIcon } from '../../images/pause.svg';
 import './Metronome.css';
@@ -82,7 +82,11 @@ export default function Metronome({ tempo }) {
             onChange={(e) => setSound(e.target.value)}
           >
             {MetronomeOptions.sounds.map((sound) => {
-              return <MenuItem value={sound.value}>{sound.name}</MenuItem>;
+              return (
+                <MenuItem key={sound.name} value={sound.value}>
+                  {sound.name}
+                </MenuItem>
+              );
             })}
           </CustomSelect>
         </div>
@@ -93,7 +97,9 @@ export default function Metronome({ tempo }) {
             onChange={(e) => setMeter(e.target.value)}
           >
             {MetronomeOptions.meter.map((meter) => (
-              <MenuItem value={meter}>{meter}</MenuItem>
+              <MenuItem key={meter} value={meter}>
+                {meter}
+              </MenuItem>
             ))}
           </CustomSelect>
         </div>
@@ -106,7 +112,11 @@ export default function Metronome({ tempo }) {
             id=""
           >
             {MetronomeOptions.setting.map((setting) => {
-              return <MenuItem value={setting}>{setting}</MenuItem>;
+              return (
+                <MenuItem key={setting} value={setting}>
+                  {setting}
+                </MenuItem>
+              );
             })}
           </CustomSelect>
         </div>

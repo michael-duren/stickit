@@ -21,7 +21,7 @@ const middlewareList =
 const persistConfig = {
   key: 'root',
   storage,
-  whiteList: ['session'],
+  whitelist: ['session'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer); // add root reducer
