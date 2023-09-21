@@ -174,6 +174,10 @@ h2 {
 
 /* Utility Classes */
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .text-center {
   text-align: center;
 }
@@ -230,6 +234,10 @@ h2 {
 
 .p-l-l {
   padding-left: 1rem;
+}
+
+.p-r-xs {
+  padding-right: .15rem;
 }
 
 .p-r-l {
