@@ -13,12 +13,15 @@ import Timer from '../Timer/Timer';
 function MainPage() {
   const user = useSelector((store) => store.user);
   return (
+    <>
     <MainLayout showNav>
-      <div className="h-full flex flex-col items-center gap-16">
-        <div className="main-button-width">
+      <Grid container justifyContent={'center'}>
+        <Grid item  lg={4} xl={3}>
+        <div>
+        <div className='m-b-xl'>
           <h2>Hi, {user.firstName}.</h2>
           <p className="welcome-text">
-            Take a moment to generate a tailored practice routine based on your
+            Take a moment to generate a tailored practice <br /> routine based on your
             focus areas and time available.
           </p>
           <Timer/>
@@ -27,7 +30,10 @@ function MainPage() {
           <MainButton>Begin Smart Session</MainButton>
         </Link>
       </div>
+        </Grid>
+      </Grid>
     </MainLayout>
+    </>
   );
 }
 

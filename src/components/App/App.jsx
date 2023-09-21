@@ -46,14 +46,9 @@ function App() {
 
   return (
     <Router>
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-        }}
-      >
+
+
+      <div className='background-primary-grey full-height'>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
