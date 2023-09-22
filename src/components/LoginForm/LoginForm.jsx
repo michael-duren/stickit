@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import  Button  from "@mui/material/Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import MainButton from "../MainButton/MainButton";
 
 
 function LoginForm() {
@@ -68,23 +69,25 @@ function LoginForm() {
         </label>
       </div>
       <div className="m-b-xl">
-        <Button fullWidth variant="contained" className="btn" type="submit" name="submit" value="Sign In" >Sign In</Button> 
+        <MainButton fullWidth variant="contained" className="btn" type="submit" name="submit" value="Sign In" >Sign In</MainButton> 
       </div>
       <div className="text-center">
       <a href="#" >Forgot username or password?</a>
         </div>
     </form>
     <div className="text-center formPanel">
-      <p>or,</p>
+      <p className="m-b-l dark-gray">or,</p>
       <Button 
       variant="outlined" f
       fullWidth
       className="btn btn_asLink"
+      sx={{border:'1px solid #005e83', color: '#005e83', fontWeight: '600', '&:hover': {backgroundColor: '#005e83', color: 'white'}, 
+      '&:focus': {backgroundColor: '#00394d', color: 'white'}}}
       onClick={() => {
         history.push('/registration');
       }}
       >
-        Create Account
+        <p>Create Account</p>
         </Button>
     </div>
 

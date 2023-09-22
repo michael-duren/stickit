@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import MainButton from '../MainButton/MainButton';
+import  Button  from '@mui/material/Button';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -30,7 +31,7 @@ function RegisterForm() {
   return (
     <>
       <form className="formPanel" onSubmit={registerUser}>
-        <h2 style={{textAlign: 'center'}}>Create Account</h2>
+        <h2 className='text-black m-b-xl' style={{textAlign: 'center'}}>Create Account</h2>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {errors.registrationMessage}
@@ -97,22 +98,23 @@ function RegisterForm() {
           </label>
         </div>
         <div>
-          <Button fullWidth variant='contained' className="btn" type="submit" name="submit" value="Create Account">Create Account</Button>
+          <MainButton fullWidth variant='contained' className="btn" type="submit" name="submit" value="Create Account">Create Account</MainButton>
         </div>
       </form>
-      {/* <div className='text-center formPanel'>
-        <p>Already have an account?</p>
-        <Button
-          variant='outlined'
-          fullWidth
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
+      <div className="text-center formPanel">
+      <Button 
+      variant="outlined" f
+      fullWidth
+      className="btn btn_asLink"
+      sx={{border:'1px solid #005e83', color: '#005e83', fontWeight: '600', '&:hover': {backgroundColor: '#005e83', color: 'white'}, 
+      '&:focus': {backgroundColor: '#00394d', color: 'white'}}}
+      onClick={() => {
+        history.push('/login');
+      }}
+      >
+        <p>Sign in</p>
         </Button>
-      </div> */}
+    </div>
 
     </>
 
