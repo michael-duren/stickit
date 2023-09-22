@@ -15,6 +15,7 @@ body,
   src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
 }
 
+
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: 'OpenSans', sans-serif;
@@ -89,6 +90,7 @@ Button
   color: #008183;
 }
 
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -108,12 +110,16 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
+.login-padding {
+  padding: .75rem;
+}
+
 .formPanel {
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
   padding: 25px;
-  margin: 0 auto 20px;
+  margin: 0 auto 2rem;
   background-color: #efefef;
   border-radius: 10px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -174,6 +180,10 @@ h2 {
 
 /* Utility Classes */
 
+.dark-gray {
+  color:#393939;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -217,6 +227,9 @@ h2 {
   max-width: max-content;
 }
 
+.login-background {
+  background: linear-gradient(to bottom, var(--primary-blue), #5fa2bb);
+}
 
 /* UTILITY CLASSES */
 
@@ -242,6 +255,10 @@ h2 {
 
 .p-r-l {
   padding-right: 1rem;
+}
+
+.p-t-xl {
+  padding-top: 1.75rem;
 }
 
 .m-t-l {
