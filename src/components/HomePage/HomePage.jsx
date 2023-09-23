@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import './HomePage.css';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Routes from '../Routes/Routes';
 

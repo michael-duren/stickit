@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import { useHistory } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
+import Routes from '../Routes/Routes';
 
 function TimeSelectionPage() {
   const history = useHistory();
@@ -26,24 +27,24 @@ function TimeSelectionPage() {
       payload: totalTime,
     });
 
-    history.push('/session/type');
+    history.push(Routes.SessionType);
   };
 
   return (
     <MainLayout showNav={true} showExitButton={true}>
       <Grid>
         <Grid justifyContent={'center'} container>
-         <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
-            <div className='full-width'>
-              <p className='m-b-xl'>How much time do you have?</p>
+          <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
+            <div className="full-width">
+              <p className="m-b-xl">How much time do you have?</p>
               <div>
-                <div className='m-b-l'>
+                <div className="m-b-l">
                   <select
                     value={hours}
                     onChange={(e) => setHours(e.target.value)}
                     className="time-title"
                   >
-                   hours
+                    hours
                     {hourRange.map((hour) => (
                       <option value={hour} key={hour}>
                         {hour}
@@ -52,7 +53,7 @@ function TimeSelectionPage() {
                   </select>
                   <span className="time-title p-l-l">hours</span>
                 </div>
-                <div className='m-b-xl'>
+                <div className="m-b-xl">
                   <select
                     value={minutes}
                     onChange={(e) => setMinutes(e.target.value)}
@@ -68,7 +69,9 @@ function TimeSelectionPage() {
               </div>
               <div>
                 {totalTime < 15 && (
-                  <p className="text-error">Please Select at least 15 Minutes</p>
+                  <p className="text-error">
+                    Please Select at least 15 Minutes
+                  </p>
                 )}
               </div>
               <MainButton
@@ -80,9 +83,7 @@ function TimeSelectionPage() {
               </MainButton>
             </div>
           </Grid>
-
         </Grid>
-
       </Grid>
     </MainLayout>
   );

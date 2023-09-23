@@ -56,7 +56,7 @@ function SessionPage() {
 
     // re route to completed page if all exercises are complete
     if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
-      history.push('/session/summary/complete');
+      history.push(Routes.SessionSummaryComplete);
     }
   }, []);
 

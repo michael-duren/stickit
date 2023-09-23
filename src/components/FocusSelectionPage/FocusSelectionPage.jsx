@@ -10,6 +10,7 @@ import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
 import Grid from '@mui/material/Grid';
+import Routes from '../Routes/Routes';
 
 export default function FocusSelectionPage() {
   const { id } = useParams();
@@ -44,7 +45,7 @@ export default function FocusSelectionPage() {
 
   const naviagteBack = () => {
     if (typeHistory.length === 0) {
-      history.push('/session/type');
+      history.push(Routes.SessionType);
     } else {
       const path = `/session/focus/${typeHistory[typeHistory.length - 1]}`;
       dispatch({
