@@ -6,58 +6,70 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Routes from '../Routes/Routes';
 
 function SideNav() {
-    return(
-        <div className="side-nav-container">
-        <ul className="side-nav-list">
-            <li>
-            <ProtectedRoute
+  return (
+    <div className="side-nav-container">
+      <ul className="side-nav-list">
+        <li>
+          <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path={Routes.Home}
           >
-            <HomePage />
+            <link>
+              <HomePage />
+            </link>
           </ProtectedRoute>
-              Home</li>
-            <li>
-            <ProtectedRoute
+
+          Home</li>
+        <li>
+          <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path={Routes.MyActivity}
           >
-            <MyActivityPage />
+            <link>
+              <MyActivityPage />
+            </link>
           </ProtectedRoute>
-              My Activity</li>
-            <li>
-            <ProtectedRoute
+          My Activity</li>
+        <li>
+          <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path={Routes.Exercises}
           >
-            <ExercisesPage />
+            <link>
+              <ExercisesPage />
+            </link>
           </ProtectedRoute>
-              Exercises</li>
-            <li>
-            <ProtectedRoute
+          Exercises</li>
+        <li>
+          <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path={Routes.Routines}
           >
-            <RoutinesPage />
+            <link>
+              <RoutinesPage />
+            </link>
           </ProtectedRoute>
-              Routines</li>
-            <li>
-            <ProtectedRoute
+          Routines</li>
+        <li>
+          <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path={Routes.Goals}
           >
-            <GoalsPage />
-          </ProtectedRoute>
-              Goals</li>
-        </ul>
-        </div>
+            <link>
+              <GoalsPage />
+            </link>
 
-    )
+          </ProtectedRoute>
+          Goals</li>
+      </ul>
+    </div >
+
+  )
 }
 
 export default SideNav;
