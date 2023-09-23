@@ -17,6 +17,7 @@ import Timer from '../Timer/Timer';
 
 
 function SessionPage() {
+
   const { exercises, completedExercises } = useSelector(
     (store) => store.session
   );
@@ -61,6 +62,8 @@ function SessionPage() {
 
 
   console.log('current exercise', currentExercise);
+  
+  
   return (
     currentExercise && (
       <div className="background-primary-grey">
