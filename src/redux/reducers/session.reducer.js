@@ -6,13 +6,16 @@ const initialState = {
   duration: 0,
   completed: false,
   exercises: [],
-  currentExercise: 0,
+  completedExercises: [],
 };
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case SESSION_ACTIONS.SET_SESSION:
-      return action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     case SESSION_ACTIONS.SET_EXERCISES:
       return {
         ...state,
@@ -30,6 +33,20 @@ const sessionReducer = (state = initialState, action) => {
       };
     case SESSION_ACTIONS.RESET_SESSION:
       return initialState;
+
+    case SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED:
+      return {
+        ...state,
+        exercises: state.exercises.filter(
+          (exercise) => exercise.id !== action.payload.id
+        ),
+        completedExercises: [...state.completedExercises, action.payload],
+      };
+    case SESSION_ACTIONS.RESET_COMPLETED_EXERCISES:
+      return {
+        ...state,
+        completedExercises: [],
+      };
 
     default:
       return state;

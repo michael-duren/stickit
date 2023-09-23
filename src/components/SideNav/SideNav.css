@@ -1,5 +1,34 @@
 
+
 .side-nav-list {
-    list-style: none;
-    padding-left: .5rem;
+  list-style: none;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin-top: 35px;
+}
+
+
+/* spacing, and bold when selected
+:active
+option to be active
+*/
+.side-nav-list>li {
+  display: flex;
+  height: 40px;
+  padding: 9px 107px 7px 16px;
+  margin-right: 16px;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.side-nav-list li:hover {
+  background-color: rgba(0, 94, 131, 0.10);
+  border-radius: 5px;
+  display: flex;
+  height: 40px;
+  padding: 9px 107px 7px 16px;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
 }

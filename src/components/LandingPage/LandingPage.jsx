@@ -18,27 +18,28 @@ function LandingPage() {
   };
 
   return (
-    <div className="background-primary-blue main-container">
-        <Grid>
-          <Grid container justifyContent={"center"} item lg={12} className="primary-white">
-            <Grid container justifyContent={"center"} alignItems={'center'}>
-              <Grid item>
-                <img src={logoImg} alt="drums" />
-              </Grid>
-              <Grid item>
-                <h1>StickIt</h1>
-              </Grid>
+    <div className="login-background main-container">
+      <Grid>
+        <Grid container justifyContent={"center"} item lg={12} className="primary-white">
+          <Grid container justifyContent={"center"} alignItems={'end'} className="p-t-xl">
+            <Grid item>
+              <img className="p-r-l" src={logoImg} alt="drums" />
             </Grid>
-            <p>Practice better.</p>
-            
+            <Grid item>
+              <h1 className="p-t-xl">StickIt</h1>
+            </Grid>
           </Grid>
+          <p className="m-b-xl m-t-xl">Practice better.</p>
         </Grid>
-    <LoginForm />
-        <div className="text-center primary-white">
-          <p>
-            Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending
-          </p>
-        </div>
+      </Grid>
+      <div className="login-padding">
+        <LoginForm />
+      </div>
+      <div className="text-center primary-white">
+        <p>
+          Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending
+        </p>
+      </div>
     </div>
   );
 }

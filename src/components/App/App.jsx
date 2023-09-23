@@ -32,7 +32,8 @@ import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
-import Routes from '../Routes/Routes'
+import Routes from '../Routes/Routes';
+import SessionCompletePage from '../SessionCompletePage/SessionCompletePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,9 +47,7 @@ function App() {
 
   return (
     <Router>
-
-
-      <div className='background-primary-grey full-height'>
+      <div className="background-primary-grey full-height">
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -68,7 +67,7 @@ function App() {
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
-            exact 
+            exact
             path={Routes.About}
           >
             <AboutPage />
@@ -122,8 +121,12 @@ function App() {
             <SessionPage />
           </ProtectedRoute>
 
-          <ProtectedRoute path={Routes.SessionSummary}>
+          <ProtectedRoute exact path={Routes.SessionSummary}>
             <SessionSelectionPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path={Routes.SessionSummaryComplete}>
+            <SessionCompletePage />
           </ProtectedRoute>
 
           <Route exact path={Routes.Login}>
@@ -156,8 +159,8 @@ function App() {
         <Footer />
       </div>
     </Router>
-  )
-};
+  );
+}
 
 export default App;
 

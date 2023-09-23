@@ -13,8 +13,8 @@ export default function MainLayout({ children, showExitButton, showNav }) {
             </Grid>
           )}
           <Grid item justifyContent={'center'} xs={12} sm={12} md={10} lg={10}>
-            {showExitButton && <div className="p-2">Exit</div>}
             <div className="main-page-content-container flex flex-col h-full text-center">
+            {showExitButton && <div className="exit-btn-width p-2 text-left empty-button primary-blue text-bold"><p>Exit</p></div>}
               {children}
             </div>
           </Grid>
