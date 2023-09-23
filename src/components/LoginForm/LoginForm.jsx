@@ -27,6 +27,7 @@ function LoginForm() {
       });
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   }; // end login
 
@@ -70,6 +71,7 @@ function LoginForm() {
         </div>
         <div className="m-b-xl">
           <MainButton
+            onClick={login}
             fullWidth
             variant="contained"
             className="btn"

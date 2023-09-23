@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainButton from '../MainButton/MainButton';
 import Button from '@mui/material/Button';
@@ -25,6 +26,7 @@ function RegisterForm() {
         password: password,
         firstName: firstName,
         lastName: lastName,
+        lastName: lastName,
       },
     });
   }; // end registerUser
@@ -35,17 +37,24 @@ function RegisterForm() {
         <h2 className="text-black m-b-xl" style={{ textAlign: 'center' }}>
           Create Account
         </h2>
+        <h2 className="text-black m-b-xl" style={{ textAlign: 'center' }}>
+          Create Account
+        </h2>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {errors.registrationMessage}
           </h3>
         )}
         <div className="m-b-xl">
+        <div className="m-b-xl">
           <label htmlFor="firstName">
             <TextField
               fullWidth
               type="firstName"
               name="firstName"
+              placeholder="First Name"
+              id="outlined-size-small"
+              size="small"
               placeholder="First Name"
               id="outlined-size-small"
               size="small"
@@ -56,11 +65,15 @@ function RegisterForm() {
           </label>
         </div>
         <div className="m-b-xl">
+        <div className="m-b-xl">
           <label htmlFor="lastName">
             <TextField
               fullWidth
               type="lastName"
               name="lastName"
+              placeholder="Last Name"
+              id="outlined-size-small"
+              size="small"
               placeholder="Last Name"
               id="outlined-size-small"
               size="small"
@@ -71,11 +84,15 @@ function RegisterForm() {
           </label>
         </div>
         <div className="m-b-xl">
+        <div className="m-b-xl">
           <label htmlFor="username">
             <TextField
               fullWidth
               type="text"
               name="username"
+              placeholder="Email"
+              id="outlined-size-small"
+              size="small"
               placeholder="Email"
               id="outlined-size-small"
               size="small"
@@ -86,11 +103,15 @@ function RegisterForm() {
           </label>
         </div>
         <div className="m-b-xl">
+        <div className="m-b-xl">
           <label htmlFor="password">
             <TextField
               fullWidth
               type="password"
               name="password"
+              placeholder="Password"
+              id="outlined-size-small"
+              size="small"
               placeholder="Password"
               id="outlined-size-small"
               size="small"
@@ -103,6 +124,7 @@ function RegisterForm() {
         <div>
           <MainButton
             fullWidth
+            onClick={registerUser}
             variant="contained"
             className="btn"
             type="submit"

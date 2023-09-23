@@ -49,7 +49,6 @@ function SessionPage() {
       history.push(Routes.SessionSummaryComplete);
     }
   };
-
   useEffect(() => {
     setCurrentExercise(exercises[0]); // get the first exercise in the array
     setIsLoaded(true);
@@ -92,17 +91,8 @@ function SessionPage() {
                 </h2>
                 <p className="instrument">Instrument</p>
               </Grid>
-              <Grid></Grid>
-              <Grid item className="start-button">
-                {!true && <Button variant="contained">Start</Button>}
-                {false && (
-                  <Button variant="contained" onClick={pauseTimer}>
-                    Pause
-                  </Button>
-                )}
-                <MainButton onClick={onNextExercise}>
-                  {exercises.length === 1 ? 'Finish' : 'Next Exercise'}
-                </MainButton>
+              <Grid>
+                <Timer />
               </Grid>
             </Grid>
             <Grid
@@ -166,6 +156,7 @@ function SessionPage() {
               sm={6}
               sx={{
                 marginBottom: '10px',
+                marginTop: '1rem',
               }}
             >
               <TextField
@@ -202,5 +193,4 @@ function SessionPage() {
     )
   );
 }
-
 export default SessionPage;

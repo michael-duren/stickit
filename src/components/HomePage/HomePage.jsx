@@ -4,6 +4,7 @@ import './HomePage.css';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';
 import { useHistory } from 'react-router-dom';
+import Timer from '../Timer/Timer';
 import { useSelector } from 'react-redux';
 import Routes from '../Routes/Routes';
 
@@ -33,9 +34,9 @@ function MainPage() {
                   based on your focus areas and time available.
                 </p>
               </div>
-              <MainButton onClick={routeToSessionOrForm}>
-                Begin Smart Session
-              </MainButton>
+              <Link to="/session/time-selection">
+                <MainButton>Begin Smart Session</MainButton>
+              </Link>
             </div>
           </Grid>
         </Grid>
