@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Timer from '../Timer/Timer';
 import { useSelector } from 'react-redux';
 import Routes from '../Routes/Routes';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
   const user = useSelector((store) => store.user);
