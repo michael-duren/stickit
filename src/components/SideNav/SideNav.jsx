@@ -9,63 +9,11 @@ function SideNav() {
   return (
     <div className="side-nav-container">
       <ul className="side-nav-list">
-        <li>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path={Routes.Home}
-          >
-            <link>
-              <HomePage />
-            </link>
-          </ProtectedRoute>
-
-          Home</li>
-        <li>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path={Routes.MyActivity}
-          >
-            <link>
-              <MyActivityPage />
-            </link>
-          </ProtectedRoute>
-          My Activity</li>
-        <li>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path={Routes.Exercises}
-          >
-            <link>
-              <ExercisesPage />
-            </link>
-          </ProtectedRoute>
-          Exercises</li>
-        <li>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path={Routes.Routines}
-          >
-            <link>
-              <RoutinesPage />
-            </link>
-          </ProtectedRoute>
-          Routines</li>
-        <li>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path={Routes.Goals}
-          >
-            <link>
-              <GoalsPage />
-            </link>
-
-          </ProtectedRoute>
-          Goals</li>
+        <Link to={Routes.Home}><li>Home</li></Link>
+        <Link to={Routes.MyActivity}><li>My Activity</li></Link>
+        <Link to={Routes.Exercises}><li>Exercises</li></Link>
+        <Link to={Routes.Routines}><li>Routines</li></Link>
+        <Link to={Routes.Goals}><li>Goals</li></Link>
       </ul>
     </div >
 
