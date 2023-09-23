@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Grid';
+import Timer from '../Timer/Timer';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SessionPage.css';
@@ -92,7 +93,10 @@ function SessionPage() {
                 <p className="instrument">Instrument</p>
               </Grid>
               <Grid>
-                <Timer />
+                <Timer
+                  exercises={exercises}
+                  handleNextExercise={onNextExercise}
+                />
               </Grid>
             </Grid>
             <Grid
