@@ -3,7 +3,6 @@ import { SESSION_ACTIONS } from '../actions/session.reducer.actions';
 import { takeLatest, put } from 'redux-saga/effects';
 
 function* completeExercise(action) {
-  console.log('in completeExercise saga', action.payload);
   try {
     const response = yield fetch(
       `/api/user/sessions/${action.payload.sessionId}`,
@@ -20,10 +19,7 @@ function* completeExercise(action) {
     }
 
     // remove exercise from exercises array and add to completedd exercises
-    console.log(
-      'action.payload.currentExercise',
-      action.payload.currentExercise
-    );
+
     yield put({
       type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
       payload: action.payload.currentExercise,

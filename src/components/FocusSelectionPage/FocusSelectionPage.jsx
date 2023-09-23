@@ -36,7 +36,6 @@ export default function FocusSelectionPage() {
   }, []);
 
   const toggleFocus = (focus) => {
-    console.log('focusId', focus);
     dispatch({
       type: SESSION_FORM_ACTIONS.SET_SELECTED_TYPE_FOCUS,
       payload: { type: id, focus },
@@ -58,7 +57,6 @@ export default function FocusSelectionPage() {
 
   const handleNextOrSubmit = () => {
     if (selectedTypes.length === 0) {
-      console.log('SUBMITTING');
       dispatch({
         type: SESSION_FORM_SAGA_ACTIONS.POST_SESSION,
         payload: { focusAndTypeChoice, timeInMinutes },
@@ -67,8 +65,6 @@ export default function FocusSelectionPage() {
       history.push(path);
     } else {
       const path = `/session/focus/${selectedTypes[0]}`;
-      console.log(path);
-      console.log(id);
       dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
         payload: Number(id),

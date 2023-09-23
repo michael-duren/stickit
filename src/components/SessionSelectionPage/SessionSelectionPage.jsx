@@ -3,12 +3,18 @@ import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
+import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 
 export default function SessionSelectionPage() {
   const { duration, exercises } = useSelector((store) => store.session);
+  const dispatch = useDispatch();
+
+  const resetSessionForm = () => {
+    dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
+  };
 
   return (
     <MainLayout showExitButton={true} showNav={true}>
@@ -19,7 +25,9 @@ export default function SessionSelectionPage() {
               <h2 className="text-center">Your smart session:</h2>
               {exercises.length === 0 && (
                 <div className="">
-                  <p>Nothing here yet, please start over to generate a session</p>
+                  <p>
+                    Nothing here yet, please start over to generate a session
+                  </p>
                 </div>
               )}
               {exercises.map((exercise, i) => (
@@ -50,12 +58,16 @@ export default function SessionSelectionPage() {
               <div className="total-time m-t-xl m-b-xl">{duration} min</div>
 
               <div className="">
-                <Link className='' to={'/session/current/'}>
-                  <MainButton type="button">Begin Session</MainButton>
+                <Link className="" to={'/session/current/'}>
+                  <MainButton onClick={resetSessionForm} type="button">
+                    Begin Session
+                  </MainButton>
                 </Link>
                 <div className="text-left">
                   <Link to="/session/type">
-                    <button className="m-t-xl empty-button primary-blue">Back</button>
+                    <button className="m-t-xl empty-button primary-blue">
+                      Back
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -63,7 +75,6 @@ export default function SessionSelectionPage() {
           </Grid>
         </Grid>
       </Grid>
-
     </MainLayout>
   );
 }

@@ -27,33 +27,22 @@ function SessionPage() {
   const [tempo, setTempo] = useState(60);
 
   const onNextExercise = () => {
+    // Save the current exercise to completedExercises
+    let tmpExercise = exercises[0];
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
+      payload: {
+        exerciseId: currentExercise.id,
+        completedTempo: tempo,
+        sessionId,
+        exerciseNotes: notes,
+        currentExercise,
+      },
+    });
     if (exercises.length > 1) {
       setCurrentExercise(exercises[1]);
       // remove the current exercise from the array
-      dispatch({
-        type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
-        payload: {
-          exerciseId: currentExercise.id,
-          completedTempo: tempo,
-          sessionId,
-          exerciseNotes: notes,
-          currentExercise,
-        },
-      });
-    } else if (exercises.length === 1) {
-      setCurrentExercise(exercises[0]);
-      // if there is only one exercise left, then add it to the completed exercises
-      dispatch({
-        type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
-        payload: {
-          exerciseId: currentExercise.id,
-          completedTempo: tempo,
-          sessionId,
-          currentExercise,
-          exerciseNotes: notes,
-        },
-      });
-    } else if (completedExercises.length > 0) {
+    } else {
       history.push(Routes.SessionSummaryComplete);
     }
   };
@@ -109,7 +98,7 @@ function SessionPage() {
                   </Button>
                 )}
                 <MainButton onClick={onNextExercise}>
-                  {exercises.length === 0 ? 'Finish' : 'Next Exercise'}
+                  {exercises.length === 1 ? 'Finish' : 'Next Exercise'}
                 </MainButton>
               </Grid>
             </Grid>
