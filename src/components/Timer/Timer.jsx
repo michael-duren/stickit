@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { ReactDOM } from "react-dom";
-import Countdown from 'react-countdown';
-import { useSelector } from "react-redux";
-import Button from "@mui/material/Button";
-import CountdownApi from 'react-countdown';
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 import './Timer.css';
-import Grid from "@mui/material/Grid";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Grid from '@mui/material/Grid';
 
-
-function Timer() {
-  const { exercises, currentSession } = useSelector((store) => store.session);
+function Timer({ handleNextExercise, exercises }) {
   const [minutes, setMinutes] = useState(exercises[0].minimum_time_minutes);
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     let interval;
@@ -52,56 +44,59 @@ function Timer() {
     setIsRunning(false);
   }
 
-  const handleNextExercise = () => {
+  const callHandleNextExercise = () => {
+    handleNextExercise();
     setIsFinished(false);
- 
-  }
-
-
-  
-
-
+  };
 
   return (
-    <Grid container justifyContent={"space-between"}>
+    <Grid container justifyContent={'space-between'}>
       <div>
-        <h1 id="timer">{minutes}:{seconds.toString().padStart(2,'0')}</h1>
+        <h1 id="timer">
+          {minutes}:{seconds.toString().padStart(2, '0')}
+        </h1>
       </div>
 
       <div>
-      {!isRunning && !isFinished && (
-                <Button sx={{
-                  backgroundColor:'#005e83', 
-                  "&:hover":{backgroundColor:'#00384f'}}} variant="contained" onClick={startTimer}>
-                  Start
-                </Button>
-              )}
-              {isRunning && !isFinished && (
-                <Button sx={{
-                  color:'#005e83', 
-                  "&:hover":{color:'#00384f'}}} variant="outlined" onClick={pauseTimer}>
-                  Pause
-                </Button>
-              )}
-              {isFinished && (
-                <Button
-                sx={{
-                  backgroundColor:'#005e83', 
-                  "&:hover":{backgroundColor:'#00384f'}}}
-                variant="contained"
-                onClick={handleNextExercise}>
-                  Next Exercise
-                </Button>
-              )}
-           
+        {!isRunning && !isFinished && (
+          <Button
+            sx={{
+              backgroundColor: '#005e83',
+              '&:hover': { backgroundColor: '#00384f' },
+            }}
+            variant="contained"
+            onClick={startTimer}
+          >
+            Start
+          </Button>
+        )}
+        {isRunning && !isFinished && (
+          <Button
+            sx={{
+              color: '#005e83',
+              '&:hover': { color: '#00384f' },
+            }}
+            variant="outlined"
+            onClick={pauseTimer}
+          >
+            Pause
+          </Button>
+        )}
+        {isFinished && (
+          <Button
+            sx={{
+              backgroundColor: '#005e83',
+              '&:hover': { backgroundColor: '#00384f' },
+            }}
+            variant="contained"
+            onClick={callHandleNextExercise}
+          >
+            Next Exercise
+          </Button>
+        )}
       </div>
     </Grid>
-
-
   );
 }
 
 export default Timer;
-
-
-

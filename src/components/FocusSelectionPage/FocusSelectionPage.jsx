@@ -10,6 +10,7 @@ import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
 import Grid from '@mui/material/Grid';
+import Routes from '../Routes/Routes';
 
 export default function FocusSelectionPage() {
   const { id } = useParams();
@@ -36,7 +37,6 @@ export default function FocusSelectionPage() {
   }, []);
 
   const toggleFocus = (focus) => {
-    console.log('focusId', focus);
     dispatch({
       type: SESSION_FORM_ACTIONS.SET_SELECTED_TYPE_FOCUS,
       payload: { type: id, focus },
@@ -45,7 +45,7 @@ export default function FocusSelectionPage() {
 
   const naviagteBack = () => {
     if (typeHistory.length === 0) {
-      history.push('/session/type');
+      history.push(Routes.SessionType);
     } else {
       const path = `/session/focus/${typeHistory[typeHistory.length - 1]}`;
       dispatch({
@@ -58,7 +58,6 @@ export default function FocusSelectionPage() {
 
   const handleNextOrSubmit = () => {
     if (selectedTypes.length === 0) {
-      console.log('SUBMITTING');
       dispatch({
         type: SESSION_FORM_SAGA_ACTIONS.POST_SESSION,
         payload: { focusAndTypeChoice, timeInMinutes },
@@ -67,8 +66,6 @@ export default function FocusSelectionPage() {
       history.push(path);
     } else {
       const path = `/session/focus/${selectedTypes[0]}`;
-      console.log(path);
-      console.log(id);
       dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
         payload: Number(id),
@@ -95,18 +92,22 @@ export default function FocusSelectionPage() {
               <div className="flex m-b-xl gap-16 flex-col items-center">
                 {focuses &&
                   focuses.map((focus) => {
-                    const isSelected = focusAndTypeChoice[id].includes(focus.id);
+                    const isSelected = focusAndTypeChoice[id].includes(
+                      focus.id
+                    );
                     return (
                       <div key={focus.id}>
                         <button
                           onClick={() => toggleFocus(focus.id)}
-                          className={`flex transition-all items-center justify-between duration-300 btn-focus-select ${isSelected && 'btn-focus-select-active '
-                            }`}
+                          className={`flex transition-all items-center justify-between duration-300 btn-focus-select ${
+                            isSelected && 'btn-focus-select-active '
+                          }`}
                         >
                           <div>{focus.name}</div>
                           <div
-                            className={`btn-focus-select-check ${isSelected ? 'visible' : 'invisible'
-                              }`}
+                            className={`btn-focus-select-check ${
+                              isSelected ? 'visible' : 'invisible'
+                            }`}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -132,14 +133,18 @@ export default function FocusSelectionPage() {
                     <div key={focus.id}>
                       {/* Need to create some logic here to only add if there is a following value */}
                       {focusAndTypeChoice[id].includes(focus.id) && (
-                        <p className='p-r-xs'>{focus.name + ','}</p>
+                        <p className="p-r-xs">{focus.name + ','}</p>
                       )}
                     </div>
                   );
                 })}
               </div>
               <div className="">
-                <MainButton onClick={handleNextOrSubmit} type="button">
+                <MainButton
+                  disabled={focusAndTypeChoice[id].length === 0}
+                  onClick={handleNextOrSubmit}
+                  type="button"
+                >
                   Next
                 </MainButton>
                 <div className="text-left">
@@ -155,7 +160,6 @@ export default function FocusSelectionPage() {
           </Grid>
         </Grid>
       </Grid>
-
     </MainLayout>
   );
 }

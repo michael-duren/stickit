@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainButton from '../MainButton/MainButton';
 import Button from '@mui/material/Button';
+import Routes from '../Routes/Routes';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -23,6 +24,7 @@ function RegisterForm() {
         username: username,
         password: password,
         firstName: firstName,
+        lastName: lastName,
         lastName: lastName,
       },
     });
@@ -127,7 +129,7 @@ function RegisterForm() {
             '&:focus': { backgroundColor: '#00394d', color: 'white' },
           }}
           onClick={() => {
-            history.push('/login');
+            history.push(Routes.Login);
           }}
         >
           <p>Sign in</p>

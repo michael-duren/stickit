@@ -10,6 +10,8 @@ const initialState = {
 
 const sessionFormReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SESSION_FORM_ACTIONS.RESET_SESSION_FORM:
+      return initialState;
     case SESSION_FORM_ACTIONS.SET_TYPES:
       return {
         ...state,

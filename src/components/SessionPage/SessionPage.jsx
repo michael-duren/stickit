@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Grid';
+import Timer from '../Timer/Timer';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SessionPage.css';
@@ -11,59 +12,65 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import MainButton from '../MainButton/MainButton';
-import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
-import Timer from '../Timer/Timer';
-
-
+import Routes from '../Routes/Routes';
+import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
 function SessionPage() {
-
-  const { exercises, completedExercises } = useSelector(
+  const { exercises, completedExercises, sessionId } = useSelector(
     (store) => store.session
   );
   const history = useHistory();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentExercise, setCurrentExercise] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [tempo, setTempo] = useState(60);
+
+  const endSession = () => {
+    history.push(Routes.SessionSummaryComplete);
+  };
 
   const onNextExercise = () => {
-    if (exercises.length === 0 && completedExercises.length > 0) {
-      history.push('/session/summary/complete');
-    }
+    // Save the current exercise to completedExercises
+    let tmpExercise = exercises[0];
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
+      payload: {
+        exerciseId: currentExercise.id,
+        completedTempo: tempo,
+        sessionId,
+        exerciseNotes: notes,
+        currentExercise,
+      },
+    });
     if (exercises.length > 1) {
       setCurrentExercise(exercises[1]);
       // remove the current exercise from the array
-      dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: currentExercise,
-      });
     } else {
-      setCurrentExercise(exercises[0]);
-      // if there is only one exercise left, then add it to the completed exercises
-      dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: exercises[0],
-      });
+      history.push(Routes.SessionSummaryComplete);
     }
   };
   useEffect(() => {
     setCurrentExercise(exercises[0]); // get the first exercise in the array
     setIsLoaded(true);
-    console.log('current exercise', currentExercise);
+
+    // re route to completed page if all exercises are complete
+    if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
+      history.push(Routes.SessionSummaryComplete);
+    }
   }, []);
+
+  useEffect(() => {
+    let tempo = currentExercise ? currentExercise.bpm_min : 60;
+    setTempo(tempo);
+    setNotes('');
+  }, [currentExercise]);
+
   // show not found if somehow they get here without any exercises
   if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
     return <NotFound />;
   }
-  // re route to completed page if all exercises are complete
-  if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
-    history.push('/session/summary/complete');
-  }
 
-
-  console.log('current exercise', currentExercise);
-  
-  
   return (
     currentExercise && (
       <div className="background-primary-grey">
@@ -85,10 +92,12 @@ function SessionPage() {
                 </h2>
                 <p className="instrument">Instrument</p>
               </Grid>
-           <Grid>
-            <Timer/>
-           </Grid>
-        
+              <Grid>
+                <Timer
+                  exercises={exercises}
+                  handleNextExercise={onNextExercise}
+                />
+              </Grid>
             </Grid>
             <Grid
               item
@@ -98,7 +107,7 @@ function SessionPage() {
                 marginBottom: '10px',
               }}
             >
-              <p>{exercises[0].description}</p>
+              <p>{currentExercise.description}</p>
               <Grid
                 item
                 className="buttons"
@@ -131,7 +140,11 @@ function SessionPage() {
                 marginBottom: '8px',
               }}
             >
-              <Metronome tempo={exercises[0].minimum_time_minutes} />
+              <Metronome
+                tempoState={tempo}
+                setTempoState={setTempo}
+                tempo={tempo}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>
@@ -147,10 +160,12 @@ function SessionPage() {
               sm={6}
               sx={{
                 marginBottom: '10px',
-                marginTop: '1rem'
+                marginTop: '1rem',
               }}
             >
               <TextField
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
                 fullWidth
                 id="outlined-multiline-static"
                 label="Write a note..."
@@ -172,7 +187,9 @@ function SessionPage() {
                 {completedExercises.length}/
                 {exercises.length + completedExercises.length} complete
               </p>
-              <h4 className="end-session">End Session (Exit)</h4>
+              <h4 onClick={endSession} className="end-session">
+                End Session (Exit)
+              </h4>
             </Grid>
           </Grid>
         </Grid>
@@ -181,24 +198,3 @@ function SessionPage() {
   );
 }
 export default SessionPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

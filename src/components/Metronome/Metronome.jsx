@@ -9,9 +9,7 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import { Grid, MenuItem } from '@mui/material';
 import players from './players';
 
-
-export default function Metronome({ tempo }) {
-  const [tempoState, setTempoState] = useState(tempo);
+export default function Metronome({ tempoState, setTempoState }) {
   const [sound, setSound] = useState(MetronomeOptions.sounds[0].value);
   const [meter, setMeter] = useState(MetronomeOptions.meter[2]);
   const [setting, setSetting] = useState(MetronomeOptions.setting[0]);
@@ -48,20 +46,26 @@ export default function Metronome({ tempo }) {
     setIsPlaying(!isPlaying);
   };
 
-
-
-
   return (
-    <Grid sx={{ fontFamily: 'sans-serif'}}>
+    <Grid sx={{ fontFamily: 'sans-serif' }}>
       <Grid container>
-        <Grid className='metronome metronome-sticky' item xs={12} sm={12} md={6} lg={6}>
+        <Grid
+          className="metronome metronome-sticky"
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+        >
           {/* Left Side */}
           <div className="xs-display-flex">
             <div className="m-b-l">
-              <div className='xs-hide'>Tempo</div>
+              <div className="xs-hide">Tempo</div>
               {/* Tempo Input */}
               <div className="tempo-select">
-                <span style={{ background: '#F8F8F8', fontSize: '1rem' }}>♩</span>
+                <span style={{ background: '#F8F8F8', fontSize: '1rem' }}>
+                  ♩
+                </span>
                 <input
                   value={tempoState}
                   onChange={(e) => setTempoState(e.target.value)}
@@ -80,7 +84,16 @@ export default function Metronome({ tempo }) {
             </div>
           </div>
         </Grid>
-        <Grid className='metronome' item sm={12} md={6} lg={6} sx={{ display: {xs : 'none', sm: 'block', md:'block', lg: 'block'}}}>
+        <Grid
+          className="metronome"
+          item
+          sm={12}
+          md={6}
+          lg={6}
+          sx={{
+            display: { xs: 'none', sm: 'block', md: 'block', lg: 'block' },
+          }}
+        >
           {/* Right Side */}
           <div className="">
             <div className="m-b-l">
@@ -130,9 +143,7 @@ export default function Metronome({ tempo }) {
             </div>
           </div>
         </Grid>
-        
       </Grid>
     </Grid>
-
   );
 }
