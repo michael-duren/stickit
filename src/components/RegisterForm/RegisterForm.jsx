@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TextField from "@mui/material/TextField";
+import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainButton from '../MainButton/MainButton';
-import  Button  from '@mui/material/Button';
+import Button from '@mui/material/Button';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -23,7 +23,7 @@ function RegisterForm() {
         username: username,
         password: password,
         firstName: firstName,
-        lastName: lastName
+        lastName: lastName,
       },
     });
   }; // end registerUser
@@ -31,66 +31,68 @@ function RegisterForm() {
   return (
     <>
       <form className="formPanel" onSubmit={registerUser}>
-        <h2 className='text-black m-b-xl' style={{textAlign: 'center'}}>Create Account</h2>
+        <h2 className="text-black m-b-xl" style={{ textAlign: 'center' }}>
+          Create Account
+        </h2>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {errors.registrationMessage}
           </h3>
         )}
-        <div className='m-b-xl'>
+        <div className="m-b-xl">
           <label htmlFor="firstName">
             <TextField
               fullWidth
               type="firstName"
               name="firstName"
-              placeholder='First Name'
-              id='outlined-size-small'
-              size='small'
+              placeholder="First Name"
+              id="outlined-size-small"
+              size="small"
               value={firstName}
               required
               onChange={(event) => setFirstName(event.target.value)}
             />
           </label>
         </div>
-        <div className='m-b-xl'>
+        <div className="m-b-xl">
           <label htmlFor="lastName">
             <TextField
               fullWidth
               type="lastName"
               name="lastName"
-              placeholder='Last Name'
-              id='outlined-size-small'
-              size='small'
+              placeholder="Last Name"
+              id="outlined-size-small"
+              size="small"
               value={lastName}
               required
               onChange={(event) => setLastName(event.target.value)}
             />
           </label>
         </div>
-        <div className='m-b-xl'>
+        <div className="m-b-xl">
           <label htmlFor="username">
             <TextField
               fullWidth
               type="text"
               name="username"
-              placeholder='Email'
-              id='outlined-size-small'
-              size='small'
+              placeholder="Email"
+              id="outlined-size-small"
+              size="small"
               value={username}
               required
               onChange={(event) => setUsername(event.target.value)}
             />
           </label>
         </div>
-        <div className='m-b-xl'>
+        <div className="m-b-xl">
           <label htmlFor="password">
             <TextField
               fullWidth
               type="password"
               name="password"
-              placeholder='Password'
-              id='outlined-size-small'
-              size='small'
+              placeholder="Password"
+              id="outlined-size-small"
+              size="small"
               value={password}
               required
               onChange={(event) => setPassword(event.target.value)}
@@ -98,26 +100,40 @@ function RegisterForm() {
           </label>
         </div>
         <div>
-          <MainButton fullWidth variant='contained' className="btn" type="submit" name="submit" value="Create Account">Create Account</MainButton>
+          <MainButton
+            fullWidth
+            onClick={registerUser}
+            variant="contained"
+            className="btn"
+            type="submit"
+            name="submit"
+            value="Create Account"
+          >
+            Create Account
+          </MainButton>
         </div>
       </form>
       <div className="text-center formPanel">
-      <Button 
-      variant="outlined" f
-      fullWidth
-      className="btn btn_asLink"
-      sx={{border:'1px solid #005e83', color: '#005e83', fontWeight: '600', '&:hover': {backgroundColor: '#005e83', color: 'white'}, 
-      '&:focus': {backgroundColor: '#00394d', color: 'white'}}}
-      onClick={() => {
-        history.push('/login');
-      }}
-      >
-        <p>Sign in</p>
+        <Button
+          variant="outlined"
+          f
+          fullWidth
+          className="btn btn_asLink"
+          sx={{
+            border: '1px solid #005e83',
+            color: '#005e83',
+            fontWeight: '600',
+            '&:hover': { backgroundColor: '#005e83', color: 'white' },
+            '&:focus': { backgroundColor: '#00394d', color: 'white' },
+          }}
+          onClick={() => {
+            history.push('/login');
+          }}
+        >
+          <p>Sign in</p>
         </Button>
-    </div>
-
+      </div>
     </>
-
   );
 }
 
