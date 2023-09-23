@@ -21,15 +21,8 @@ function SessionPage() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentExercise, setCurrentExercise] = useState(null);
-  const [minutes, setMinutes] = useState(3);
-  const [seconds, setSeconds] = useState(0);
-  const [milliseconds, setMilliseconds] = useState(0);
-  const [isRunning, setIsRunning] = useState(null);
 
   const onNextExercise = () => {
-    if (exercises.length === 0 && completedExercises.length > 0) {
-      history.push('/session/summary/complete');
-    }
     if (exercises.length > 1) {
       setCurrentExercise(exercises[1]);
       // remove the current exercise from the array
@@ -37,19 +30,29 @@ function SessionPage() {
         type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
         payload: currentExercise,
       });
-    } else {
+    } else if (exercises.length === 1) {
       setCurrentExercise(exercises[0]);
+      console.log(currentExercise);
       // if there is only one exercise left, then add it to the completed exercises
       dispatch({
         type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
         payload: exercises[0],
       });
+      console.log('completed exercises', completedExercises);
+      console.log('exercises', exercises);
+    } else if (completedExercises.length > 0) {
+      history.push('/session/summary/complete');
     }
   };
 
   useEffect(() => {
     setCurrentExercise(exercises[0]); // get the first exercise in the array
     setIsLoaded(true);
+
+    // re route to completed page if all exercises are complete
+    if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
+      history.push('/session/summary/complete');
+    }
     console.log('current exercise', currentExercise);
   }, []);
 
@@ -57,32 +60,6 @@ function SessionPage() {
   if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
     return <NotFound />;
   }
-
-  // re route to completed page if all exercises are complete
-  if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
-    history.push('/session/summary/complete');
-  }
-
-  function startTimer() {
-    if (minutes !== 0 || seconds !== 0 || milliseconds !== 0) {
-      setIsRunning(true);
-    }
-  }
-
-  function pauseTimer() {
-    setIsRunning(false);
-  }
-
-  //  Handlers
-  const changeSeconds = (event) => {
-    setSeconds(event.target.value);
-  };
-
-  const changeMinutes = (event) => {
-    setMinutes(event.target.value);
-  };
-
-  console.log('current exercise', currentExercise);
 
   return (
     currentExercise && (
@@ -105,22 +82,17 @@ function SessionPage() {
                 </h2>
                 <p className="instrument">Instrument</p>
               </Grid>
-              <Grid>
-                <input value={minutes} onChange={changeMinutes} />
-                <input value={seconds} onChange={changeSeconds} />
-              </Grid>
+              <Grid></Grid>
               <Grid item className="start-button">
-                {!isRunning && (
-                  <Button variant="contained" onClick={startTimer}>
-                    Start
-                  </Button>
-                )}
-                {isRunning && (
+                {!true && <Button variant="contained">Start</Button>}
+                {false && (
                   <Button variant="contained" onClick={pauseTimer}>
                     Pause
                   </Button>
                 )}
-                <MainButton onClick={onNextExercise}>Next Exercise</MainButton>
+                <MainButton onClick={onNextExercise}>
+                  {exercises.length === 0 ? 'Finish' : 'Next Exercise'}
+                </MainButton>
               </Grid>
             </Grid>
             <Grid
@@ -131,7 +103,7 @@ function SessionPage() {
                 marginBottom: '10px',
               }}
             >
-              <p>{exercises[0].description}</p>
+              <p>{currentExercise.description}</p>
               <Grid
                 item
                 className="buttons"
@@ -164,7 +136,7 @@ function SessionPage() {
                 marginBottom: '8px',
               }}
             >
-              <Metronome tempo={exercises[0].minimum_time_minutes} />
+              <Metronome tempo={currentExercise.bpm_min} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>

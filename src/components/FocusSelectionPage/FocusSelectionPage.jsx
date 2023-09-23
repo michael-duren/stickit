@@ -95,18 +95,22 @@ export default function FocusSelectionPage() {
               <div className="flex m-b-xl gap-16 flex-col items-center">
                 {focuses &&
                   focuses.map((focus) => {
-                    const isSelected = focusAndTypeChoice[id].includes(focus.id);
+                    const isSelected = focusAndTypeChoice[id].includes(
+                      focus.id
+                    );
                     return (
                       <div key={focus.id}>
                         <button
                           onClick={() => toggleFocus(focus.id)}
-                          className={`flex transition-all items-center justify-between duration-300 btn-focus-select ${isSelected && 'btn-focus-select-active '
-                            }`}
+                          className={`flex transition-all items-center justify-between duration-300 btn-focus-select ${
+                            isSelected && 'btn-focus-select-active '
+                          }`}
                         >
                           <div>{focus.name}</div>
                           <div
-                            className={`btn-focus-select-check ${isSelected ? 'visible' : 'invisible'
-                              }`}
+                            className={`btn-focus-select-check ${
+                              isSelected ? 'visible' : 'invisible'
+                            }`}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -132,14 +136,18 @@ export default function FocusSelectionPage() {
                     <div key={focus.id}>
                       {/* Need to create some logic here to only add if there is a following value */}
                       {focusAndTypeChoice[id].includes(focus.id) && (
-                        <p className='p-r-xs'>{focus.name + ','}</p>
+                        <p className="p-r-xs">{focus.name + ','}</p>
                       )}
                     </div>
                   );
                 })}
               </div>
               <div className="">
-                <MainButton onClick={handleNextOrSubmit} type="button">
+                <MainButton
+                  disabled={focusAndTypeChoice[id].length === 0}
+                  onClick={handleNextOrSubmit}
+                  type="button"
+                >
                   Next
                 </MainButton>
                 <div className="text-left">
@@ -155,7 +163,6 @@ export default function FocusSelectionPage() {
           </Grid>
         </Grid>
       </Grid>
-
     </MainLayout>
   );
 }
