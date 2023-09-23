@@ -1,5 +1,5 @@
 .session-page-padding {
-  padding: 3rem;
+  padding: 1rem 3rem;
 }
 
 .session-page-content-container {
@@ -57,4 +57,12 @@ h3 {
 
 .start-button {
   text-align: right;
+}
+
+@media (max-width: 900px) {
+  .session-page-padding {
+    /* Apply your CSS rules for "xs" screens */
+    /* For example, you can make it sticky to the bottom */
+    padding: 0;
+  }
 }
