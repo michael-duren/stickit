@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import MainLayout from '../../layouts/MainLayout';
 import MainButton from '../MainButton/MainButton';
 import { Link } from 'react-router-dom';
+import Timer from '../Timer/Timer';
 
 function MainPage() {
   const user = useSelector((store) => store.user);
@@ -23,6 +24,7 @@ function MainPage() {
             Take a moment to generate a tailored practice <br /> routine based on your
             focus areas and time available.
           </p>
+          <Timer/>
         </div>
         <Link to="/session/time-selection">
           <MainButton>Begin Smart Session</MainButton>

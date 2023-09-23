@@ -9,80 +9,16 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Metronome from '../Metronome/Metronome';
-import NotFound from '../NotFoundPage/NotFoundPage';
-import MainButton from '../MainButton/MainButton';
-import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
+
+import { useCountdownTimer } from 'use-countdown-timer';
+import Timer from '../Timer/Timer';
+import Countdown from 'react-countdown';
+
 
 function SessionPage() {
-  const { exercises, completedExercises } = useSelector(
-    (store) => store.session
-  );
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [currentExercise, setCurrentExercise] = useState(null);
-  const [minutes, setMinutes] = useState(3);
-  const [seconds, setSeconds] = useState(0);
-  const [milliseconds, setMilliseconds] = useState(0);
-  const [isRunning, setIsRunning] = useState(null);
+  const { exercises, currentSession } = useSelector((store) => store.session);
+ 
 
-  const onNextExercise = () => {
-    if (exercises.length === 0 && completedExercises.length > 0) {
-      history.push('/session/summary/complete');
-    }
-    if (exercises.length > 1) {
-      setCurrentExercise(exercises[1]);
-      // remove the current exercise from the array
-      dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: currentExercise,
-      });
-    } else {
-      setCurrentExercise(exercises[0]);
-      // if there is only one exercise left, then add it to the completed exercises
-      dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: exercises[0],
-      });
-    }
-  };
-
-  useEffect(() => {
-    setCurrentExercise(exercises[0]); // get the first exercise in the array
-    setIsLoaded(true);
-    console.log('current exercise', currentExercise);
-  }, []);
-
-  // show not found if somehow they get here without any exercises
-  if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
-    return <NotFound />;
-  }
-
-  // re route to completed page if all exercises are complete
-  if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
-    history.push('/session/summary/complete');
-  }
-
-  function startTimer() {
-    if (minutes !== 0 || seconds !== 0 || milliseconds !== 0) {
-      setIsRunning(true);
-    }
-  }
-
-  function pauseTimer() {
-    setIsRunning(false);
-  }
-
-  //  Handlers
-  const changeSeconds = (event) => {
-    setSeconds(event.target.value);
-  };
-
-  const changeMinutes = (event) => {
-    setMinutes(event.target.value);
-  };
-
-  console.log('current exercise', currentExercise);
 
   return (
     currentExercise && (
@@ -93,6 +29,7 @@ function SessionPage() {
             className="session-page-content-container"
             justifyContent="space-between"
           >
+             
             <Grid
               item
               sm={12}
@@ -106,23 +43,8 @@ function SessionPage() {
                 <p className="instrument">Instrument</p>
               </Grid>
               <Grid>
-                <input value={minutes} onChange={changeMinutes} />
-                <input value={seconds} onChange={changeSeconds} />
+                <Timer />
               </Grid>
-              <Grid item className="start-button">
-                {!isRunning && (
-                  <Button variant="contained" onClick={startTimer}>
-                    Start
-                  </Button>
-                )}
-                {isRunning && (
-                  <Button variant="contained" onClick={pauseTimer}>
-                    Pause
-                  </Button>
-                )}
-                <MainButton onClick={onNextExercise}>Next Exercise</MainButton>
-              </Grid>
-            </Grid>
             <Grid
               item
               xs={12}
@@ -136,24 +58,22 @@ function SessionPage() {
                 item
                 className="buttons"
                 sx={{
-                  marginTop: '10px',
+                  marginRight: '5px',
+                  color:'#005e83', 
+                  "&:hover":{color:'#00384f'}
                 }}
               >
-                <Button
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    marginRight: '5px',
-                  }}
-                >
-                  Play Video
-                  <PlayArrowIcon />
-                </Button>
-                <Button variant="outlined" size="small">
-                  Resource Sheet
-                  <InsertDriveFileIcon />
-                </Button>
-              </Grid>
+                Play Video
+                <PlayArrowIcon />
+              </Button>
+              <Button 
+              sx={{
+                color:'#005e83', 
+                "&:hover":{color:'#00384f'}}}
+                variant="outlined" size="small">
+                Resource Sheet
+                <InsertDriveFileIcon />
+              </Button>
             </Grid>
             <Grid
               className="tempo-box"
