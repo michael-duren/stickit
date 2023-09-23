@@ -180,6 +180,7 @@ function SessionPage() {
               sm={6}
               sx={{
                 marginBottom: '10px',
+                marginTop: '1rem'
               }}
             >
               <TextField
