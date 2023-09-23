@@ -33,6 +33,10 @@ import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import Routes from '../Routes/Routes'
+import MyActivity from '../MyActivityPage/MyActivity';
+import Exercises from '../ExercisesPage/Exercises';
+import Routines from '../RoutinesPage/Routines';
+import Goals from '../GoalsPage/Goals';
 
 function App() {
   const dispatch = useDispatch();

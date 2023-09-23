@@ -10,6 +10,10 @@ const Routes = {
   SessionType: '/session/type',
   TimeSelection: '/session/time-selection',
   User: '/user',
+  MyActivity: '/my-activity',
+  Exercises: '/exercises',
+  Routines: '/routines',
+  Goals: '/goals'
 };
 
 export default Routes;
