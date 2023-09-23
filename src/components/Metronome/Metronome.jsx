@@ -9,8 +9,7 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import { MenuItem } from '@mui/material';
 import players from './players';
 
-export default function Metronome({ tempo }) {
-  const [tempoState, setTempoState] = useState(tempo);
+export default function Metronome({ tempoState, setTempoState }) {
   const [sound, setSound] = useState(MetronomeOptions.sounds[0].value);
   const [meter, setMeter] = useState(MetronomeOptions.meter[2]);
   const [setting, setSetting] = useState(MetronomeOptions.setting[0]);

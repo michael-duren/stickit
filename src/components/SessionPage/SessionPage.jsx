@@ -12,36 +12,49 @@ import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import MainButton from '../MainButton/MainButton';
 import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
+import Routes from '../Routes/Routes';
+import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
 function SessionPage() {
-  const { exercises, completedExercises } = useSelector(
+  const { exercises, completedExercises, sessionId } = useSelector(
     (store) => store.session
   );
   const history = useHistory();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentExercise, setCurrentExercise] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [tempo, setTempo] = useState(60);
 
   const onNextExercise = () => {
     if (exercises.length > 1) {
       setCurrentExercise(exercises[1]);
       // remove the current exercise from the array
       dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: currentExercise,
+        type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
+        payload: {
+          exerciseId: currentExercise.id,
+          completedTempo: tempo,
+          sessionId,
+          exerciseNotes: notes,
+          currentExercise,
+        },
       });
     } else if (exercises.length === 1) {
       setCurrentExercise(exercises[0]);
-      console.log(currentExercise);
       // if there is only one exercise left, then add it to the completed exercises
       dispatch({
-        type: SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED,
-        payload: exercises[0],
+        type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
+        payload: {
+          exerciseId: currentExercise.id,
+          completedTempo: tempo,
+          sessionId,
+          currentExercise,
+          exerciseNotes: notes,
+        },
       });
-      console.log('completed exercises', completedExercises);
-      console.log('exercises', exercises);
     } else if (completedExercises.length > 0) {
-      history.push('/session/summary/complete');
+      history.push(Routes.SessionSummaryComplete);
     }
   };
 
@@ -53,8 +66,13 @@ function SessionPage() {
     if (isLoaded && exercises.length === 0 && completedExercises.length > 0) {
       history.push('/session/summary/complete');
     }
-    console.log('current exercise', currentExercise);
   }, []);
+
+  useEffect(() => {
+    let tempo = currentExercise ? currentExercise.bpm_min : 60;
+    setTempo(tempo);
+    setNotes('');
+  }, [currentExercise]);
 
   // show not found if somehow they get here without any exercises
   if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
@@ -136,7 +154,11 @@ function SessionPage() {
                 marginBottom: '8px',
               }}
             >
-              <Metronome tempo={currentExercise.bpm_min} />
+              <Metronome
+                tempoState={tempo}
+                setTempoState={setTempo}
+                tempo={tempo}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>
@@ -155,6 +177,8 @@ function SessionPage() {
               }}
             >
               <TextField
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
                 fullWidth
                 id="outlined-multiline-static"
                 label="Write a note..."
