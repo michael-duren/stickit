@@ -9,24 +9,25 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div className='background-primary-blue main-container'>
+    <div className='login-background main-container'>
       <Grid>
         <Grid container justifyContent={"center"} item lg={12} className="primary-white">
-          <Grid container justifyContent={"center"} alignItems={'center'}>
+          <Grid  container justifyContent={"center"} alignItems={'end'} className="p-t-xl">
             <Grid item>
-              <img src={logoImg} alt='drums' />
+              <img className="p-r-l" src={logoImg} alt='drums' />
             </Grid>
             <Grid>
-              <h1>StickIt</h1>
+              <h1 className="p-t-xl">StickIt</h1>
             </Grid>
 
           </Grid>
-          <p>Practice better.</p>
+          <p className="m-b-xl m-t-xl">Practice better.</p>
         </Grid>
       </Grid>
+      <div className="login-padding">
       <RegisterForm />
-
-      
+      </div>
+    
       <div className="text-center login-footer primary-white">
           <p>
             Copyright © 2023 StickItPracticeApp.com® Patented and Patents Pending

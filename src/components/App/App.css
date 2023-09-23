@@ -15,6 +15,7 @@ body,
   src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
 }
 
+
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: 'OpenSans', sans-serif;
@@ -89,6 +90,7 @@ Button
   color: #008183;
 }
 
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -108,12 +110,16 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
+.login-padding {
+  padding: .75rem;
+}
+
 .formPanel {
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
   padding: 25px;
-  margin: 0 auto 20px;
+  margin: 0 auto 2rem;
   background-color: #efefef;
   border-radius: 10px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -172,7 +178,64 @@ h2 {
   letter-spacing: 0.00938rem;
 }
 
+
+@media (max-width: 600px) {
+  .metronome-sticky {
+    /* Apply your CSS rules for "xs" screens */
+    /* For example, you can make it sticky to the bottom */
+    position: fixed;
+    background-color: #F2FAFC;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 999;
+  }
+}
+
+@media (max-width: 600px) {
+  .xs-display-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .xs-display-flex > div {
+    /* height: 100%; */
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .tempo-select {
+    min-height: 2.5rem;
+    gap: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .play-button button {
+   max-height: 2.5rem;
+   padding: 1.6rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .xs-hide {
+    display: none;
+  }
+}
+
 /* Utility Classes */
+
+.dark-gray {
+  color:#393939;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
 .text-center {
   text-align: center;
@@ -209,10 +272,42 @@ h2 {
   color: #262626;
 }
 
+.exit-btn-width {
+  max-width: max-content;
+}
+
+.login-background {
+  background: linear-gradient(to bottom, var(--primary-blue), #5fa2bb);
+}
+
 /* UTILITY CLASSES */
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.full-width {
+  width: 100%;
+}
 
 .p-l-l {
   padding-left: 1rem;
+}
+
+.p-r-xs {
+  padding-right: .15rem;
+}
+
+.p-r-l {
+  padding-right: 1rem;
+}
+
+.p-t-xl {
+  padding-top: 1.75rem;
 }
 
 .m-t-l {
@@ -223,7 +318,10 @@ h2 {
   margin-top: 1.25rem;
 }
 
-/* Utility Classes */
+.m-b-l {
+  margin-bottom: 1rem;
+}
+
 .m-b-xl {
   margin-bottom: 1.25rem;
 }
