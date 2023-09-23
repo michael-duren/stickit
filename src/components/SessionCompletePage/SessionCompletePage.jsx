@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as GreenCheck } from '../../images/green-check.svg';
 
 export default function SessionCompletePage() {
-  const { duration, completedExercises } = useSelector(
+  const { duration, completedExercises, exercises } = useSelector(
     (store) => store.session
   );
 
@@ -28,9 +28,6 @@ export default function SessionCompletePage() {
             className="display-flex items-center justify-center main-button-width"
           >
             <div className="session-container exercise main-button-width justify-around">
-              <div>
-                <InfoIcon className="primary-blue" />
-              </div>
               <div className="exercise-info flex flex-col flex-1">
                 <p className="exercise-title">
                   {exercise.warmup && i === 0 ? 'Warm up' : ''}
@@ -46,6 +43,27 @@ export default function SessionCompletePage() {
             </div>
             <div className="sync-icon">
               <GreenCheck className="primary-blue" />
+            </div>
+          </div>
+        ))}
+        {exercises.map((exercise, i) => (
+          <div
+            key={exercise.id + i}
+            className="display-flex items-center justify-center main-button-width"
+          >
+            <div className="session-container exercise main-button-width justify-around">
+              <div className="exercise-info flex flex-col flex-1">
+                <p className="exercise-title">
+                  {exercise.warmup && i === 0 ? 'Warm up' : ''}
+                  {i === exercise.length - 1 ? 'Cooldown' : ''}
+                </p>
+                <p className="exersice-description">{exercise.name}</p>
+              </div>
+              <div>
+                <p className="exercise-duration">
+                  {Math.floor(exercise.minimum_time_minutes)} min
+                </p>
+              </div>
             </div>
           </div>
         ))}

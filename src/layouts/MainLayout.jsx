@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { SESSION_FORM_ACTIONS } from '../redux/actions/session-form.reducer.actions';
 import { useHistory } from 'react-router-dom';
 import { SESSION_ACTIONS } from '../redux/actions/session.reducer.actions';
+import Routes from '../components/Routes/Routes';
 
 export default function MainLayout({ children, showExitButton, showNav }) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function MainLayout({ children, showExitButton, showNav }) {
   const resetForm = () => {
     dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
     dispatch({ type: SESSION_ACTIONS.RESET_SESSION });
-    history.push('/');
+    history.push(Routes.Home);
   };
 
   return (

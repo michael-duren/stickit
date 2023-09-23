@@ -11,7 +11,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import MainButton from '../MainButton/MainButton';
-import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
 import Routes from '../Routes/Routes';
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
@@ -25,6 +24,10 @@ function SessionPage() {
   const [currentExercise, setCurrentExercise] = useState(null);
   const [notes, setNotes] = useState('');
   const [tempo, setTempo] = useState(60);
+
+  const endSession = () => {
+    history.push(Routes.SessionSummaryComplete);
+  };
 
   const onNextExercise = () => {
     // Save the current exercise to completedExercises
@@ -189,7 +192,9 @@ function SessionPage() {
                 {completedExercises.length}/
                 {exercises.length + completedExercises.length} complete
               </p>
-              <h4 className="end-session">End Session (Exit)</h4>
+              <h4 onClick={endSession} className="end-session">
+                End Session (Exit)
+              </h4>
             </Grid>
           </Grid>
         </Grid>
