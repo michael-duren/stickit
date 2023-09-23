@@ -8,14 +8,16 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Metronome from '../Metronome/Metronome';
+import { useCountdownTimer } from 'use-countdown-timer';
+import Timer from '../Timer/Timer';
+import Countdown from 'react-countdown';
+
 
 function SessionPage() {
   const { exercises, currentSession } = useSelector((store) => store.session);
-  const [minutes, setMinutes] = useState(exercises[0]?.minimum_time_minutes);
- 
-if(exercises.length=0) return ;
  
 
+  
   return (
     <div className="background-primary-grey">
       <Grid container className="session-page-padding">
@@ -32,15 +34,27 @@ if(exercises.length=0) return ;
           >
             <Grid item>
               <h2 className="exercise-name">
-                {exercises[0]?.name} <FavoriteBorderOutlinedIcon />
+                {exercises[0].name} <FavoriteBorderOutlinedIcon />
               </h2>
               <p className="instrument">Instrument</p>
             </Grid>
             <Grid>
+              <Timer />
+              {/* <input value={minutes} onChange={changeMinutes} /> */}
+              {/* <input value={seconds} onChange={changeSeconds} /> */}
             </Grid>
-            <Grid item className="start-button">
-             
-            </Grid>
+            {/* <Grid item className="start-button">
+              {!isRunning && (
+                <Button variant="contained" onClick={startTimer}>
+                  Start
+                </Button>
+              )}
+              {isRunning && (
+                <Button variant="contained" onClick={pauseTimer}>
+                  Pause
+                </Button>
+              )}
+            </Grid> */}
           </Grid>
           <Grid
             item
@@ -50,7 +64,7 @@ if(exercises.length=0) return ;
               marginBottom: '10px',
             }}
           >
-            <p>{exercises[0]?.description}</p>
+            <p>{exercises[0].description}</p>
             <Grid
               item
               className="buttons"
@@ -63,12 +77,18 @@ if(exercises.length=0) return ;
                 size="small"
                 sx={{
                   marginRight: '5px',
+                  color:'#005e83', 
+                  "&:hover":{color:'#00384f'}
                 }}
               >
                 Play Video
                 <PlayArrowIcon />
               </Button>
-              <Button variant="outlined" size="small">
+              <Button 
+              sx={{
+                color:'#005e83', 
+                "&:hover":{color:'#00384f'}}}
+                variant="outlined" size="small">
                 Resource Sheet
                 <InsertDriveFileIcon />
               </Button>
@@ -83,7 +103,7 @@ if(exercises.length=0) return ;
               marginBottom: '8px',
             }}
           >
-            <Metronome tempo={exercises[0]?.minimum_time_minutes} />
+            <Metronome tempo={exercises[0].minimum_time_minutes} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <h3>Directions:</h3>
