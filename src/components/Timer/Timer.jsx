@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import './Timer.css';
 import Grid from '@mui/material/Grid';
-import { useDispatch } from 'react-redux';
+import Nav from '../Nav/Nav';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-function Timer({
-  handleNextExercise,
-  minutes,
-  setMinutes,
-  lastExercise,
-  handleFinishSession,
-}) {
+
+function Timer({ handleNextExercise, exercises }) {
+
+  const [minutes, setMinutes] = useState(exercises[0].minimum_time_minutes);
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
-  const dispatch = useDispatch();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     let interval;
@@ -54,68 +54,62 @@ function Timer({
   const callHandleNextExercise = () => {
     handleNextExercise();
     setIsFinished(false);
-
-    if (lastExercise) {
-      handleFinishSession();
-    }
-  };
-
-  const setTimerToZero = () => {
-    setMinutes(0);
-    setSeconds(0);
-    setMilliseconds(0);
-    setIsFinished(true);
   };
 
   return (
-    <Grid container justifyContent={'space-between'}>
-      <div onClick={setTimerToZero}>
-        <h1 id="timer">
-          {minutes}:{seconds.toString().padStart(2, '0')}
-        </h1>
-      </div>
-
-      <div>
-        {!isRunning && !isFinished && (
-          <Button
-            sx={{
-              backgroundColor: '#005e83',
-              '&:hover': { backgroundColor: '#00384f' },
-            }}
-            variant="contained"
-            onClick={startTimer}
-          >
-            Start
-          </Button>
-        )}
-        {isRunning && !isFinished && (
-          <Button
-            sx={{
-              color: '#005e83',
-              '&:hover': { color: '#00384f' },
-            }}
-            variant="outlined"
-            onClick={pauseTimer}
-          >
-            Pause
-          </Button>
-        )}
-        {isFinished && (
-          <Button
-            sx={{
-              backgroundColor: '#005e83',
-              '&:hover': { backgroundColor: '#00384f' },
-            }}
-            variant="contained"
-            onClick={callHandleNextExercise}
-          >
-            {
-              // If this is the last exercise, show "Finish Session" instead of "Next Exercise"
-              lastExercise ? 'Finish Session' : 'Next Exercise'
-            }
-          </Button>
-        )}
-      </div>
+    <Grid container className='timer-sticky xs-display-flex'>
+      {isMobile && (
+      <Grid item>
+        <Nav className='nav' />
+      </Grid>
+      )}
+     
+      <Grid item display={'flex'} justifyContent={'right'}
+      sx={{marginRight: '20px', marginBottom: '10px'}}>
+        <div>
+          <h1 id="timer-display">
+            {minutes}:{seconds.toString().padStart(2, '0')}
+          </h1>
+        </div>
+        <div>
+          {!isRunning && !isFinished && (
+            <Button
+              sx={{
+                backgroundColor: '#005e83',
+                '&:hover': { backgroundColor: '#00384f' },
+              }}
+              variant="contained"
+              onClick={startTimer}
+            >
+              Start
+            </Button>
+          )}
+          {isRunning && !isFinished && (
+            <Button
+              sx={{
+                color: '#005e83',
+                '&:hover': { color: '#00384f' },
+              }}
+              variant="outlined"
+              onClick={pauseTimer}
+            >
+              Pause
+            </Button>
+          )}
+          {isFinished && (
+            <Button
+              sx={{
+                backgroundColor: '#005e83',
+                '&:hover': { backgroundColor: '#00384f' },
+              }}
+              variant="contained"
+              onClick={callHandleNextExercise}
+            >
+              Next Exercise
+            </Button>
+          )}
+        </div>
+      </Grid>
     </Grid>
   );
 }
