@@ -5,7 +5,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 function* completeExercise(action) {
   try {
     const response = yield fetch(
-      `/api/user/sessions/${action.payload.sessionId}`,
+      `/api/user/exercises/${action.payload.sessionId}`,
       {
         method: 'PUT',
         headers: {
@@ -25,14 +25,24 @@ function* completeExercise(action) {
       payload: action.payload.currentExercise,
     });
   } catch (error) {
-    console.log('Session post request failed', error);
+    console.log('Session exercise put request failed', error);
   }
 }
 
 function* completeSession(action) {
   try {
-    console.log();
-  } catch (error) {}
+    const response = yield fetch(`/api/user/sessions/${action.payload}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      }, // no body
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    }
+  } catch (error) {
+    console.log('Session put request failed', error);
+  }
 }
 
 function* currentSessionSaga() {

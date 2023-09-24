@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import './Timer.css';
 import Grid from '@mui/material/Grid';
+import { useDispatch } from 'react-redux';
 
-function Timer({ handleNextExercise, minutes, setMinutes, lastExercise }) {
+function Timer({
+  handleNextExercise,
+  minutes,
+  setMinutes,
+  lastExercise,
+  handleFinishSession,
+}) {
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let interval;
@@ -46,6 +54,10 @@ function Timer({ handleNextExercise, minutes, setMinutes, lastExercise }) {
   const callHandleNextExercise = () => {
     handleNextExercise();
     setIsFinished(false);
+
+    if (lastExercise) {
+      handleFinishSession();
+    }
   };
 
   const setTimerToZero = () => {
