@@ -186,7 +186,7 @@ function SessionPage() {
                 {completedExercises.length}/
                 {exercises.length + completedExercises.length} complete
               </p>
-              <h4 onClick={endSession} className="end-session">
+              <h4 onClick={endSession} className="cursor-pointer end-session">
                 End Session (Exit)
               </h4>
             </Grid>

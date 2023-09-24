@@ -30,6 +30,11 @@ img {
 a {
   color: black;
   text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* --------------------------------------------------------------------------------
@@ -471,4 +476,8 @@ h2 {
 .text-error {
   color: #ef4444;
   font-weight: 700;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

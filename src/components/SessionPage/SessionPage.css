@@ -12,7 +12,7 @@
 }
 
 .tempo-box {
-  background-color: #F2FAFC;
+  background-color: #f2fafc;
   border-radius: 10px;
   margin-bottom: 5px;
 }
@@ -25,10 +25,13 @@
   color: var(--primary-blue);
 }
 
-.completed {
-  color: #5E5F61;
+.end-session:hover {
+  color: var(--primary-blueAA);
 }
 
+.completed {
+  color: #5e5f61;
+}
 
 .exercise-name {
   margin: 1px;
