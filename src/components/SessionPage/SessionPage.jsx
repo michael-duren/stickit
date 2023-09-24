@@ -11,7 +11,6 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
-import MainButton from '../MainButton/MainButton';
 import Routes from '../Routes/Routes';
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
@@ -25,6 +24,14 @@ function SessionPage() {
   const [currentExercise, setCurrentExercise] = useState(null);
   const [notes, setNotes] = useState('');
   const [tempo, setTempo] = useState(60);
+  const [minutes, setMinutes] = useState(0);
+
+  const finishSession = () => {
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.COMPLETE_SESSION,
+      payload: sessionId,
+    });
+  };
 
   const endSession = () => {
     history.push(Routes.SessionSummaryComplete);
@@ -32,7 +39,6 @@ function SessionPage() {
 
   const onNextExercise = () => {
     // Save the current exercise to completedExercises
-    let tmpExercise = exercises[0];
     dispatch({
       type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
       payload: {
@@ -61,8 +67,10 @@ function SessionPage() {
   }, []);
 
   useEffect(() => {
-    let tempo = currentExercise ? currentExercise.bpm_min : 60;
-    setTempo(tempo);
+    let tmpTempo = currentExercise ? currentExercise.bpm_min : 60;
+    let tmpMinutes = currentExercise ? currentExercise.minimum_time_minutes : 0;
+    setTempo(tmpTempo);
+    setMinutes(tmpMinutes);
     setNotes('');
   }, [currentExercise]);
 
@@ -93,10 +101,15 @@ function SessionPage() {
                 <p className="instrument">Instrument</p>
               </Grid>
               <Grid>
-                <Timer
-                  exercises={exercises}
-                  handleNextExercise={onNextExercise}
-                />
+                {currentExercise && currentExercise.minimum_time_minutes && (
+                  <Timer
+                    lastExercise={exercises.length === 1}
+                    minutes={Math.floor(minutes)}
+                    setMinutes={setMinutes}
+                    handleNextExercise={onNextExercise}
+                    handleFinishSession={finishSession}
+                  />
+                )}
               </Grid>
             </Grid>
             <Grid
@@ -187,7 +200,7 @@ function SessionPage() {
                 {completedExercises.length}/
                 {exercises.length + completedExercises.length} complete
               </p>
-              <h4 onClick={endSession} className="end-session">
+              <h4 onClick={endSession} className="cursor-pointer end-session">
                 End Session (Exit)
               </h4>
             </Grid>
