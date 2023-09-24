@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import './Timer.css';
 import Grid from '@mui/material/Grid';
 
-function Timer({ handleNextExercise, minutes, setMinutes }) {
+function Timer({ handleNextExercise, minutes, setMinutes, lastExercise }) {
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
@@ -97,7 +97,10 @@ function Timer({ handleNextExercise, minutes, setMinutes }) {
             variant="contained"
             onClick={callHandleNextExercise}
           >
-            Next Exercise
+            {
+              // If this is the last exercise, show "Finish Session" instead of "Next Exercise"
+              lastExercise ? 'Finish Session' : 'Next Exercise'
+            }
           </Button>
         )}
       </div>

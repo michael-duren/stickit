@@ -98,6 +98,7 @@ function SessionPage() {
               <Grid>
                 {currentExercise && currentExercise.minimum_time_minutes && (
                   <Timer
+                    lastExercise={exercises.length === 1}
                     minutes={Math.floor(minutes)}
                     setMinutes={setMinutes}
                     handleNextExercise={onNextExercise}
