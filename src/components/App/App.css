@@ -15,7 +15,6 @@ body,
   src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
 }
 
-
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: 'OpenSans', sans-serif;
@@ -26,6 +25,11 @@ body {
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 
 /* --------------------------------------------------------------------------------
@@ -90,7 +94,6 @@ Button
   color: #008183;
 }
 
-
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -111,7 +114,7 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .login-padding {
-  padding: .75rem;
+  padding: 0.75rem;
 }
 
 .formPanel {
@@ -178,19 +181,17 @@ h2 {
   letter-spacing: 0.00938rem;
 }
 
-
 @media (max-width: 600px) {
   .metronome-sticky {
     /* Apply your CSS rules for "xs" screens */
     /* For example, you can make it sticky to the bottom */
     position: fixed;
-    background-color: #F2FAFC;
+    background-color: #f2fafc;
     bottom: 0;
     left: 0;
     width: 100vw;
     z-index: 999;
     box-shadow: 0px -4px 16px 0px #00000040;
-
   }
 }
 
@@ -218,8 +219,8 @@ h2 {
 
 @media (max-width: 600px) {
   .play-button button {
-   max-height: 2.5rem;
-   padding: 1.6rem 0;
+    max-height: 2.5rem;
+    padding: 1.6rem 0;
   }
 }
 
@@ -232,7 +233,7 @@ h2 {
 /* Utility Classes */
 
 .dark-gray {
-  color:#393939;
+  color: #393939;
 }
 
 .flex-wrap {
@@ -301,13 +302,12 @@ h2 {
 }
 
 .p-r-xs {
-  padding-right: .15rem;
+  padding-right: 0.15rem;
 }
 
 .p-l-xs {
-  padding-left: .15rem;
+  padding-left: 0.15rem;
 }
-
 
 .p-r-l {
   padding-right: 1rem;
