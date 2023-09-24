@@ -64,5 +64,13 @@ h3 {
     /* Apply your CSS rules for "xs" screens */
     /* For example, you can make it sticky to the bottom */
     padding: 0;
+    margin-top: 50px;
+    /* margin-bottom: 100px; */
+  }
+}
+
+@media (max-width: 600px) {
+  .xs-hide {
+    display: none;
   }
 }
