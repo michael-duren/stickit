@@ -26,13 +26,19 @@ function SessionPage() {
   const [tempo, setTempo] = useState(60);
   const [minutes, setMinutes] = useState(0);
 
+  const finishSession = () => {
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.COMPLETE_SESSION,
+      payload: sessionId,
+    });
+  };
+
   const endSession = () => {
     history.push(Routes.SessionSummaryComplete);
   };
 
   const onNextExercise = () => {
     // Save the current exercise to completedExercises
-    let tmpExercise = exercises[0];
     dispatch({
       type: SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE,
       payload: {
@@ -72,7 +78,6 @@ function SessionPage() {
   if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
     return <NotFound />;
   }
-  console.log('currentExercise', currentExercise);
 
   return (
     currentExercise && (
@@ -102,6 +107,7 @@ function SessionPage() {
                     minutes={Math.floor(minutes)}
                     setMinutes={setMinutes}
                     handleNextExercise={onNextExercise}
+                    handleFinishSession={finishSession}
                   />
                 )}
               </Grid>

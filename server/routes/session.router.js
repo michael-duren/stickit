@@ -1,7 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const moment = require('moment');
 
 // JS DOC types
 const createDrumSession = require('../modules/create-drum-session');
@@ -24,40 +23,36 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// PUT for updating session on completion
 router.put('/:sessionId', (req, res) => {
   const { sessionId } = req.params;
-  const { completedTempo, exerciseId, exerciseNotes } = req.body; // get this from body
-  console.log(exerciseNotes);
-  let userSessionExercises = `UPDATE user_session_exercises
-     SET "completed_at" = NOW(),
-      "completed_tempo" = $1,
-      "completed" = true,
-      "exercise_notes" = $5
-     WHERE session_id = $2 AND user_id = $3 AND exercise_id = $4;`;
-  //I dont know how to get COMPLETED_TEMPO and COMPLETED from the front end useStates.
-  //optional add in notes to the table
-  //here is the fetch inside the console to check it
-  /*
-      fetch('/api/user/sessions/1/1/', {
-      method: "PUT",
-      headers: {"Content-Type": "application/json"}})
-      */
+  const userId = req.user.id;
+  const query = `UPDATE user_sessions SET "completed" = true, "completed_at" = NOW() WHERE id = $1 AND user_id = $2;`;
 
-  pool
-    .query(userSessionExercises, [
-      completedTempo,
-      sessionId,
-      req.user.id,
-      exerciseId,
-      exerciseNotes,
-    ])
-    .then((result) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log('Error with get exercises request:', error);
-      res.sendStatus(500);
+  if (
+    typeof Number(sessionId) !== 'number' ||
+    typeof Number(userId) !== 'number'
+  ) {
+    return res.status(400).send({
+      message: 'Missing required fields',
+      statusCode: 400,
     });
+  }
+
+  try {
+    pool.query(query, [sessionId, userId]).then((result) => {
+      res.status(204).send({
+        message: 'Session completed',
+        statusCode: 204,
+      });
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({
+      message: 'Something went wrong when updating the session to complete',
+      statusCode: 500,
+    });
+  }
 });
 
 // POST for creating session based on params
