@@ -152,7 +152,7 @@ function SessionPage() {
                 tempo={tempo}
               />
             </Grid>
-            <Grid item xs={12} sm={6} sx={{ fontSize: '0.9rem' }}>
+            <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>
               <ol>
                 {currentExercise.directions.map((direction) => {
@@ -180,7 +180,7 @@ function SessionPage() {
                 placeholder="Write a note..."
               />
             </Grid>
-            <Grid item xs={12} sm={6} sx={{ fontSize: '0.9rem' }}>
+            <Grid item xs={12} sm={6}>
               <h3>Remember:</h3>
               <ol>
                 {currentExercise.remember.map((item) => {
