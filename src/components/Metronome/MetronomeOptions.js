@@ -1,11 +1,12 @@
 export const MetronomeOptions = {
   sounds: [
-    { name: 'Woodblock', value: 'woodBlock' },
-    { name: 'Blip', value: 'blip' },
-    { name: 'Click', value: 'click' },
-    { name: 'Cowbell', value: 'cowbell' },
-    { name: 'Hi Hat', value: 'hiHat' },
+    { name: 'Woodblock', value: 'C7' },
+    { name: 'Blip', value: 'C4' },
+    { name: 'Click', value: 'C5' },
+    { name: 'Cowbell', value: 'C3' },
+    { name: 'Hi Hat', value: 'C6' },
   ],
+
   meter: [
     '2/4',
     '3/4',
