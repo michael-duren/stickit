@@ -22,7 +22,7 @@ export default function SessionSelectionPage() {
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
             <div className="">
-              <h2 className="text-center">Your smart session:</h2>
+              <h2 className="text-center m-b-xl">Your smart session:</h2>
               {exercises.length === 0 && (
                 <div className="">
                   <p>
