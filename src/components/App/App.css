@@ -304,6 +304,11 @@ h2 {
   padding-right: .15rem;
 }
 
+.p-l-xs {
+  padding-left: .15rem;
+}
+
+
 .p-r-l {
   padding-right: 1rem;
 }
