@@ -35,6 +35,7 @@ const sessionReducer = (state = initialState, action) => {
       return initialState;
 
     case SESSION_ACTIONS.ADD_EXERCISE_TO_COMPLETED:
+      console.log('in add exercise to completed', action.payload);
       return {
         ...state,
         exercises: state.exercises.filter(

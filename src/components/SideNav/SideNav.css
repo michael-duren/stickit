@@ -6,12 +6,12 @@
   text-decoration: none;
 }
 
-
 /* spacing, and bold when selected
 :active
 option to be active
 */
-.nav-link {
+
+.side-nav-list > a {
   display: flex;
   padding: 9px var(--spacing-base-04, 130px) 7px var(--spacing-base-04, 16px);
   align-items: center;
@@ -21,8 +21,8 @@ option to be active
 
 }
 
-.side-nav-list li:hover {
-  background-color: rgba(0, 94, 131, 0.10);
+.side-nav-list a:hover {
+  background-color: rgba(0, 94, 131, 0.1);
   border-radius: 5px;
   display: flex;
   height: 40px;
@@ -31,4 +31,3 @@ option to be active
   flex-shrink: 0;
   align-self: stretch;
 }
-

@@ -50,7 +50,7 @@ function Nav() {
 
 
   return (
-    <AppBar className='background-primary-blue' position="static" sx={{ backgroundColor: '#005e83' }}>
+    <AppBar className='background-primary-blue' position="static" sx={{ backgroundColor: '#005e83', boxShadow: 'none' }}>
       <Container className='background-primary-blue' maxWidth="xl" disableGutters="true">
         <Toolbar className='display-flex nav-spacing'>
 
@@ -61,18 +61,6 @@ function Nav() {
             </div>
 
           </Typography>
-
-          {/* <Box component="div" sx={{
-            display: {
-              xs: 'none',
-              sm: 'none',
-              md: 'none',
-              lg: 'block'
-            }
-          }}>
-            <LogOutButton />
-          </Box> */}
-
           <IconButton
             edge="start"
             color="inherit"

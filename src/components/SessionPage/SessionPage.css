@@ -1,5 +1,5 @@
 .session-page-padding {
-  padding: 3rem;
+  padding: 1rem 3rem;
 }
 
 .session-page-content-container {
@@ -8,11 +8,10 @@
   padding: 1rem;
   display: flex;
   justify-content: left;
-  font-family: 'OpenSans';
 }
 
 .tempo-box {
-  background-color: #F2FAFC;
+  background-color: #f2fafc;
   border-radius: 10px;
   margin-bottom: 5px;
 }
@@ -25,22 +24,23 @@
   color: var(--primary-blue);
 }
 
-.completed {
-  color: #5E5F61;
+.end-session:hover {
+  color: var(--primary-blueAA);
 }
 
+.completed {
+  color: #5e5f61;
+}
 
 .exercise-name {
   margin: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0 0.5rem;
+  flex-wrap: wrap;
 }
 
-h2 {
-  font-size: 30px;
-  font-weight: 700;
-  color: black;
-}
-
-h3 {
+.session-page-content-container h3 {
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -57,4 +57,12 @@ h3 {
 
 .start-button {
   text-align: right;
+}
+
+@media (max-width: 900px) {
+  .session-page-padding {
+    /* Apply your CSS rules for "xs" screens */
+    /* For example, you can make it sticky to the bottom */
+    padding: 0;
+  }
 }

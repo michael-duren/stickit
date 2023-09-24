@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import MainButton from '../MainButton/MainButton';
+import Routes from '../Routes/Routes';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,6 +26,7 @@ function LoginForm() {
         },
       });
     } else {
+      dispatch({ type: 'LOGIN_INPUT_ERROR' });
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
   }; // end login
@@ -99,7 +101,7 @@ function LoginForm() {
             '&:focus': { backgroundColor: '#00394d', color: 'white' },
           }}
           onClick={() => {
-            history.push('/registration');
+            history.push(Routes.Registration);
           }}
         >
           <p>Create Account</p>
