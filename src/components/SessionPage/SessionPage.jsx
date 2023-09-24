@@ -24,6 +24,7 @@ function SessionPage() {
   const [currentExercise, setCurrentExercise] = useState(null);
   const [notes, setNotes] = useState('');
   const [tempo, setTempo] = useState(60);
+  const [minutes, setMinutes] = useState(0);
 
   const endSession = () => {
     history.push(Routes.SessionSummaryComplete);
@@ -60,8 +61,10 @@ function SessionPage() {
   }, []);
 
   useEffect(() => {
-    let tempo = currentExercise ? currentExercise.bpm_min : 60;
-    setTempo(tempo);
+    let tmpTempo = currentExercise ? currentExercise.bpm_min : 60;
+    let tmpMinutes = currentExercise ? currentExercise.minimum_time_minutes : 0;
+    setTempo(tmpTempo);
+    setMinutes(tmpMinutes);
     setNotes('');
   }, [currentExercise]);
 
@@ -69,6 +72,7 @@ function SessionPage() {
   if (isLoaded && exercises.length === 0 && completedExercises.length === 0) {
     return <NotFound />;
   }
+  console.log('currentExercise', currentExercise);
 
   return (
     currentExercise && (
@@ -92,10 +96,14 @@ function SessionPage() {
                 <p className="instrument">Instrument</p>
               </Grid>
               <Grid>
-                <Timer
-                  exercises={exercises}
-                  handleNextExercise={onNextExercise}
-                />
+                {currentExercise && currentExercise.minimum_time_minutes && (
+                  <Timer
+                    lastExercise={exercises.length === 1}
+                    minutes={Math.floor(minutes)}
+                    setMinutes={setMinutes}
+                    handleNextExercise={onNextExercise}
+                  />
+                )}
               </Grid>
             </Grid>
             <Grid

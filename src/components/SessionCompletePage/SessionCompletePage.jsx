@@ -1,5 +1,4 @@
 import './SessionSelectionPage.css';
-import InfoIcon from '@mui/icons-material/Info';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { useSelector } from 'react-redux';
@@ -23,7 +22,9 @@ export default function SessionCompletePage() {
               </h2>
               {completedExercises.length === 0 && (
                 <div className="">
-                  <p>Nothing here yet, please start over to generate a session</p>
+                  <p>
+                    Nothing here yet, please start over to generate a session
+                  </p>
                 </div>
               )}
               {completedExercises.map((exercise, i) => (
@@ -51,17 +52,16 @@ export default function SessionCompletePage() {
                 </div>
               ))}
               {exercises.map((exercise, i) => (
-                <div
-                  key={exercise.id + i}
-                  className="justify-center m-t-xl "
-                >
+                <div key={exercise.id + i} className="justify-center m-t-xl ">
                   <div className="session-container">
                     <div className="exercise-info">
                       <p className="exercise-title text-left">
                         {exercise.warmup && i === 0 ? 'Warm up' : ''}
                         {i === exercise.length - 1 ? 'Cooldown' : ''}
                       </p>
-                      <p className="exercise-description text-black">{exercise.name}</p>
+                      <p className="exercise-description text-black">
+                        {exercise.name}
+                      </p>
                     </div>
                     <div>
                       <p className="exercise-duration">
@@ -73,17 +73,17 @@ export default function SessionCompletePage() {
               ))}
               <div className="total-time">{duration} min</div>
               <div className="m-t-xl">
-                <div className='m-b-xl'>
+                <div className="m-b-xl">
                   <Link to={'/session/current/'}>
                     <MainButton type="button">Share Your Practice</MainButton>
                   </Link>
                 </div>
-                <div className='m-b-xl'>
+                <div className="m-b-xl">
                   <Link to={'/session/current/'}>
                     <MainButton type="button">View Activity</MainButton>
                   </Link>
                 </div>
-                <div className='m-b-xl'>
+                <div className="m-b-xl">
                   <Link to={'/home'}>
                     <MainButton type="button">Back To Home</MainButton>
                   </Link>

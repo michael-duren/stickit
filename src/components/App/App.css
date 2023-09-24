@@ -4,7 +4,7 @@ body,
   height: 100%;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'OpenSansItalic';
   src: local('OpenSans-Italic'),
     url('../../fonts/OpenSans-Italic.ttf') format('truetype');
@@ -13,11 +13,11 @@ body,
 @font-face {
   font-family: 'OpenSans';
   src: local('OpenSans') url('../../fonts/OpenSans.ttf') format('truetype');
-}
+} */
 
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: 0px;
   background-color: #f8f8f8;
 }
@@ -165,9 +165,14 @@ h4,
 h5,
 h6,
 p {
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: 0px;
   /* font-feature-settings: 'clig' off, 'liga' off; */
+}
+
+ul,
+li {
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
@@ -481,3 +486,13 @@ h2 {
 .cursor-pointer {
   cursor: pointer;
 }
+
+/* Break points
+xs, extra-small: 0px
+sm, small: 600px
+md, medium: 900px
+lg, large: 1200px
+xl, extra-large: 1536px
+
+use: @media (max-width: 600px) { ... }
+*/
