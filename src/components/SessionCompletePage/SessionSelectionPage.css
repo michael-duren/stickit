@@ -13,12 +13,12 @@
 wasn't indicated explicitly in Figma. Chose something that looked similar*/
 .session-container {
   display: flex;
-  padding: .25rem 8px;
+  padding: 0.25rem 8px;
   justify-content: space-between;
   align-items: center;
   flex: 1 0 0;
   border-radius: 16px;
-  background: var(--brand-surface, #F2FAFC);
+  background: var(--brand-surface, #f2fafc);
   /* margin-bottom: 1rem; */
 }
 
@@ -30,7 +30,7 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
 }
 
 .exercise-title {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -46,7 +46,7 @@ I copied straight from figma, but it didn't seem to change for some reason*/
   color: var(--neutral-700, #393939);
   font-feature-settings: 'clig' off, 'liga' off;
   /* Body Base Emphasis */
-  font-family: Open Sans;
+  font-family: 'Open Sans';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -72,7 +72,7 @@ I copied straight from figma, but it didn't seem to change for some reason*/
 /*added margin-right of 33px to move this elemnt to the left more. Was not explicitly
 indicated in figma*/
 .total-time {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
