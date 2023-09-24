@@ -11,7 +11,6 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
-import MainButton from '../MainButton/MainButton';
 import Routes from '../Routes/Routes';
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
