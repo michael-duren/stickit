@@ -3,8 +3,7 @@ import Button from '@mui/material/Button';
 import './Timer.css';
 import Grid from '@mui/material/Grid';
 
-function Timer({ handleNextExercise, exercises }) {
-  const [minutes, setMinutes] = useState(exercises[0].minimum_time_minutes);
+function Timer({ handleNextExercise, minutes, setMinutes }) {
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
@@ -49,9 +48,16 @@ function Timer({ handleNextExercise, exercises }) {
     setIsFinished(false);
   };
 
+  const setTimerToZero = () => {
+    setMinutes(0);
+    setSeconds(0);
+    setMilliseconds(0);
+    setIsFinished(true);
+  };
+
   return (
     <Grid container justifyContent={'space-between'}>
-      <div>
+      <div onClick={setTimerToZero}>
         <h1 id="timer">
           {minutes}:{seconds.toString().padStart(2, '0')}
         </h1>
