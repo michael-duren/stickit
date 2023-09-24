@@ -33,9 +33,9 @@ export default function SessionSelectionPage() {
               {exercises.map((exercise, i) => (
                 <div
                   key={exercise.id + i}
-                  className="display-flex items-center justify-center main-button-width"
+                  className="display-flex items-center justify-center"
                 >
-                  <div className="session-container exercise main-button-width justify-around">
+                  <div className="session-container exercise justify-around">
                     <div>
                       <InfoIcon className="primary-blue" />
                     </div>
