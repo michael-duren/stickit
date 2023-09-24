@@ -6,10 +6,13 @@ import Nav from '../Nav/Nav';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-
-function Timer({ handleNextExercise, exercises }) {
-
-  const [minutes, setMinutes] = useState(exercises[0].minimum_time_minutes);
+function Timer({
+  handleNextExercise,
+  minutes,
+  setMinutes,
+  lastExercise,
+  handleFinishSession,
+}) {
   const [seconds, setSeconds] = useState(0);
   const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(null);
@@ -54,19 +57,34 @@ function Timer({ handleNextExercise, exercises }) {
   const callHandleNextExercise = () => {
     handleNextExercise();
     setIsFinished(false);
+
+    if (lastExercise) {
+      handleFinishSession();
+    }
+  };
+
+  const setTimerToZero = () => {
+    setMinutes(0);
+    setSeconds(0);
+    setMilliseconds(0);
+    setIsFinished(true);
   };
 
   return (
-    <Grid container className='timer-sticky xs-display-flex'>
+    <Grid container className="timer-sticky xs-display-flex">
       {isMobile && (
-      <Grid item>
-        <Nav className='nav' />
-      </Grid>
+        <Grid item>
+          <Nav className="nav" />
+        </Grid>
       )}
-     
-      <Grid item display={'flex'} justifyContent={'right'}
-      sx={{marginRight: '20px', marginBottom: '10px'}}>
-        <div>
+
+      <Grid
+        item
+        display={'flex'}
+        justifyContent={'right'}
+        sx={{ marginRight: '20px', marginBottom: '10px' }}
+      >
+        <div onClick={setTimerToZero}>
           <h1 id="timer-display">
             {minutes}:{seconds.toString().padStart(2, '0')}
           </h1>
@@ -105,7 +123,7 @@ function Timer({ handleNextExercise, exercises }) {
               variant="contained"
               onClick={callHandleNextExercise}
             >
-              Next Exercise
+              {lastExercise ? 'Finish Session' : 'Next Exercise'}
             </Button>
           )}
         </div>
