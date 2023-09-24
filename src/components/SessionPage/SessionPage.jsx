@@ -17,7 +17,7 @@ import Countdown from 'react-countdown';
 
 function SessionPage() {
   const { exercises, currentSession } = useSelector((store) => store.session);
- 
+
 
 
   return (
@@ -29,7 +29,7 @@ function SessionPage() {
             className="session-page-content-container"
             justifyContent="space-between"
           >
-             
+
             <Grid
               item
               sm={12}
@@ -45,90 +45,92 @@ function SessionPage() {
               <Grid>
                 <Timer />
               </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                marginBottom: '10px',
-              }}
-            >
-              <p>{exercises[0].description}</p>
               <Grid
                 item
-                className="buttons"
+                xs={12}
+                sm={6}
                 sx={{
-                  marginRight: '5px',
-                  color:'#005e83', 
-                  "&:hover":{color:'#00384f'}
+                  marginBottom: '10px',
                 }}
               >
-                Play Video
-                <PlayArrowIcon />
-              </Button>
-              <Button 
-              sx={{
-                color:'#005e83', 
-                "&:hover":{color:'#00384f'}}}
-                variant="outlined" size="small">
-                Resource Sheet
-                <InsertDriveFileIcon />
-              </Button>
-            </Grid>
-            <Grid
-              className="tempo-box"
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                marginBottom: '8px',
-              }}
-            >
-              <Metronome tempo={exercises[0].minimum_time_minutes} />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <h3>Directions:</h3>
-              <ol>
-                {currentExercise.directions.map((direction) => {
-                  return <li key={direction}>{direction}</li>;
-                })}
-              </ol>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                marginBottom: '10px',
-                marginTop: '1rem'
-              }}
-            >
-              <TextField
-                fullWidth
-                id="outlined-multiline-static"
-                label="Write a note..."
-                multiline
-                rows={6}
-                placeholder="Write a note..."
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <h3>Remember:</h3>
-              <ol>
-                {currentExercise.remember.map((item) => {
-                  return <li key={item}>{item}</li>;
-                })}
-              </ol>
-            </Grid>
-            <Grid item xs={12} sm={6} textAlign={'right'}>
-              <p className="completed">
-                {completedExercises.length}/
-                {exercises.length + completedExercises.length} complete
-              </p>
-              <h4 className="end-session">End Session (Exit)</h4>
+                <p>{exercises[0].description}</p>
+                <Grid
+                  item
+                  className="buttons"
+                  sx={{
+                    marginRight: '5px',
+                    color: '#005e83',
+                    "&:hover": { color: '#00384f' }
+                  }}
+                >
+                  
+                  Play Video
+                  <PlayArrowIcon />
+                </Button>
+                <Button
+                  sx={{
+                    color: '#005e83',
+                    "&:hover": { color: '#00384f' }
+                  }}
+                  variant="outlined" size="small">
+                  Resource Sheet
+                  <InsertDriveFileIcon />
+                </Button>
+              </Grid>
+              <Grid
+                className="tempo-box"
+                item
+                xs={12}
+                sm={6}
+                sx={{
+                  marginBottom: '8px',
+                }}
+              >
+                <Metronome tempo={exercises[0].minimum_time_minutes} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <h3>Directions:</h3>
+                <ol>
+                  {currentExercise.directions.map((direction) => {
+                    return <li key={direction}>{direction}</li>;
+                  })}
+                </ol>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                sx={{
+                  marginBottom: '10px',
+                  marginTop: '1rem'
+                }}
+              >
+                <TextField
+                  fullWidth
+                  id="outlined-multiline-static"
+                  label="Write a note..."
+                  multiline
+                  rows={6}
+                  placeholder="Write a note..."
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <h3>Remember:</h3>
+                <ol>
+                  {currentExercise.remember.map((item) => {
+                    return <li key={item}>{item}</li>;
+                  })}
+                </ol>
+              </Grid>
+              <Grid item xs={12} sm={6} textAlign={'right'}>
+                <p className="completed">
+                  {completedExercises.length}/
+                  {exercises.length + completedExercises.length} complete
+                </p>
+                <h4 className="end-session">End Session (Exit)</h4>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
       </div>
     )
   );
