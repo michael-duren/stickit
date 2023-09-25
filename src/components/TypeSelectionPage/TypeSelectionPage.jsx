@@ -8,6 +8,11 @@ import Grid from '@mui/material/Grid';
 import { useEffect } from 'react';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import Stepper from '../Stepper/Stepper';
+import { ReactComponent as RabbitIcon } from '../../images/rabbitIcon.svg';
+import { ReactComponent as TargetIcon } from '../../images/targetIcon.svg';
+import { ReactComponent as InnovationIcon } from '../../images/innovationIcon.svg';
+import { ReactComponent as AbcIcon } from '../../images/abcIcon.svg';
+import TypeButton from '../TypeButton/TypeButton';
 
 export default function TypeSelectionPage() {
   const dispatch = useDispatch();
@@ -43,6 +48,19 @@ export default function TypeSelectionPage() {
     history.push(path);
   };
 
+  const getIcon = (type) => {
+    switch (type) {
+      case 'Speed & Agility':
+        return <RabbitIcon />;
+      case 'Creativity & Improvisation':
+        return <InnovationIcon />;
+      case 'Style & Vocabulary':
+        return <AbcIcon />;
+      case 'Precision & Timekeeping':
+        return <TargetIcon />;
+    }
+  };
+
   return (
     <MainLayout showExitButton={true} showNav={true}>
       <Grid>
@@ -59,13 +77,14 @@ export default function TypeSelectionPage() {
               <div className="grid grid-cols-2 grid-rows-4 gap-16">
                 {types.map((type) => {
                   return (
-                    <div key={type.id}>
-                      <button
+                    <div className="h-full" key={type.id}>
+                      <TypeButton
+                        icon={getIcon(type.name)}
+                        label={type.name}
                         onClick={() => selectType(type.id)}
-                        className="btn"
                       >
                         {type.name}
-                      </button>
+                      </TypeButton>
                     </div>
                   );
                 })}

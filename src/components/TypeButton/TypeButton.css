@@ -1,35 +1,53 @@
 /* TypeButton.css */
 
 .type-button {
-  border-radius: 24px; 
+  border-radius: 24px;
   border: 1px solid #005e83;
   background: #f2fafc;
   padding: 24px;
+  fill: #005e83;
 
   /* Reset any positioning or display */
-  position: static;
+  position: relative;
   display: inline-block;
 
   /* Remove animations/transitions */
   transition: none;
 
-  /* Explicitly allow pointer interactions */  
+  /* Explicitly allow pointer interactions */
   cursor: pointer;
   pointer-events: auto;
 }
 
 .type-button.active {
-  background: #f26e6e; /* Light red background when active */
+  background: var(--brand-base, #005e83); /* Light red background when active */
   color: #fff;
 }
 
+.type-button svg {
+  fill: #005e83;
+}
+
+.type-button.active svg {
+  fill: #fff;
+}
+
+.type-button svg {
+  fill: #005e83;
+}
+
 .type-button:hover {
-  background: #ccc; /* Slight grey background on hover */
+  background: #d9e1e3;
+}
+
+.active:hover {
+  background: #014b69; /* Light red background when active */
+  color: #fff;
 }
 
 .type-button div {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px; 
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -37,15 +55,20 @@
 .type-button .icon-container {
   background: #005e83; /* Background color of the icon container */
   border-radius: 50%; /* Make the icon container circular */
-  width: 36px; /* Adjust the size as needed */
-  height: 36px; /* Adjust the size as needed */
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s; /* Add a transition for the background color */
 }
 
-/* Scope parent styles */
-.type-button-container .type-button {
-
+.check {
+  display: none;
+  fill: none;
+}
+.check-active {
+  display: block;
+  fill: white;
+  position: absolute;
+  top: 10%;
+  right: 10%;
 }
