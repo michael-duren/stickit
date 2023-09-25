@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './SessionSelectionPage.css';
+import './SessionSummaryPage.css';
 import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
 import MainButton from '../MainButton/MainButton';
@@ -10,17 +10,15 @@ import Grid from '@mui/material/Grid';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import Stepper from '../Stepper/Stepper';
 
-export default function SessionSelectionPage() {
+export default function SessionSummaryPage() {
   const { duration, exercises } = useSelector((store) => store.session);
-  const { selectedTypes, typeHistory } = useSelector(
-    (store) => store.sessionForm
-  );
+  const { totalSteps } = useSelector((store) => store.sessionForm);
   const dispatch = useDispatch();
   const [steps, setSteps] = useState(3);
 
   useEffect(() => {
-    setSteps(selectedTypes.length + typeHistory.length + 2);
-  }, []);
+    setSteps(totalSteps);
+  }, [totalSteps]);
 
   const resetSessionForm = () => {
     dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
@@ -31,7 +29,7 @@ export default function SessionSelectionPage() {
       <Grid>
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
-            <div className="">
+            <div className="w-full">
               <div className="w-full flex items-center justify-center m-b-xl">
                 <Stepper steps={steps} currentStep={steps} />
               </div>

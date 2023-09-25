@@ -44,6 +44,11 @@ export default function FocusSelectionPage() {
       setSteps(3);
     }
     setCurrentStep(tmpCurrentStep);
+
+    dispatch({
+      type: SESSION_FORM_ACTIONS.SET_FORM_STEPS,
+      payload: steps,
+    });
   }, []);
 
   useEffect(() => {
@@ -66,6 +71,10 @@ export default function FocusSelectionPage() {
     } else {
       const path = `/session/focus/${typeHistory[typeHistory.length - 1]}`;
       dispatch({
+        type: SESSION_FORM_ACTIONS.SET_FORM_STEPS,
+        payload: steps,
+      });
+      dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE_FROM_HISTORY,
         payload: typeHistory[typeHistory.length - 1],
       });
@@ -74,14 +83,14 @@ export default function FocusSelectionPage() {
   };
 
   const handleNextOrSubmit = () => {
+    // SUBMIT
     if (selectedTypes.length === 1) {
       dispatch({
         type: SESSION_FORM_SAGA_ACTIONS.POST_SESSION,
         payload: { focusAndTypeChoice, timeInMinutes },
       });
       dispatch({
-        type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
-        payload: Number(id),
+        type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM,
       });
       history.push(Routes.SessionSummary);
     } else {
