@@ -1,3 +1,7 @@
+.side-nav-container{
+  margin-top: -35px;
+}
+
 .side-nav-list {
   list-style: none;
   font-family: 'Open Sans', sans-serif;
@@ -11,14 +15,14 @@
 option to be active
 */
 
-.side-nav-list > a {
+.side-nav-list>a {
   display: flex;
-  padding: 9px var(--spacing-base-04, 130px) 7px var(--spacing-base-04, 16px);
+  height: 40px;
+  padding: 9px 95px 7px 16px;
   align-items: center;
+  flex-shrink: 0;
   align-self: stretch;
-  border-radius: 5px;
-  background: rgba(0, 94, 131, 0.10);
-
+  background: var(--neutral-100, #F8F8F8);
 }
 
 .side-nav-list a:hover {

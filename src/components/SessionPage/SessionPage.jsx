@@ -86,12 +86,14 @@ function SessionPage() {
           <Grid
             container
             className="session-page-content-container"
-            justifyContent="space-between">
+            justifyContent="space-between"
+          >
             <Grid
               item
               sm={12}
               sx={{ display: 'inline-flex', marginBottom: '10px' }}
-              justifyContent={'space-between'}>
+              justifyContent={'space-between'}
+            >
               <Grid item>
                 <h2 className="exercise-name">
                   {currentExercise.name} <FavoriteBorderOutlinedIcon />
@@ -105,7 +107,9 @@ function SessionPage() {
                     minutes={Math.floor(minutes)}
                     setMinutes={setMinutes}
                     handleNextExercise={onNextExercise}
-                    handleFinishSession={finishSession} />)}
+                    handleFinishSession={finishSession}
+                  />
+                )}
               </Grid>
             </Grid>
             <Grid
@@ -114,21 +118,23 @@ function SessionPage() {
               sm={6}
               sx={{
                 marginBottom: '10px',
-              }}>
+              }}
+            >
               <p>{currentExercise.description}</p>
               <Grid
                 item
-                xs={12}
-                sm={6}
+                className="buttons"
                 sx={{
                   marginTop: '10px',
-                }}>
+                }}
+              >
                 <Button
                   variant="outlined"
                   size="small"
                   sx={{
                     marginRight: '5px',
-                  }}>
+                  }}
+                >
                   Play Video
                   <PlayArrowIcon />
                 </Button>
@@ -145,11 +151,13 @@ function SessionPage() {
               sm={6}
               sx={{
                 marginBottom: '8px',
-              }}>
+              }}
+            >
               <Metronome
                 tempoState={tempo}
                 setTempoState={setTempo}
-                tempo={tempo} />
+                tempo={tempo}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>
@@ -166,7 +174,8 @@ function SessionPage() {
               sx={{
                 marginBottom: '10px',
                 marginTop: '1rem',
-              }}>
+              }}
+            >
               <TextField
                 value={notes}
                 onChange={(event) => setNotes(event.target.value)}
@@ -175,7 +184,8 @@ function SessionPage() {
                 label="Write a note..."
                 multiline
                 rows={6}
-                placeholder="Write a note..." />
+                placeholder="Write a note..."
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Remember:</h3>
