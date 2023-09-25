@@ -1,5 +1,9 @@
 import { SESSION_ACTIONS } from '../actions/session.reducer.actions';
+import './session.reducer.types';
 
+/**
+ * @param {import('./session.reducer.types.js').Session} initialState
+ */
 const initialState = {
   sessionId: 0,
   user_id: 0,

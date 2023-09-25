@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import './SessionSummaryPage.css';
-import InfoIcon from '@mui/icons-material/Info';
-import SyncIcon from '@mui/icons-material/Sync';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import Stepper from '../Stepper/Stepper';
+import SummaryExerciseItem from '../SummaryExerciseItem/SummaryExerciseItem';
 
 export default function SessionSummaryPage() {
   const { duration, exercises } = useSelector((store) => store.session);
@@ -42,29 +41,7 @@ export default function SessionSummaryPage() {
                 </div>
               )}
               {exercises.map((exercise, i) => (
-                <div
-                  key={exercise.id + i}
-                  className="display-flex items-center justify-center"
-                >
-                  <div className="session-container exercise justify-around">
-                    <div>
-                      <InfoIcon className="primary-blue" />
-                    </div>
-                    <div className="exercise-info flex flex-col flex-1">
-                      <p className="exercise-title">
-                        {exercise.warmup && i === 0 ? 'Warm up' : ''}
-                        {i === exercise.length - 1 ? 'Cooldown' : ''}
-                      </p>
-                      <p className="exersice-description">{exercise.name}</p>
-                    </div>
-                    <div>
-                      <p className="exercise-duration">5 min</p>
-                    </div>
-                  </div>
-                  <div className="sync-icon">
-                    <SyncIcon className="primary-blue" />
-                  </div>
-                </div>
+                <SummaryExerciseItem exercise={exercise} i={i} />
               ))}
               <div className="total-time m-t-xl m-b-xl">{duration} min</div>
 
