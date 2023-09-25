@@ -1,0 +1,17 @@
+.step-circle {
+  background: var(--neutral-300, #d6d6d6);
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--neutral-300, #d6d6d6);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}
+
+.step-circle-active {
+  background: var(--brand-base, #005e83);
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--neutral-300, #d6d6d6);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}

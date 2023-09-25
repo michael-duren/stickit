@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './SessionSelectionPage.css';
 import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
@@ -7,10 +8,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
+import Stepper from '../Stepper/Stepper';
 
 export default function SessionSelectionPage() {
   const { duration, exercises } = useSelector((store) => store.session);
+  const { selectedTypes, typeHistory } = useSelector(
+    (store) => store.sessionForm
+  );
   const dispatch = useDispatch();
+  const [steps, setSteps] = useState(3);
+
+  useEffect(() => {
+    setSteps(selectedTypes.length + typeHistory.length + 2);
+  }, []);
 
   const resetSessionForm = () => {
     dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
@@ -22,6 +32,9 @@ export default function SessionSelectionPage() {
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
             <div className="">
+              <div className="w-full flex items-center justify-center m-b-xl">
+                <Stepper steps={steps} currentStep={steps} />
+              </div>
               <h2 className="text-center m-b-xl">Your smart session:</h2>
               {exercises.length === 0 && (
                 <div className="">

@@ -11,6 +11,7 @@ import MainLayout from '../../layouts/MainLayout';
 import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
 import Grid from '@mui/material/Grid';
 import Routes from '../Routes/Routes';
+import Stepper from '../Stepper/Stepper';
 
 export default function FocusSelectionPage() {
   const { id } = useParams();
@@ -24,10 +25,26 @@ export default function FocusSelectionPage() {
   const [focuses, setFocuses] = useState([]); // set focuses
   const dispatch = useDispatch();
   const history = useHistory();
+  const [steps, setSteps] = useState(3);
+  const [currentStep, setCurrentStep] = useState(2);
 
   if (id > 4 || id < 1) {
     return <NotFound />;
   }
+
+  useEffect(() => {
+    // get the current number of steps
+    let tmpSteps = selectedTypes.length + typeHistory.length + 2;
+    let tmpCurrentStep = typeHistory.length + 2;
+
+    if (tmpSteps > 3) {
+      setSteps(tmpSteps);
+    } else {
+      // make sure steps is at least 3
+      setSteps(3);
+    }
+    setCurrentStep(tmpCurrentStep);
+  }, []);
 
   useEffect(() => {
     fetch(`/api/typefocus/${id}`)
@@ -57,15 +74,18 @@ export default function FocusSelectionPage() {
   };
 
   const handleNextOrSubmit = () => {
-    if (selectedTypes.length === 0) {
+    if (selectedTypes.length === 1) {
       dispatch({
         type: SESSION_FORM_SAGA_ACTIONS.POST_SESSION,
         payload: { focusAndTypeChoice, timeInMinutes },
       });
-      const path = '/session/summary';
-      history.push(path);
+      dispatch({
+        type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
+        payload: Number(id),
+      });
+      history.push(Routes.SessionSummary);
     } else {
-      const path = `/session/focus/${selectedTypes[0]}`;
+      const path = `/session/focus/${selectedTypes[1]}`;
       dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE,
         payload: Number(id),
@@ -77,11 +97,18 @@ export default function FocusSelectionPage() {
     }
   };
 
+  if (selectedTypes.length === 0 && typeHistory.length === 0) {
+    history.push(Routes.SessionType);
+  }
+
   return (
     <MainLayout showNav={true} showExitButton={true}>
       <Grid>
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
+            <div className="w-full flex items-center justify-center m-b-xl">
+              <Stepper steps={steps} currentStep={currentStep} />
+            </div>
             <div className="">
               {types[+id - 1] && (
                 <h2 className="text-center m-b-xl">

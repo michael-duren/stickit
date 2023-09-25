@@ -40,7 +40,6 @@ export const createNewSequencer = (meter, soundRef, trackRef) => {
   const steps = new Array(parseInt(meter.split('/')[0]))
     .fill(0)
     .map((_, i) => i);
-  console.log('steps', steps);
 
   return new Tone.Sequence(
     (time, step) => {
