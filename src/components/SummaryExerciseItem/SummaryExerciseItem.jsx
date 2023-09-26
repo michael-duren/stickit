@@ -14,6 +14,19 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
   );
   const [showPopup, setShowPopup] = useState(false);
 
+  const getType = (typeId) => {
+    switch (typeId) {
+      case 1:
+        return 'Speed & Agility';
+      case 2:
+        return 'Creativity & Improvisation';
+      case 3:
+        return 'Style & Vocabulary';
+      case 4:
+        return 'Precision & Timekeeping';
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -55,7 +68,7 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
         </div>
         <div>
           <p className="exercise-duration">
-            {exercise.minimum_time_minutes} min
+            {Math.floor(exercise.minimum_time_minutes)} min
           </p>
         </div>
       </div>
