@@ -31,19 +31,31 @@ router.put('/:sessionId', (req, res) => {
     });
 });
 
-router.put('refresh/:sessionId', async (req, res) => {
+router.put('/refresh/:sessionId', async (req, res) => {
   // we need the session id, exercise id, order, type, and focuses
+  console.log('GOT ME', req.body.exercise);
   const { sessionId } = req.params;
-  const { exerciseId, exercise_order, type_id, focus_id } = req.body; // get this from body
+
+  const {
+    exercise: { exercise_order, id, type_id, focus_id },
+  } = req.body; // get this from body
+
+  if (!sessionId || !id || !exercise_order || !type_id || !focus_id) {
+    return res.status(400).send({
+      message: 'Please provide all required information',
+      statusCode: 400,
+    });
+  }
+  const client = await pool.connect();
   try {
     // start transaction
-    await pool.query('BEGIN');
+    await client.query('BEGIN');
 
     // check if the current exists and user is allowed to access it
     const currentUserSessionExerciseQuery = `SELECT * FROM user_session_exercises WHERE session_id = $1 AND user_id = $2 AND exercise_id = $3;`;
-    const currentUserSessionExercise = await pool.query(
+    const currentUserSessionExercise = await client.query(
       currentUserSessionExerciseQuery,
-      [sessionId, req.user.id, exerciseId]
+      [sessionId, req.user.id, id]
     );
 
     if (currentUserSessionExercise.rows.length === 0) {
@@ -55,10 +67,10 @@ router.put('refresh/:sessionId', async (req, res) => {
 
     // Find a random exercise that has the same type and focuses that will replace previous exercise and is not the same as the previous exercise
     const nexExerciseQuery = `SELECT * FROM exercises WHERE type_id = $1 AND focus_id = $2 AND id != $3 ORDER BY RANDOM() LIMIT 1;`;
-    const newExerciseResult = await pool.query(nexExerciseQuery, [
+    const newExerciseResult = await client.query(nexExerciseQuery, [
       type_id,
       focus_id,
-      exerciseId,
+      id,
     ]);
 
     // if no exercise is found, throw an error
@@ -73,29 +85,32 @@ router.put('refresh/:sessionId', async (req, res) => {
 
     // locate the current exercise that needs to be refreshed and remove it from the session
     const deleteExerciseQuery = `DELETE FROM user_session_exercises WHERE session_id = $1 AND user_id = $2 AND exercise_id = $3;`;
-    await pool.query(deleteExerciseQuery, [sessionId, req.user.id, exerciseId]);
+    await client.query(deleteExerciseQuery, [sessionId, req.user.id, id]);
 
     //  add the new exercise to the session, replacing the old one and update the order
-    const addExerciseQuery = `INSERT INTO user_session_exercises (session_id, user_id, exercise_id, exercise_order) VALUES ($1, $2, $3, $4);`;
-    await pool.query(addExerciseQuery, [
+    const addExerciseQuery = `INSERT INTO user_session_exercises (session_id, user_id, exercise_id, exercise_order, completed) VALUES ($1, $2, $3, $4, $5);`;
+    await client.query(addExerciseQuery, [
       sessionId,
       req.user.id,
       newExercise.id,
       exercise_order,
+      false,
     ]);
 
     // send new exercise to client with the exercise order
     res.status(201).send({ ...newExercise, exercise_order });
 
     // end transaction
-    await pool.query('COMMIT');
+    await client.query('COMMIT');
   } catch (error) {
     console.error(error);
     res.status(500).send({
       message: `Error updating exercise: ${error}`,
       statusCode: 500,
     });
-    await pool.query('ROLLBACK');
+    await client.query('ROLLBACK');
+  } finally {
+    client.release(); // release client back to pool
   }
 });
 

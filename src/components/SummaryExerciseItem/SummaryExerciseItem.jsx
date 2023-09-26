@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
 import './SummaryExerciseItem.css';
+import { useSelector } from 'react-redux';
 
 /**
  * @param {import('../../redux/reducers/session.reducer.types').Exercise} exercise
  */
 
-export default function SummaryExerciseItem({ exercise, i }) {
+export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
+  const { isRefreshingExercise, refreshingItemOrder } = useSelector(
+    (store) => store.session
+  );
   const [showPopup, setShowPopup] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -51,11 +54,22 @@ export default function SummaryExerciseItem({ exercise, i }) {
           <p className="exersice-description">{exercise.name}</p>
         </div>
         <div>
-          <p className="exercise-duration">5 min</p>
+          <p className="exercise-duration">
+            {exercise.minimum_time_minutes} min
+          </p>
         </div>
       </div>
-      <button className={`sync-icon `}>
-        <SyncIcon className={`${isRefreshing ? 'animate-spin' : ''}`} />
+      <button
+        onClick={() => refreshExercise(exercise)}
+        className={`sync-icon `}
+      >
+        <SyncIcon
+          className={`${
+            isRefreshingExercise && refreshingItemOrder === i + 1
+              ? 'animate-spin'
+              : ''
+          }`}
+        />
       </button>
     </div>
   );

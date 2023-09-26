@@ -8,9 +8,13 @@ import Grid from '@mui/material/Grid';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import Stepper from '../Stepper/Stepper';
 import SummaryExerciseItem from '../SummaryExerciseItem/SummaryExerciseItem';
+import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
+import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
 export default function SessionSummaryPage() {
-  const { duration, exercises } = useSelector((store) => store.session);
+  const { duration, exercises, sessionId } = useSelector(
+    (store) => store.session
+  );
   const { totalSteps } = useSelector((store) => store.sessionForm);
   const dispatch = useDispatch();
   const [steps, setSteps] = useState(3);
@@ -21,6 +25,17 @@ export default function SessionSummaryPage() {
 
   const resetSessionForm = () => {
     dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
+  };
+
+  const refreshExercise = (exercise) => {
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.REFRESH_EXERCISE,
+      payload: { exercise, sessionId },
+    });
+    dispatch({
+      type: SESSION_ACTIONS.SET_REFRESHING_ORDER_NUMBER,
+      payload: exercise.exercise_order,
+    });
   };
 
   return (
@@ -41,7 +56,11 @@ export default function SessionSummaryPage() {
                 </div>
               )}
               {exercises.map((exercise, i) => (
-                <SummaryExerciseItem exercise={exercise} i={i} />
+                <SummaryExerciseItem
+                  refreshExercise={refreshExercise}
+                  exercise={exercise}
+                  i={i}
+                />
               ))}
               <div className="total-time m-t-xl m-b-xl">{duration} min</div>
 

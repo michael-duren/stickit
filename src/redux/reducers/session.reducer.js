@@ -11,6 +11,8 @@ const initialState = {
   completed: false,
   exercises: [],
   completedExercises: [],
+  isRefreshingExercise: false,
+  refreshingItemOrder: 0,
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -51,6 +53,27 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         completedExercises: [],
+      };
+    case SESSION_ACTIONS.SET_IS_REFRESHING_EXERCISES:
+      return {
+        ...state,
+        isRefreshingExercise: action.payload,
+      };
+    case SESSION_ACTIONS.SET_REFRESHED_EXERCISE:
+      const { exercise_order } = action.payload;
+      return {
+        ...state,
+        exercises: [
+          ...state.exercises.filter((exercise) => {
+            return exercise.exercise_order !== exercise_order;
+          }),
+          action.payload,
+        ].sort((a, b) => a.exercise_order - b.exercise_order),
+      };
+    case SESSION_ACTIONS.SET_REFRESHING_ORDER_NUMBER:
+      return {
+        ...state,
+        refreshingItemOrder: action.payload,
       };
 
     default:
