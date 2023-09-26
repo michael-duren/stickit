@@ -16,7 +16,7 @@ function MainPage() {
     if (exercises.length > 0) {
       history.push(Routes.SessionPage);
     } else {
-      history.push(Routes.SessionType);
+      history.push(Routes.TimeSelection);
     }
   };
 
