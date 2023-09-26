@@ -2,6 +2,14 @@ import { SESSION_SAGA_ACTIONS } from '../actions/session.saga.actions';
 import { SESSION_ACTIONS } from '../actions/session.reducer.actions';
 import { takeLatest, put } from 'redux-saga/effects';
 
+function* refreshExercise(action) {
+  try {
+    console.log('in refresh exercise', action.payload);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 function* completeExercise(action) {
   try {
     const response = yield fetch(
@@ -48,6 +56,7 @@ function* completeSession(action) {
 function* currentSessionSaga() {
   yield takeLatest(SESSION_SAGA_ACTIONS.COMPLETE_EXERCISE, completeExercise);
   yield takeLatest(SESSION_SAGA_ACTIONS.COMPLETE_SESSION, completeSession);
+  yield takeLatest(SESSION_SAGA_ACTIONS.REFRESH_EXERCISE, refreshExercise);
 }
 
 export default currentSessionSaga;

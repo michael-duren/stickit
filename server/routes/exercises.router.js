@@ -14,7 +14,10 @@ router.get('/:id', (req, res) => {
     })
     .catch((error) => {
       console.log('Error with get exercises request:', error);
-      res.sendStatus(500);
+      res.status(500).send({
+        message: `Error with getting exercise: ${error}`,
+        statusCode: 500,
+      });
     });
 });
 

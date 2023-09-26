@@ -9,6 +9,7 @@ import './SummaryExerciseItem.css';
 
 export default function SummaryExerciseItem({ exercise, i }) {
   const [showPopup, setShowPopup] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -53,8 +54,8 @@ export default function SummaryExerciseItem({ exercise, i }) {
           <p className="exercise-duration">5 min</p>
         </div>
       </div>
-      <button className="sync-icon">
-        <SyncIcon className="" />
+      <button className={`sync-icon `}>
+        <SyncIcon className={`${isRefreshing ? 'animate-spin' : ''}`} />
       </button>
     </div>
   );

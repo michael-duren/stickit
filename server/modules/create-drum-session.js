@@ -1,4 +1,3 @@
-// @ts-check
 const pool = require('./pool');
 const tableTypes = require('../types/table-types');
 const sessionFormType = require('../types/session-form');
@@ -181,11 +180,13 @@ const createDrumSession = async (sessionForm, userId) => {
   // insert each exercise for the session into the user session exercises table & get duration of exercises
   // Promise.all
   // Wrap a begin and commit around this
-  for (let exercise of sessionData) {
+  for (let i = 0; i < sessionData.length; i++) {
     await pool.query(
-      'INSERT INTO USER_SESSION_EXERCISES (USER_ID, EXERCISE_ID, SESSION_ID, COMPLETED) VALUES ($1, $2, $3, $4)',
-      [userId, exercise.id, newSession.id, false]
+      'INSERT INTO USER_SESSION_EXERCISES (USER_ID, EXERCISE_ID, SESSION_ID, COMPLETED, EXERCISE_ORDER) VALUES ($1, $2, $3, $4, $5)',
+      [userId, sessionData[i].id, newSession.id, false, i + 1]
     );
+    // include the exercise order in the session data
+    sessionData[i].exercise_order = i + 1;
   }
 
   // create object to be sent to client for users session
