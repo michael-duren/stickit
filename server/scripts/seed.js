@@ -24,12 +24,6 @@ const focuses = {
 async function seedExercises() {
   const client = await pool.connect();
 
-  const randomMultipleOfFive = () => {
-    // get a random index
-    const index = Math.floor(Math.random() * 12) + 1;
-    return index * 5;
-  };
-
   try {
     // create random exercises with appropritate types and focuses
     for (let i = 1; i < 5; i++) {
@@ -46,7 +40,7 @@ async function seedExercises() {
           description: faker.lorem.paragraph(),
           directions: `{${faker.lorem.sentence()},${faker.lorem.sentence()}}`,
           remember: `{${faker.lorem.sentence()},${faker.lorem.sentence()}}`,
-          minimum_time_minutes: randomMultipleOfFive(),
+          minimum_time_minutes: 5,
           bpm_min: faker.number.int({ min: 60, max: 100 }),
           bpm_max: faker.number.int({ min: 101, max: 200 }),
           video_link: faker.internet.url(),
