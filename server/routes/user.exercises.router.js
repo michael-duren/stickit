@@ -64,14 +64,39 @@ router.put('/refresh/:sessionId', async (req, res) => {
         status: 403,
       });
     }
+    const exercise = currentUserSessionExercise.rows[0];
 
     // Find a random exercise that has the same type and focuses that will replace previous exercise and is not the same as the previous exercise
-    const nexExerciseQuery = `SELECT * FROM exercises WHERE type_id = $1 AND focus_id = $2 AND id != $3 ORDER BY RANDOM() LIMIT 1;`;
-    const newExerciseResult = await client.query(nexExerciseQuery, [
-      type_id,
-      focus_id,
-      id,
-    ]);
+    let newExerciseQuery;
+    let newExerciseResult;
+
+    // if first exercise in session, get a warmup exercise
+    if (exercise_order === 1) {
+      newExerciseQuery = `SELECT * FROM exercises WHERE type_id = $1 AND focus_id = $2 AND id != $3 AND warmup = $4 ORDER BY RANDOM() LIMIT 1;`;
+      newExerciseResult = await client.query(newExerciseQuery, [
+        type_id,
+        focus_id,
+        id,
+        true,
+      ]);
+      // if cooldown, get a cooldown exercise
+    } else if (exercise.cooldown) {
+      newExerciseQuery = `SELECT * FROM exercises WHERE type_id = $1 AND focus_id = $2 AND id != $3 AND cooldown = $4 ORDER BY RANDOM() LIMIT 1;`;
+      newExerciseResult = await client.query(newExerciseQuery, [
+        type_id,
+        focus_id,
+        id,
+        true,
+      ]);
+      // else get any exercise
+    } else {
+      newExerciseQuery = `SELECT * FROM exercises WHERE type_id = $1 AND focus_id = $2 AND id != $3 ORDER BY RANDOM() LIMIT 1;`;
+      newExerciseResult = await client.query(newExerciseQuery, [
+        type_id,
+        focus_id,
+        id,
+      ]);
+    }
 
     // if no exercise is found, throw an error
     if (newExerciseResult.rows.length === 0) {
