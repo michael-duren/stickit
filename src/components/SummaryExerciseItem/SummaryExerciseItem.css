@@ -67,6 +67,7 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
   margin: 0px;
   gap: 6px;
   font-weight: 400;
+  justify-content: flex-start;
 }
 
 /*increased font-size from 12 t0 16. This appeared smaller than what's in figma.

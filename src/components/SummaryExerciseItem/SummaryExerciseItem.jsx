@@ -9,10 +9,11 @@ import { useSelector } from 'react-redux';
  */
 
 export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
-  const { isRefreshingExercise, refreshingItemOrder } = useSelector(
+  const { isRefreshingExercise, refreshingItemOrder, exercises } = useSelector(
     (store) => store.session
   );
   const [showPopup, setShowPopup] = useState(false);
+  const [exerciseType, setExerciseType] = useState('');
 
   const getType = (typeId) => {
     switch (typeId) {
@@ -33,6 +34,14 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
         setShowPopup(false);
       }
     };
+
+    if (i === 0) {
+      setExerciseType('Warm Up');
+    } else if (i === exercises.length - 1) {
+      setExerciseType('Cool Down');
+    } else {
+      setExerciseType(getType(exercise.type_id));
+    }
 
     window.addEventListener('keydown', handleKeyDown);
 
@@ -60,10 +69,7 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
           <InfoIcon className="" />
         </button>
         <div className="exercise-info flex flex-col flex-1">
-          <p className="exercise-title">
-            {exercise.warmup && i === 0 ? 'Warm up' : ''}
-            {i === exercise.length - 1 ? 'Cooldown' : ''}
-          </p>
+          <p className="exercise-title">{exerciseType}</p>
           <p className="exersice-description">{exercise.name}</p>
         </div>
         <div>
