@@ -6,12 +6,13 @@ const initialState = {
   typeHistory: [], // will be an array of type ids
   focusAndTypeChoice: { 1: [], 2: [], 3: [], 4: [] },
   timeInMinutes: 30,
+  totalSteps: 0,
 };
 
 const sessionFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case SESSION_FORM_ACTIONS.RESET_SESSION_FORM:
-      return initialState;
+      return { ...initialState, totalSteps: state.totalSteps };
     case SESSION_FORM_ACTIONS.SET_TYPES:
       return {
         ...state,
@@ -82,6 +83,11 @@ const sessionFormReducer = (state = initialState, action) => {
       return {
         ...state,
         timeInMinutes: action.payload,
+      };
+    case SESSION_FORM_ACTIONS.SET_FORM_STEPS:
+      return {
+        ...state,
+        totalSteps: action.payload,
       };
     default:
       return state;

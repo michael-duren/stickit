@@ -29,7 +29,7 @@ import './App.css';
 import '../../fonts/OpenSans-Italic.ttf';
 import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
-import SessionSelectionPage from '../SessionSelectionPage/SessionSelectionPage';
+import SessionSummaryPage from '../SessionSummaryPage/SessionSummaryPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import Routes from '../Routes/Routes';
@@ -121,7 +121,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path={Routes.SessionSummary}>
-            <SessionSelectionPage />
+            <SessionSummaryPage />
           </ProtectedRoute>
 
           <ProtectedRoute exact path={Routes.SessionSummaryComplete}>

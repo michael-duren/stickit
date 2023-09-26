@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import './SessionSelectionPage.css';
-import InfoIcon from '@mui/icons-material/Info';
-import SyncIcon from '@mui/icons-material/Sync';
+import './SessionSummaryPage.css';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,21 +7,35 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { SESSION_FORM_ACTIONS } from '../../redux/actions/session-form.reducer.actions';
 import Stepper from '../Stepper/Stepper';
+import SummaryExerciseItem from '../SummaryExerciseItem/SummaryExerciseItem';
+import { SESSION_ACTIONS } from '../../redux/actions/session.reducer.actions';
+import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 
-export default function SessionSelectionPage() {
-  const { duration, exercises } = useSelector((store) => store.session);
-  const { selectedTypes, typeHistory } = useSelector(
-    (store) => store.sessionForm
+export default function SessionSummaryPage() {
+  const { duration, exercises, sessionId } = useSelector(
+    (store) => store.session
   );
+  const { totalSteps } = useSelector((store) => store.sessionForm);
   const dispatch = useDispatch();
   const [steps, setSteps] = useState(3);
 
   useEffect(() => {
-    setSteps(selectedTypes.length + typeHistory.length + 2);
-  }, []);
+    setSteps(totalSteps);
+  }, [totalSteps]);
 
   const resetSessionForm = () => {
     dispatch({ type: SESSION_FORM_ACTIONS.RESET_SESSION_FORM });
+  };
+
+  const refreshExercise = (exercise) => {
+    dispatch({
+      type: SESSION_SAGA_ACTIONS.REFRESH_EXERCISE,
+      payload: { exercise, sessionId },
+    });
+    dispatch({
+      type: SESSION_ACTIONS.SET_REFRESHING_ORDER_NUMBER,
+      payload: exercise.exercise_order,
+    });
   };
 
   return (
@@ -31,7 +43,7 @@ export default function SessionSelectionPage() {
       <Grid>
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
-            <div className="">
+            <div className="w-full">
               <div className="w-full flex items-center justify-center m-b-xl">
                 <Stepper steps={steps} currentStep={steps} />
               </div>
@@ -44,29 +56,11 @@ export default function SessionSelectionPage() {
                 </div>
               )}
               {exercises.map((exercise, i) => (
-                <div
-                  key={exercise.id + i}
-                  className="display-flex items-center justify-center"
-                >
-                  <div className="session-container exercise justify-around">
-                    <div>
-                      <InfoIcon className="primary-blue" />
-                    </div>
-                    <div className="exercise-info flex flex-col flex-1">
-                      <p className="exercise-title">
-                        {exercise.warmup && i === 0 ? 'Warm up' : ''}
-                        {i === exercise.length - 1 ? 'Cooldown' : ''}
-                      </p>
-                      <p className="exersice-description">{exercise.name}</p>
-                    </div>
-                    <div>
-                      <p className="exercise-duration">5 min</p>
-                    </div>
-                  </div>
-                  <div className="sync-icon">
-                    <SyncIcon className="primary-blue" />
-                  </div>
-                </div>
+                <SummaryExerciseItem
+                  refreshExercise={refreshExercise}
+                  exercise={exercise}
+                  i={i}
+                />
               ))}
               <div className="total-time m-t-xl m-b-xl">{duration} min</div>
 
