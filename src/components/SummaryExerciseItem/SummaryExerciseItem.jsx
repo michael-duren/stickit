@@ -3,6 +3,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import SyncIcon from '@mui/icons-material/Sync';
 import './SummaryExerciseItem.css';
 import { useSelector } from 'react-redux';
+import { toTitleCase } from '../../utils/toTileCase';
+import { ReactComponent as RefreshIcon } from '../../images/refresh.svg';
 
 /**
  * @param {import('../../redux/reducers/session.reducer.types').Exercise} exercise
@@ -55,7 +57,8 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
       key={exercise.id + i}
       className="display-flex exercise-container items-center justify-center"
     >
-      <div className="exercise-blue-container exercise justify-around">
+      <div className="exercise-blue-container">
+        {/* POP UP */}
         <div
           className={`exercise-popup ${
             showPopup ? 'exercise-popup-active shadow-xl' : ''
@@ -65,12 +68,13 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
           <h3>{exercise.name}</h3>
           <p>{exercise.description}</p>
         </div>
+        {/* INFO BUTTON */}
         <button onClick={() => setShowPopup(!showPopup)}>
           <InfoIcon className="" />
         </button>
-        <div className="exercise-info flex flex-col flex-1">
-          <p className="exercise-title">{exerciseType}</p>
-          <p className="exersice-description">{exercise.name}</p>
+        <div className="exercise-info">
+          <p className="exercise-type">{exerciseType}</p>
+          <p className="exersice-title">{toTitleCase(exercise.name)}</p>
         </div>
         <div>
           <p className="exercise-duration">
@@ -82,7 +86,7 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
         onClick={() => refreshExercise(exercise)}
         className={`sync-icon `}
       >
-        <SyncIcon
+        <RefreshIcon
           className={`${
             isRefreshingExercise && refreshingItemOrder === i + 1
               ? 'animate-spin'

@@ -55,11 +55,11 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
   position: relative;
   display: flex;
   padding: 4px 8px;
-  justify-content: space-between;
   align-items: center;
-  flex: 1 0 0;
+  /* flex: 1 0 0; */
   border-radius: 16px;
   background: var(--brand-surface, #f2fafc);
+  width: 25rem;
 }
 
 .exercise-info {
@@ -67,7 +67,8 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
   margin: 0px;
   gap: 6px;
   font-weight: 400;
-  justify-content: flex-start;
+  flex: 1 1 auto;
+  text-align: left;
 }
 
 /*increased font-size from 12 t0 16. This appeared smaller than what's in figma.

@@ -29,14 +29,14 @@ wasn't indicated explicitly in Figma. Chose something that looked similar*/
   font-weight: 400;
 }
 
-.exercise-title {
+.exercise-type {
   font-family: 'Open Sans';
-  font-size: 15px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   /* 18px */
-  letter-spacing: 0.1px;
+  line-height: 150%;
   color: var(--neutral-700, #393939);
 }
 
@@ -47,12 +47,12 @@ I copied straight from figma, but it didn't seem to change for some reason*/
   font-feature-settings: 'clig' off, 'liga' off;
   /* Body Base Emphasis */
   font-family: 'Open Sans';
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
   /* 24px */
-  letter-spacing: 0.25px;
+  letter-spacing: 0.01563rem;
 }
 
 .exercise-duration {
