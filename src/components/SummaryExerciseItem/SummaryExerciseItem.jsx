@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
-import SyncIcon from '@mui/icons-material/Sync';
 import './SummaryExerciseItem.css';
 import { useSelector } from 'react-redux';
 import { toTitleCase } from '../../utils/toTileCase';
 import { ReactComponent as RefreshIcon } from '../../images/refresh.svg';
+import { getType } from '../../utils/getExerciseType';
 
 /**
  * @param {import('../../redux/reducers/session.reducer.types').Exercise} exercise
@@ -16,19 +16,6 @@ export default function SummaryExerciseItem({ exercise, i, refreshExercise }) {
   );
   const [showPopup, setShowPopup] = useState(false);
   const [exerciseType, setExerciseType] = useState('');
-
-  const getType = (typeId) => {
-    switch (typeId) {
-      case 1:
-        return 'Speed & Agility';
-      case 2:
-        return 'Creativity & Improvisation';
-      case 3:
-        return 'Style & Vocabulary';
-      case 4:
-        return 'Precision & Timekeeping';
-    }
-  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {

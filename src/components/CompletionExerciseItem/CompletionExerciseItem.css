@@ -1,0 +1,60 @@
+.exercise-complete-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-base-02, 0.5rem);
+  align-self: stretch;
+}
+
+.exercise-complete-blue-container {
+  display: flex;
+  padding: 0.25rem 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  border-radius: 16px;
+  background: var(--brand-surface, #f2fafc);
+  /* margin-bottom: 1rem; */
+}
+
+.exercise-complete-info {
+  padding: 0 1rem;
+  margin: 0px;
+  gap: 6px;
+  font-weight: 400;
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.exercise-complete-type {
+  font-family: 'Open Sans';
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 18px */
+  line-height: 150%;
+  color: var(--neutral-700, #393939);
+}
+
+.exercise-complete-title {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.5rem */
+  letter-spacing: 0.01563rem;
+  color: var(--neutral-700, #393939);
+}
+
+.exercise-complete-duration {
+  color: var(--neutral-700, #393939);
+  text-align: right;
+  font-feature-settings: 'clig' off, 'liga' off;
+  /* Body XS */
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 18px */
+  letter-spacing: 0.1px;
+}

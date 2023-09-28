@@ -10,7 +10,7 @@ const sessionObjTypes = require('../types/session-object');
 //GET method for reading the user's exercises by session
 router.get('/:id', (req, res) => {
   let userSessionExercises =
-    'SELECT * FROM user_session_exercises WHERE user_id = $1 AND exercise_id =$2;';
+    'SELECT * FROM user_session_exercises WHERE user_id = $1 AND session_id = $2;';
 
   pool
     .query(userSessionExercises, [req.user.id, req.params.id])
