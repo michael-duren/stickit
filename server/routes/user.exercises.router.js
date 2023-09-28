@@ -3,6 +3,59 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// see if exercise is hearted
+router.get('/heart/:id', async (req, res) => {
+  const exerciseId = req.params.id;
+  const userId = req.user.id;
+
+  const heartedExerciseQuery = `SELECT * FROM user_favorite_exercises WHERE exercise_id = $1 AND user_id = $2;`;
+  try {
+    const heart = await pool.query(heartedExerciseQuery, [exerciseId, userId]);
+    res.status(200).send(heart.rows);
+  } catch (error) {
+    console.log('Error with heart exercise request:', error);
+    res.status(500).send({
+      message: `Error with heart exercise request: ${error}`,
+      statusCode: 500,
+    });
+  }
+});
+
+// hearting a exercise
+router.post('/heart/:id', async (req, res) => {
+  const exerciseId = req.params.id;
+  const userId = req.user.id;
+  const heartExerciseQuery = `INSERT INTO user_exercises (exercise_id, user_id) VALUES ($1, $2);`;
+  try {
+    pool.query(heartExerciseQuery, [exerciseId, userId]);
+    res.sendStatus(201);
+  } catch (error) {
+    console.log('Error with heart exercise request:', error);
+    res.status(500).send({
+      message: `Error with heart exercise request: ${error}`,
+      statusCode: 500,
+    });
+  }
+});
+
+// unhearting a exercise
+router.delete('/heart/:id', async (req, res) => {
+  const exerciseId = req.params.id;
+  const userId = req.user.id;
+  const unheartExerciseQuery = `DELETE FROM user_exercises WHERE exercise_id = $1 AND user_id = $2;`;
+
+  try {
+    pool.query(unheartExerciseQuery, [exerciseId, userId]);
+    res.sendStatus(204);
+  } catch (error) {
+    console.log('Error with unheart exercise request:', error);
+    res.status(500).send({
+      message: `Error with unheart exercise request: ${error}`,
+      statusCode: 500,
+    });
+  }
+});
+
 // updates EXERCISES in the user_session_exercises table
 router.put('/:sessionId', (req, res) => {
   const { sessionId } = req.params;

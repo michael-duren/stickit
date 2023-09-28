@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './SessionCompletePage.css';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
@@ -24,6 +24,8 @@ export default function SessionCompletePage() {
       });
   }, []);
 
+  console.log(userExerciseData);
+
   return (
     <MainLayout showExitButton={true} showNav={true}>
       <Grid>
@@ -41,26 +43,28 @@ export default function SessionCompletePage() {
                 </div>
               )}
               {completedExercises.map((exercise, i) => (
-                <CompletionExerciseItem
-                  exercise={exercise}
-                  key={exercise.id + 1}
-                  i={i}
-                  isComplete={true}
-                  exercises={completedExercises}
-                  exerciseData={
-                    userExerciseData.filter(
-                      (ex) => ex.exercise_id === exercise.id
-                    )[0]
-                  }
-                />
+                <Fragment key={i}>
+                  <CompletionExerciseItem
+                    exercise={exercise}
+                    i={i + 1}
+                    isComplete={true}
+                    exercises={completedExercises}
+                    exerciseData={
+                      userExerciseData.filter(
+                        (ex) => ex.exercise_id === exercise.id
+                      )[0]
+                    }
+                  />
+                </Fragment>
               ))}
               {exercises.map((exercise, i) => (
-                <CompletionExerciseItem
-                  exercise={exercise}
-                  key={exercise.id + i}
-                  i={i}
-                  exercises={exercises}
-                />
+                <Fragment key={i}>
+                  <CompletionExerciseItem
+                    exercise={exercise}
+                    i={i}
+                    exercises={exercises}
+                  />
+                </Fragment>
               ))}
               <div className="total-complete-time">
                 <div>{duration} min</div>

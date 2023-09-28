@@ -7,7 +7,6 @@ import { ReactComponent as NotesIcon } from '../../images/notes.svg';
 import { getType } from '../../utils/getExerciseType';
 
 export default function CompletionExerciseItem({
-  key,
   exercise,
   i,
   isComplete,
@@ -27,13 +26,15 @@ export default function CompletionExerciseItem({
   }, []);
 
   return (
-    <div key={key} className="exercise-complete-container">
+    <div key={i} className="exercise-complete-container">
       <div className="exercise-complete-blue-container">
         <div className="flex flex-col">
-          {exerciseData && exerciseData.exercise_notes && (
-            <NotesIcon className={`${exercise.notes ? '' : 'hidden'}`} />
-          )}
-          <HeartIcon />
+          <NotesIcon
+            className={`${
+              exerciseData && exerciseData.exercise_notes ? '' : 'invisible'
+            }`}
+          />
+          {exerciseData && exerciseData.hearted && <HeartIcon />}
         </div>
         <div className="exercise-complete-info">
           <p className="exercise-complete-type text-left">{exerciseType}</p>
