@@ -102,7 +102,7 @@ function SessionPage() {
               justifyContent={'space-between'}
             >
               <Grid item>
-                <h2 className="exercise-name">
+                <h2 className="exercise-name text-black">
                   {currentExercise.name} <FavoriteBorderOutlinedIcon />
                 </h2>
                 <p className="instrument">Instrument</p>
