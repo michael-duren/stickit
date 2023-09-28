@@ -35,10 +35,12 @@ function ReferenceSheet() {
         className='pdf-modal'
         open={open}
         onClose={handleClose} 
-        sx={sizing}>
+       
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
 
-        <Box className='pdf-box'  >
-          <iframe src='../../pdf/drum-lessons-feet-control.pdf' style={"width:600px; height:500px;"} />
+        <Box sx={sizing}>
+          <iframe src='../../pdf/drum-lessons-feet-control.pdf' />
         </Box>
 
       </Modal>
