@@ -240,6 +240,42 @@ h2 {
   }
 }
 
+@media (min-width: 901px) and (max-width: 1200px) {
+  .modal .modal-video-box {
+    width: 70%;
+    position: relative;
+    left: 0; 
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .modal .modal-video-box {
+    width: 80%;
+    position: relative;
+    left: 0; 
+    margin: 0 auto;
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .modal .modal-video-box {
+    padding: .75rem;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    left: 0; 
+
+    .video-title {
+      display: none;
+    }
+
+    /* margin: 0 auto; */
+  }
+}
+
 /* Utility Classes */
 
 .dark-gray {
@@ -275,6 +311,27 @@ h2 {
   background-color: #ffffff;
   cursor: pointer;
   padding: 0;
+}
+
+.modal-video-box {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  background-color: #4F4F4F;
+  border-radius: 10px;
+  width: 50%;
+  height: 50%;
+  padding: 1rem 2rem 4rem;
+  z-index: 1000;
+}
+
+.iframe-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* To remove the default iframe border */
 }
 
 .logout-button {
@@ -333,6 +390,18 @@ h2 {
 
 .m-t-xl {
   margin-top: 1.25rem;
+}
+
+.m-b-xs {
+  margin-bottom: .25rem;
+}
+
+.m-b-s {
+  margin-bottom: .5rem;
+}
+
+.m-b-m {
+  margin-bottom: .75rem;
 }
 
 .m-b-l {

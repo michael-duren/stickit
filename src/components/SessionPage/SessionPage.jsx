@@ -12,7 +12,11 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import Routes from '../Routes/Routes';
+
+import Modal from '@mui/material/Modal';
+
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
+
 
 function SessionPage() {
   const { exercises, completedExercises, sessionId } = useSelector(
@@ -25,6 +29,9 @@ function SessionPage() {
   const [notes, setNotes] = useState('');
   const [tempo, setTempo] = useState(60);
   const [minutes, setMinutes] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const finishSession = () => {
     dispatch({
@@ -131,6 +138,7 @@ function SessionPage() {
                 <Button
                   variant="outlined"
                   size="small"
+                  onClick={handleOpen}
                   sx={{
                     marginRight: '5px',
                   }}
@@ -138,6 +146,19 @@ function SessionPage() {
                   Play Video
                   <PlayArrowIcon />
                 </Button>
+                <Modal open={open} onClose={handleClose} className='modal justify-center'>
+                  <div className='modal-video-box'>
+                    <p className='primary-white m-b-m video-title'>Exercise: {currentExercise.name}</p>
+                    <div className='iframe-container' style={{ position: 'relative', width: '100%', height: '100%' }}>
+                      <iframe className='iframe-video' style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', border: 'none' }}
+                        src="https://www.youtube.com/embed/UBVkgoSpqv0?si=NaHHv0kCWobk80-8"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen>
+                      </iframe>
+                    </div>
+                  </div>
+                </Modal>
                 <Button variant="outlined" size="small">
                   Resource Sheet
                   <InsertDriveFileIcon />
