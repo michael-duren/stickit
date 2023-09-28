@@ -1,0 +1,50 @@
+
+@media (min-width: 901px) and (max-width: 1200px) {
+   .pdf-box .pdf-modal {
+    width: 90%;
+    left: 0;
+    margin: 0 auto;
+    top: 0;
+    
+  }
+} 
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .pdf-box {
+    width: 70%;
+    position: relative;
+    left: 0;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+ .pdf-box {
+    padding: .75rem;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    left: 0;
+    
+  }
+} 
+
+
+iframe {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  /* border: none;  */
+}
+
+.pdf-box {
+  border-radius: 10px;
+  padding: 1rem;
+  width: 90%;
+}
+
+
+
+

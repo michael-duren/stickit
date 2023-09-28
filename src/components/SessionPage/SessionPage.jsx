@@ -13,6 +13,7 @@ import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import Routes from '../Routes/Routes';
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
+import ReferenceSheet from '../ReferenceSheet/ReferenceSheet';
 
 function SessionPage() {
   const { exercises, completedExercises, sessionId } = useSelector(
@@ -98,7 +99,7 @@ function SessionPage() {
                 <h2 className="exercise-name">
                   {currentExercise.name} <FavoriteBorderOutlinedIcon />
                 </h2>
-                <p className="instrument">Instrument</p>
+                <p className="instrument">{currentExercise.instrument}</p>
               </Grid>
               <Grid>
                 {currentExercise && currentExercise.minimum_time_minutes && (
@@ -138,10 +139,7 @@ function SessionPage() {
                   Play Video
                   <PlayArrowIcon />
                 </Button>
-                <Button variant="outlined" size="small">
-                  Resource Sheet
-                  <InsertDriveFileIcon />
-                </Button>
+               <ReferenceSheet />
               </Grid>
             </Grid>
             <Grid
