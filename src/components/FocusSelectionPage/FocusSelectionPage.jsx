@@ -33,21 +33,15 @@ export default function FocusSelectionPage() {
   }
 
   useEffect(() => {
-    // get the current number of steps
-    let tmpSteps = selectedTypes.length + typeHistory.length + 2;
+    // get current step
     let tmpCurrentStep = typeHistory.length + 2;
 
-    if (tmpSteps > 3) {
-      setSteps(tmpSteps);
-    } else {
-      // make sure steps is at least 3
-      setSteps(3);
-    }
     setCurrentStep(tmpCurrentStep);
+    setSteps(typeHistory.length + selectedTypes.length + 2);
 
     dispatch({
       type: SESSION_FORM_ACTIONS.SET_FORM_STEPS,
-      payload: steps,
+      payload: typeHistory.length + selectedTypes.length + 2,
     });
   }, []);
 
@@ -70,10 +64,6 @@ export default function FocusSelectionPage() {
       history.push(Routes.SessionType);
     } else {
       const path = `/session/focus/${typeHistory[typeHistory.length - 1]}`;
-      dispatch({
-        type: SESSION_FORM_ACTIONS.SET_FORM_STEPS,
-        payload: steps,
-      });
       dispatch({
         type: SESSION_FORM_ACTIONS.REMOVE_SELECTED_TYPE_FROM_HISTORY,
         payload: typeHistory[typeHistory.length - 1],

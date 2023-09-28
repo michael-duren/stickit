@@ -1,0 +1,26 @@
+/*added margin-bottom of 10px to separate subsequent containers. this spacing
+wasn't indicated explicitly in Figma. Chose something that looked similar*/
+
+/*increased font-size from 12 t0 16. This appeared smaller than what's in figma.
+I copied straight from figma, but it didn't seem to change for some reason*/
+
+/*added margin-right of 33px to move this elemnt to the left more. Was not explicitly
+indicated in figma*/
+.session-complete-container {
+  display: flex;
+  width: 24rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-base-04, 1rem);
+}
+
+.total-complete-time {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 0 2rem 0 0;
+}
+
+.total-complete-time div {
+  margin: 0 3rem 0 0;
+}

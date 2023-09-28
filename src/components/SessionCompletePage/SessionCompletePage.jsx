@@ -1,22 +1,37 @@
-import './SessionSelectionPage.css';
+import { Fragment, useEffect, useState } from 'react';
+import './SessionCompletePage.css';
 import MainButton from '../MainButton/MainButton';
 import MainLayout from '../../layouts/MainLayout';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ReactComponent as GreenCheck } from '../../images/green-check.svg';
 import Grid from '@mui/material/Grid';
+import CompletionExerciseItem from '../CompletionExerciseItem/CompletionExerciseItem';
+import toast from 'react-hot-toast';
 
 export default function SessionCompletePage() {
-  const { duration, completedExercises, exercises } = useSelector(
+  const { duration, completedExercises, exercises, sessionId } = useSelector(
     (store) => store.session
   );
+  const [userExerciseData, setUserExerciseData] = useState([]);
+
+  useEffect(() => {
+    fetch(`/api/user/sessions/${sessionId}`)
+      .then((res) => res.json())
+      .then((ex) => setUserExerciseData(ex))
+      .catch((e) => {
+        console.log(e);
+        toast.error('Something went wrong getting exercise data');
+      });
+  }, []);
+
+  console.log(userExerciseData);
 
   return (
     <MainLayout showExitButton={true} showNav={true}>
       <Grid>
         <Grid justifyContent={'center'} container>
           <Grid item xs={12} sm={6} md={6} lg={5} xl={3}>
-            <div className=" items-center gap-16">
+            <div className="session-complete-container">
               <h2 className="text-center m-b-xl">
                 Great work! Way to use your practice time efficiently
               </h2>
@@ -28,51 +43,33 @@ export default function SessionCompletePage() {
                 </div>
               )}
               {completedExercises.map((exercise, i) => (
-                <div
-                  key={exercise.id + i}
-                  className="display-flex items-center"
-                >
-                  <div className="session-container">
-                    <div className="exercise-info">
-                      <p className="exercise-title">
-                        {exercise.warmup && i === 0 ? 'Warm up' : ''}
-                        {i === exercise.length - 1 ? 'Cooldown' : ''}
-                      </p>
-                      <p className="exercise-description">{exercise.name}</p>
-                    </div>
-                    <div>
-                      <p className="exercise-duration">
-                        {Math.floor(exercise.minimum_time_minutes)} min
-                      </p>
-                    </div>
-                  </div>
-                  <div className="sync-icon">
-                    <GreenCheck className="primary-blue p-l-xs" />
-                  </div>
-                </div>
+                <Fragment key={i}>
+                  <CompletionExerciseItem
+                    exercise={exercise}
+                    i={i + 1}
+                    isComplete={true}
+                    exercises={completedExercises}
+                    exerciseData={
+                      userExerciseData.filter(
+                        (ex) => ex.exercise_id === exercise.id
+                      )[0]
+                    }
+                  />
+                </Fragment>
               ))}
               {exercises.map((exercise, i) => (
-                <div key={exercise.id + i} className="justify-center m-t-xl ">
-                  <div className="session-container">
-                    <div className="exercise-info">
-                      <p className="exercise-title text-left">
-                        {exercise.warmup && i === 0 ? 'Warm up' : ''}
-                        {i === exercise.length - 1 ? 'Cooldown' : ''}
-                      </p>
-                      <p className="exercise-description text-black">
-                        {exercise.name}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="exercise-duration">
-                        {Math.floor(exercise.minimum_time_minutes)} min
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <Fragment key={i}>
+                  <CompletionExerciseItem
+                    exercise={exercise}
+                    i={i}
+                    exercises={exercises}
+                  />
+                </Fragment>
               ))}
-              <div className="total-time">{duration} min</div>
-              <div className="m-t-xl">
+              <div className="total-complete-time">
+                <div>{duration} min</div>
+              </div>
+              <div className="w-full m-t-xl">
                 <div className="m-b-xl">
                   <Link to={'/session/current/'}>
                     <MainButton type="button">Share Your Practice</MainButton>
