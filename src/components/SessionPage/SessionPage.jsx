@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Metronome from '../Metronome/Metronome';
 import NotFound from '../NotFoundPage/NotFoundPage';
 import Routes from '../Routes/Routes';
@@ -16,7 +15,9 @@ import Routes from '../Routes/Routes';
 import Modal from '@mui/material/Modal';
 
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
-
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
+import toast from 'react-hot-toast';
+import { SESSION_USER_DETAILS_SAGA_ACTIONS } from '../../redux/actions/session-user-details.saga.actions';
 
 function SessionPage() {
   const { exercises, completedExercises, sessionId } = useSelector(
@@ -32,6 +33,7 @@ function SessionPage() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [userExerciseDetails, setUserExerciseDetails] = useState(null);
 
   const finishSession = () => {
     dispatch({
@@ -79,6 +81,15 @@ function SessionPage() {
     setTempo(tmpTempo);
     setMinutes(tmpMinutes);
     setNotes('');
+    if (currentExercise && currentExercise.id && sessionId) {
+      dispatch({
+        type: SESSION_USER_DETAILS_SAGA_ACTIONS.GET_USER_EXERCISE_DETAILS,
+        payload: {
+          exerciseId: currentExercise.id,
+          sessionId,
+        },
+      });
+    }
   }, [currentExercise]);
 
   // show not found if somehow they get here without any exercises
@@ -103,7 +114,8 @@ function SessionPage() {
             >
               <Grid item>
                 <h2 className="exercise-name text-black">
-                  {currentExercise.name} <FavoriteBorderOutlinedIcon />
+                  {currentExercise.name}{' '}
+                  <FavoriteButton exercise={currentExercise} />
                 </h2>
                 <p className="instrument">Instrument</p>
               </Grid>
@@ -146,16 +158,38 @@ function SessionPage() {
                   Play Video
                   <PlayArrowIcon />
                 </Button>
-                <Modal open={open} onClose={handleClose} className='modal justify-center'>
-                  <div className='modal-video-box'>
-                    <p className='primary-white m-b-m video-title'>Exercise: {currentExercise.name}</p>
-                    <div className='iframe-container' style={{ position: 'relative', width: '100%', height: '100%' }}>
-                      <iframe className='iframe-video' style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', border: 'none' }}
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  className="modal justify-center"
+                >
+                  <div className="modal-video-box">
+                    <p className="primary-white m-b-m video-title">
+                      Exercise: {currentExercise.name}
+                    </p>
+                    <div
+                      className="iframe-container"
+                      style={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    >
+                      <iframe
+                        className="iframe-video"
+                        style={{
+                          position: 'absolute',
+                          top: '0',
+                          left: '0',
+                          width: '100%',
+                          height: '100%',
+                          border: 'none',
+                        }}
                         src="https://www.youtube.com/embed/UBVkgoSpqv0?si=NaHHv0kCWobk80-8"
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen>
-                      </iframe>
+                        allowFullScreen
+                      ></iframe>
                     </div>
                   </div>
                 </Modal>

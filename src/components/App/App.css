@@ -245,7 +245,7 @@ h2 {
   .modal .modal-video-box {
     width: 70%;
     position: relative;
-    left: 0; 
+    left: 0;
     margin: 0 auto;
   }
 }
@@ -254,20 +254,18 @@ h2 {
   .modal .modal-video-box {
     width: 80%;
     position: relative;
-    left: 0; 
+    left: 0;
     margin: 0 auto;
   }
 }
 
-
-
 @media (max-width: 600px) {
   .modal .modal-video-box {
-    padding: .75rem;
+    padding: 0.75rem;
     width: 90%;
     margin: 0 auto;
     position: relative;
-    left: 0; 
+    left: 0;
 
     .video-title {
       display: none;
@@ -318,7 +316,7 @@ h2 {
   position: absolute;
   top: 25%;
   left: 25%;
-  background-color: #4F4F4F;
+  background-color: #4f4f4f;
   border-radius: 10px;
   width: 50%;
   height: 50%;
@@ -394,15 +392,15 @@ h2 {
 }
 
 .m-b-xs {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .m-b-s {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .m-b-m {
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .m-b-l {
@@ -527,7 +525,7 @@ h2 {
 }
 
 /*
-* Animation for loading spinner
+* Animations
 */
 .animate-spin {
   animation: spin 1s linear infinite;
@@ -539,6 +537,31 @@ h2 {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.animate-shake {
+  animation: shake cubic-bezier(0.9, 0, 0.9, 1) 500ms;
+  animation-delay: 0ms;
+}
+
+@keyframes shake {
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5%);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5%);
+  }
+  from,
+  to {
+    transform: none;
   }
 }
 
@@ -560,6 +583,10 @@ h2 {
 .shadow-xl {
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3),
     0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+.drop-shadow-xl {
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.1))
+    drop-shadow(0 2px 2px rgb(0 0 0 / 0.1));
 }
 
 /* Break points

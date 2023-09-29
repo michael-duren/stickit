@@ -5,6 +5,10 @@
   align-self: stretch;
 }
 
+.heart-icon {
+  fill: #005e83;
+}
+
 .exercise-complete-blue-container {
   display: flex;
   padding: 0.25rem 8px;

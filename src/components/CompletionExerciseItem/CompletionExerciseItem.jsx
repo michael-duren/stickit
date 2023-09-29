@@ -34,7 +34,9 @@ export default function CompletionExerciseItem({
               exerciseData && exerciseData.exercise_notes ? '' : 'invisible'
             }`}
           />
-          {exerciseData && exerciseData.hearted && <HeartIcon />}
+          {exerciseData && exerciseData.hearted && (
+            <HeartIcon className="heart-icon" />
+          )}
         </div>
         <div className="exercise-complete-info">
           <p className="exercise-complete-type text-left">{exerciseType}</p>

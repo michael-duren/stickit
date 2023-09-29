@@ -1,0 +1,26 @@
+.heart-button-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.heart-button-fill {
+  fill: rgb(245, 58, 58);
+  stroke: none;
+  filter: drop-shadow(0 4px 3px #b91c1c) drop-shadow(0 2px 2px #f87171aa);
+}
+.heart-button-outline {
+  fill: #5e5f61;
+  filter: drop-shadow(0 4px 3px #d6d3d122) drop-shadow(0 2px 2px #29252422);
+}
+.heart-button-outline:hover {
+  fill: #3c3c3d;
+}
+
+.heart-button {
+  background: none;
+  border: none;
+  position: relative;
+}
+.heart-button:active {
+  scale: 1.05;
+}

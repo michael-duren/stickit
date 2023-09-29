@@ -10,7 +10,7 @@ const sessionObjTypes = require('../types/session-object');
 //GET method for reading the user's exercises data by session
 router.get('/:id', (req, res) => {
   let userSessionExercises = `
-  SELECT E.*, F.id as Hearted FROM 
+  SELECT E.*, F.id as hearted FROM 
   user_session_exercises as E 
   left join user_favorite_exercises as F 
   on E.exercise_id = F.exercise_id  
