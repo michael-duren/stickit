@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import sessionFormSaga from './session-form.saga';
 import currentSessionSaga from './current-session.saga';
+import sessionUserDetailsSaga from './session-userdetails.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +20,6 @@ export default function* rootSaga() {
     currentSessionSaga(),
     loginSaga(), // login saga is now registered
     registrationSaga(),
+    sessionUserDetailsSaga(),
   ]);
 }

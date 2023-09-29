@@ -3,6 +3,29 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// get a users exercise details for a given exercise and session
+router.get('/:sessionid/:exerciseid', (req, res) => {
+  const exerciseId = req.params.exerciseid;
+  const sessionId = req.params.sessionid;
+  const userId = req.user.id;
+  const userExerciseQuery = `
+      SELECT E.*, F.exercise_id as hearted
+      FROM user_session_exercises as E
+      LEFT JOIN user_favorite_exercises as F
+      ON E.exercise_id = F.exercise_id
+      WHERE E.exercise_id = $1 AND E.user_id = $2 AND E.session_id = $3;
+    `;
+  pool
+    .query(userExerciseQuery, [exerciseId, userId, sessionId])
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.log('Error with get exercises request:', error);
+      res.sendStatus(500);
+    });
+});
+
 // see if exercise is hearted
 router.get('/heart/:id', async (req, res) => {
   const exerciseId = req.params.id;
@@ -25,9 +48,15 @@ router.get('/heart/:id', async (req, res) => {
 router.post('/heart/:id', async (req, res) => {
   const exerciseId = req.params.id;
   const userId = req.user.id;
-  const heartExerciseQuery = `INSERT INTO user_exercises (exercise_id, user_id) VALUES ($1, $2);`;
+  const heartExerciseQuery = `INSERT INTO user_favorite_exercises (exercise_id, user_id) VALUES ($1, $2);`;
   try {
-    pool.query(heartExerciseQuery, [exerciseId, userId]);
+    const result = await pool.query(heartExerciseQuery, [exerciseId, userId]);
+    if (result.rowCount === 0) {
+      return res.status(400).send({
+        message: 'Error with heart exercise request',
+        statusCode: 400,
+      });
+    }
     res.sendStatus(201);
   } catch (error) {
     console.log('Error with heart exercise request:', error);
@@ -42,10 +71,17 @@ router.post('/heart/:id', async (req, res) => {
 router.delete('/heart/:id', async (req, res) => {
   const exerciseId = req.params.id;
   const userId = req.user.id;
-  const unheartExerciseQuery = `DELETE FROM user_exercises WHERE exercise_id = $1 AND user_id = $2;`;
+  const unheartExerciseQuery = `DELETE FROM user_favorite_exercises WHERE exercise_id = $1 AND user_id = $2;`;
 
   try {
-    pool.query(unheartExerciseQuery, [exerciseId, userId]);
+    const result = await pool.query(unheartExerciseQuery, [exerciseId, userId]);
+    if (result.rowCount === 0) {
+      return res.status(400).send({
+        message: 'Error with unheart exercise request',
+        statusCode: 400,
+      });
+    }
+
     res.sendStatus(204);
   } catch (error) {
     console.log('Error with unheart exercise request:', error);

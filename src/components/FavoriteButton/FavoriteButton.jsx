@@ -3,13 +3,17 @@ import { ReactComponent as HeartIconOutline } from '../../images/heart-outline.s
 import { useEffect, useState } from 'react';
 import './FavoriteButton.css';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 export default function FavoriteButton({ exercise }) {
-  const [isHearted, setIsHearted] = useState(false);
+  const { userExerciseDetails } = useSelector(
+    (store) => store.sessionUserDetails
+  );
+  const [isHearted, setIsHearted] = useState(userExerciseDetails.hearted);
 
   useEffect(() => {
-    fetch(`/api/user/exercises/heart/${exercise.id}`);
-  }, []);
+    setIsHearted(userExerciseDetails.hearted);
+  }, [userExerciseDetails]);
 
   const handleHeartClick = async () => {
     if (isHearted) {
@@ -18,6 +22,8 @@ export default function FavoriteButton({ exercise }) {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         });
+
+        if (result.status !== 204) toast.error('Could not dislike exercise.');
         if (result.status === 204) setIsHearted(false);
       } catch (error) {
         console.error(`Error in handleHeartClick: ${error}`);

@@ -16,6 +16,8 @@ import Modal from '@mui/material/Modal';
 
 import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
+import toast from 'react-hot-toast';
+import { SESSION_USER_DETAILS_SAGA_ACTIONS } from '../../redux/actions/session-user-details.saga.actions';
 
 function SessionPage() {
   const { exercises, completedExercises, sessionId } = useSelector(
@@ -31,6 +33,7 @@ function SessionPage() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [userExerciseDetails, setUserExerciseDetails] = useState(null);
 
   const finishSession = () => {
     dispatch({
@@ -78,6 +81,15 @@ function SessionPage() {
     setTempo(tmpTempo);
     setMinutes(tmpMinutes);
     setNotes('');
+    if (currentExercise && currentExercise.id && sessionId) {
+      dispatch({
+        type: SESSION_USER_DETAILS_SAGA_ACTIONS.GET_USER_EXERCISE_DETAILS,
+        payload: {
+          exerciseId: currentExercise.id,
+          sessionId,
+        },
+      });
+    }
   }, [currentExercise]);
 
   // show not found if somehow they get here without any exercises
