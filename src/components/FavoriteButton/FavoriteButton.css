@@ -1,0 +1,19 @@
+.heart-button-fill {
+  fill: red;
+  width: 2rem;
+  height: 2rem;
+}
+.heart-button-outline {
+  fill: #5e5f61;
+}
+.heart-button-outline:hover {
+  fill: #3c3c3d;
+}
+
+.heart-button {
+  background: none;
+  border: none;
+}
+.heart-button:active {
+  scale: 1.05;
+}
