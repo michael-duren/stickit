@@ -34,6 +34,7 @@ import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
 import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import Routes from '../Routes/Routes';
 import SessionCompletePage from '../SessionCompletePage/SessionCompletePage';
+import MyActivityPage from '../MyActivityPage/MyActivityPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -126,6 +127,9 @@ function App() {
 
           <ProtectedRoute exact path={Routes.SessionSummaryComplete}>
             <SessionCompletePage />
+          </ProtectedRoute>
+          <ProtectedRoute exact path={Routes.MyActivity}>
+            <MyActivityPage />
           </ProtectedRoute>
 
           <Route exact path={Routes.Login}>
