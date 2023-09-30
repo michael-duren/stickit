@@ -1,11 +1,10 @@
-import { ReactComponent as ChevronDown } from '../../images/chevron-down.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import './MyActivityPage.css';
 import { useEffect } from 'react';
 import { SESSION_HISTORY_SAGA_ACTIONS } from '../../redux/actions/session-history.saga.actions';
 import MainLayout from '../../layouts/MainLayout';
 import { getHoursandMinutes } from '../../utils/timeAndDateUtils';
-import dayjs from 'dayjs';
+import AllHistoryItems from '../AllHistoryItems/AllHistoryItems';
 
 export default function MyActivityPage() {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export default function MyActivityPage() {
 
   return (
     <MainLayout showNav={true}>
-      <div>
+      <div className="my-activity-container">
         {/* TOP CONTAINER */}
         <div className="history-banner-container">
           <div className="history-banner-item">
@@ -60,26 +59,7 @@ export default function MyActivityPage() {
         </div>
         {/* BOTTOM CONTAINER */}
         <div className="flex items-center justify-center">
-          <div className="history-all-container">
-            {allSessions &&
-              allSessions.map((session) => {
-                const sessionDate = dayjs(session.completed_at);
-                return (
-                  <div className="history-all-item">
-                    <h2>{sessionDate.format('dddd, MMM D')}</h2>
-                    <div>
-                      <p>Smart Routine</p>
-                      <div className="history-all-item-time">
-                        <p>{session.duration} min</p>
-                        <button>
-                          <ChevronDown />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+          {allSessions && <AllHistoryItems allSessions={allSessions} />}
         </div>
       </div>
     </MainLayout>

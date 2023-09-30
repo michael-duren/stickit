@@ -1,3 +1,8 @@
+.my-activity-container {
+  max-height: 80vh;
+  padding: 0 1.5rem;
+}
+
 .history-banner-container {
   display: flex;
   gap: 1.5rem;
@@ -35,50 +40,4 @@
   flex-shrink: 0;
   align-self: stretch;
   font-size: 0.9rem;
-}
-
-.history-all-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  align-items: center;
-  overflow-y: scroll;
-}
-
-.history-all-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-base-02, 0.5rem);
-}
-
-.history-all-item > h2 {
-  font-size: 1.2rem;
-  color: #000;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%; /* 1.875rem */
-  letter-spacing: 0.00938rem;
-}
-
-.history-all-item > div {
-  display: flex;
-  width: 25.125rem;
-  padding: var(--border-radius-04, 0.25rem) var(--spacing-base-02, 0.5rem);
-  justify-content: space-between;
-  align-items: flex-start;
-  border-radius: var(--border-radius-04, 0.25rem);
-  background: var(--brand-surface, #f2fafc);
-}
-
-.history-all-item-time {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-base-04, 1rem);
-}
-
-.history-all-item-time > button {
-  border: none;
-  background: none;
 }

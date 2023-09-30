@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import CompletionExerciseItem from '../CompletionExerciseItem/CompletionExerciseItem';
 import toast from 'react-hot-toast';
+import Routes from '../Routes/Routes';
 
 export default function SessionCompletePage() {
   const { duration, completedExercises, exercises, sessionId } = useSelector(
@@ -71,17 +72,17 @@ export default function SessionCompletePage() {
               </div>
               <div className="w-full m-t-xl">
                 <div className="m-b-xl">
-                  <Link to={'/session/current/'}>
+                  <Link to={Routes.Home}>
                     <MainButton type="button">Share Your Practice</MainButton>
                   </Link>
                 </div>
                 <div className="m-b-xl">
-                  <Link to={'/session/current/'}>
+                  <Link to={Routes.MyActivity}>
                     <MainButton type="button">View Activity</MainButton>
                   </Link>
                 </div>
                 <div className="m-b-xl">
-                  <Link to={'/home'}>
+                  <Link to={Routes.Home}>
                     <MainButton type="button">Back To Home</MainButton>
                   </Link>
                 </div>
