@@ -49,7 +49,7 @@ export default function FocusSelectionPage() {
     fetch(`/api/typefocus/${id}`)
       .then((res) => res.json())
       .then((res) => setFocuses(res))
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }, []);
 
   const toggleFocus = (focus) => {

@@ -122,7 +122,6 @@ router.put('/:sessionId', (req, res) => {
 
 router.put('/refresh/:sessionId', async (req, res) => {
   // we need the session id, exercise id, order, type, and focuses
-  console.log('GOT ME', req.body.exercise);
   const { sessionId } = req.params;
 
   const { exercise } = req.body; // get this from body
@@ -194,7 +193,6 @@ router.put('/refresh/:sessionId', async (req, res) => {
         exercise.minimum_time_minutes,
       ]);
     }
-    console.log(newExerciseResult.rows);
 
     // if no exercise is found, throw an error
     if (newExerciseResult.rows.length === 0) {

@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
       res.status(200).send(result.rows);
     })
     .catch((error) => {
-      console.log('Error with get exercises request:', error);
+      console.error('Error with get exercises request:', error);
       res.sendStatus(500);
     });
 });
