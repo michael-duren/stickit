@@ -31,10 +31,12 @@ import '../../fonts/OpenSans.ttf';
 import FocusSelectionPage from '../FocusSelectionPage/FocusSelectionPage';
 import SessionSummaryPage from '../SessionSummaryPage/SessionSummaryPage';
 import TypeSelectionPage from '../TypeSelectionPage/TypeSelectionPage';
-import { SESSION_FORM_SAGA_ACTIONS } from '../../redux/actions/session-form.saga.actions';
 import Routes from '../Routes/Routes';
 import SessionCompletePage from '../SessionCompletePage/SessionCompletePage';
 import MyActivityPage from '../MyActivityPage/MyActivityPage';
+import ExercisesPage from '../ExercisesPage/ExercisesPage';
+import RoutinesPage from '../RoutinesPage/RoutesPage';
+import GoalsPage from '../GoalsPage/GoalsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -128,8 +130,21 @@ function App() {
           <ProtectedRoute exact path={Routes.SessionSummaryComplete}>
             <SessionCompletePage />
           </ProtectedRoute>
+
           <ProtectedRoute exact path={Routes.MyActivity}>
             <MyActivityPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path={Routes.Exercises}>
+            <ExercisesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path={Routes.Routines}>
+            <RoutinesPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path={Routes.Goals}>
+            <GoalsPage />
           </ProtectedRoute>
 
           <Route exact path={Routes.Login}>
