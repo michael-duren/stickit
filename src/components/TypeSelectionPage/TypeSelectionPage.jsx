@@ -13,6 +13,7 @@ import { ReactComponent as TargetIcon } from '../../images/targetIcon.svg';
 import { ReactComponent as InnovationIcon } from '../../images/innovationIcon.svg';
 import { ReactComponent as AbcIcon } from '../../images/abcIcon.svg';
 import TypeButton from '../TypeButton/TypeButton';
+import { getType } from '../../utils/getExerciseType';
 
 export default function TypeSelectionPage() {
   const dispatch = useDispatch();
@@ -87,6 +88,11 @@ export default function TypeSelectionPage() {
                       </TypeButton>
                     </div>
                   );
+                })}
+              </div>
+              <div className="m-t-xl flex gap-16">
+                {selectedTypes.map((type) => {
+                  return <p>{getType(type)}</p>;
                 })}
               </div>
               <div className="m-t-xl">
