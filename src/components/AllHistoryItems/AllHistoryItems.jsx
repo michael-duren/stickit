@@ -26,10 +26,10 @@ export default function AllHistoryItems({ allSessions }) {
         return (
           <div className="history-all-item">
             <h2>{sessionDate.format('dddd, MMM D')}</h2>
-            {allSessions.map((session) => {
+            {allSessions.map((session, i) => {
               if (session.completed_at !== date) return null;
               return (
-                <div key={session.id}>
+                <div key={session.id + i}>
                   <p>Smart Routine</p>
                   <div className="history-all-item-time">
                     <p>{session.duration} min</p>
