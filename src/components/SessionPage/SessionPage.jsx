@@ -117,7 +117,9 @@ function SessionPage() {
                   {currentExercise.name}{' '}
                   <FavoriteButton exercise={currentExercise} />
                 </h2>
-                <p className="instrument">Instrument</p>
+                <p className="instrument">
+                  {currentExercise && currentExercise.instrument}
+                </p>
               </Grid>
               <Grid>
                 {currentExercise && currentExercise.minimum_time_minutes && (
@@ -216,7 +218,7 @@ function SessionPage() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <h3>Directions:</h3>
-              <ol>
+              <ol style={{ listStyle: 'none' }}>
                 {currentExercise.directions.map((direction) => {
                   return <li key={direction}>{direction}</li>;
                 })}
