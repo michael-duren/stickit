@@ -41,6 +41,26 @@ function escapeArrayItem(str) {
   return `"${str.replace(/"/g, '""').replace(/[‘’']/g, "''")}"`;
 }
 
+function getDescription(str) {
+  const descriptionOne = `
+  The objective is to throw the stick with effort and allow the stick to rebound back to its original position. 
+  Make sure your wrist is returning to its original position before the stick does, otherwise it will get in the way of the stick''s natural rebound. 
+  `;
+  const descriptionTwo = `
+  The objective is to throw the stick with effort and only allow the stick to rebound at a height that is lower than the starting position. This stroke goes from high to low.
+  `;
+
+  if (str === 'Full Stroke') {
+    return descriptionOne;
+  } else if (str === 'Down Stroke') {
+    return descriptionTwo;
+  } else {
+    return Math.floor(Math.random() * 2) + 1 === 1
+      ? descriptionOne
+      : descriptionTwo;
+  }
+}
+
 function preprocessRow(row) {
   row.Name = escapeString(row.Name);
   row.Genre = escapeString(row.Genre);
@@ -81,7 +101,7 @@ function processRow(row) {
     row.Genre,
     row.Instrument,
     row.Teacher,
-    row.Description,
+    `'${getDescription(row.Name)}'`,
     `'{${row.Directions.join(', ')}}'`,
     `'{${row.Remember.join(', ')}}'`,
     parseInt(row['Minimum Time']),
