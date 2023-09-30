@@ -4,6 +4,7 @@ import user from './user.reducer';
 import sessionForm from './session-form.reducer';
 import session from './session.reducer';
 import sessionUserDetails from './session-user-details.reducer';
+import sessionHistory from './session-history.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   sessionForm,
   session,
   sessionUserDetails,
+  sessionHistory,
 });
 
 export default rootReducer;
