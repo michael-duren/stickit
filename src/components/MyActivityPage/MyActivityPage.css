@@ -1,36 +1,82 @@
 .history-banner-container {
-  border: 1px solid red;
   display: flex;
   gap: 1.5rem;
 }
 
 .history-banner-item {
-  border: 1px solid red;
   flex: 1 0 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 }
 
-.history-banner-item h2 {
+.history-banner-item > h2 {
   color: #000;
-  font-size: 1.5rem;
+  width: 100%;
+  font-size: 1.3rem;
   font-style: normal;
   font-weight: 600;
   line-height: 150%; /* 2.25rem */
+  text-align: left;
 }
 
-.history-banner-item div {
+.history-banner-item > div {
   border-radius: var(--border-radius-04, 0.25rem);
   background: var(--brand-surface, #f2fafc);
   display: flex;
-  height: 4.5rem;
+  height: 3rem;
   padding: 2.0625rem 0.9375rem;
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
   flex-shrink: 0;
   align-self: stretch;
+  font-size: 0.9rem;
+}
+
+.history-all-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.history-all-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-base-02, 0.5rem);
+}
+
+.history-all-item > h2 {
+  font-size: 1.2rem;
+  color: #000;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.875rem */
+  letter-spacing: 0.00938rem;
+}
+
+.history-all-item > div {
+  display: flex;
+  width: 25.125rem;
+  padding: var(--border-radius-04, 0.25rem) var(--spacing-base-02, 0.5rem);
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: var(--border-radius-04, 0.25rem);
+  background: var(--brand-surface, #f2fafc);
+}
+
+.history-all-item-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-base-04, 1rem);
+}
+
+.history-all-item-time > button {
+  border: none;
+  background: none;
 }

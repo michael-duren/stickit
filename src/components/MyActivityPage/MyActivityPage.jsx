@@ -1,3 +1,4 @@
+import { ReactComponent as ChevronDown } from '../../images/chevron-down.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import './MyActivityPage.css';
 import { useEffect } from 'react';
@@ -20,7 +21,7 @@ export default function MyActivityPage() {
     <MainLayout showNav={true}>
       <div>
         {/* TOP CONTAINER */}
-        <div className="history-banner-container">
+        <div className="history-banner-container m-b-xl">
           <div className="history-banner-item">
             <h2>This Week</h2>
             <div>3 hr 30min</div>
@@ -35,8 +36,19 @@ export default function MyActivityPage() {
           </div>
         </div>
         {/* BOTTOM CONTAINER */}
-        <div>
-          <h2>All Activity</h2>
+        <div className="history-all-container">
+          <div className="history-all-item">
+            <h2>Saturday, Aug 19</h2>
+            <div>
+              <p>Smart Routine</p>
+              <div className="history-all-item-time">
+                <p>30 min</p>
+                <button>
+                  <ChevronDown />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </MainLayout>
