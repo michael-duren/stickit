@@ -1,9 +1,14 @@
 /* Footer.css */
 footer {
-  padding: 20px;
+  /* padding: 20px; */
+  padding-bottom: 2rem;
   text-align: center;
+  /* position: relative; */
+  position: absolute;
+  width: 100%;
   bottom: 0;
-  font-size: 0.7rem;
+  left: 0;
+  /* font-size: 0.7rem; */
   padding-top: 10rem;
   color: var(--neutral-600, #5e5f61);
 }
