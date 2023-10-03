@@ -3,7 +3,7 @@
 A mobile and web application that offers drum set players a curated list of exercises based on their focus areas, goals, and time constraints, eliminating the problem of deciding what to practice.
 This curated list is called a “Smart Session”
 
-# Contents
+## Contents
 
 - [Prerequisites](#prerequisites)
 - [Create Database](#create-database)
