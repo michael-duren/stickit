@@ -7,10 +7,15 @@ const createDrumSession = require('../modules/create-drum-session');
 const sessionFormType = require('../types/session-form');
 const sessionObjTypes = require('../types/session-object');
 
-//GET method for reading the user's exercises by session
+//GET method for reading the user's exercises data by session
 router.get('/:id', (req, res) => {
-  let userSessionExercises =
-    'SELECT * FROM user_session_exercises WHERE user_id = $1 AND exercise_id =$2;';
+  let userSessionExercises = `
+  SELECT E.*, F.id as hearted FROM 
+  user_session_exercises as E 
+  left join user_favorite_exercises as F 
+  on E.exercise_id = F.exercise_id  
+  WHERE E.user_id = $1 AND E.session_id = $2; 
+  `;
 
   pool
     .query(userSessionExercises, [req.user.id, req.params.id])
@@ -18,7 +23,7 @@ router.get('/:id', (req, res) => {
       res.status(200).send(result.rows);
     })
     .catch((error) => {
-      console.log('Error with get exercises request:', error);
+      console.error('Error with get exercises request:', error);
       res.sendStatus(500);
     });
 });

@@ -29,3 +29,14 @@ option to be active
   flex-shrink: 0;
   align-self: stretch;
 }
+
+.current-path {
+  background-color: rgba(0, 94, 131, 0.1);
+  border-radius: 5px;
+  display: flex;
+  height: 40px;
+  padding: 9px 107px 7px 16px;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+}
