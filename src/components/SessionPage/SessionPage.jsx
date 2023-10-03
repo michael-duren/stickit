@@ -18,6 +18,7 @@ import { SESSION_SAGA_ACTIONS } from '../../redux/actions/session.saga.actions';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import toast from 'react-hot-toast';
 import { SESSION_USER_DETAILS_SAGA_ACTIONS } from '../../redux/actions/session-user-details.saga.actions';
+import ReferenceSheet from '../ReferenceSheet/ReferenceSheet';
 
 function SessionPage() {
   const { exercises, completedExercises, sessionId } = useSelector(
@@ -195,10 +196,7 @@ function SessionPage() {
                     </div>
                   </div>
                 </Modal>
-                <Button variant="outlined" size="small">
-                  Resource Sheet
-                  <InsertDriveFileIcon />
-                </Button>
+               <ReferenceSheet />
               </Grid>
             </Grid>
             <Grid
