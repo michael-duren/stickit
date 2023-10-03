@@ -10,9 +10,10 @@ This curated list is called a “Smart Session”
 - [Development Setup](#development-setup-instructions)
 - [Deployment](#deployment)
 - [Project Structure](#project-structure)
-- [API Endpoints](#api-endpoints)
-- [Smart Session Algorithm](#smart-session-algorithm)
 - [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Smart Session Algorithm](#smart-session-algorithm)
+- [API Endpoints](#api-endpoints)
 
 ## Prerequisites
 
@@ -57,9 +58,114 @@ Directory Structure:
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 - `server/` contains the Express App
 
-## Api Endpoints
+## Tech Stack
 
-### User Specific
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
+	<img width=40 height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+	</a>&nbsp;
+  <a href="https://react.dev" target="_blank" rel="noreferrer">
+	<img width=40 height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+	</a>&nbsp;
+  <a href="https://redux.js.org" target="_blank" rel="noreferrer">
+	<img width=40 height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" />
+	</a>&nbsp;
+  <a href="https://nodejs.org/en" target="_blank" rel="noreferrer">
+	<img width=40 height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+	</a>&nbsp;
+	<a href="https://expressjs.com" target="_blank" rel="noreferrer">
+	<img width=40 style="background:white;" height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" />
+  <a href="https://www.postgresql.org" target="_blank" rel="noreferrer">
+	<img width=40 height=40 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+	</a>&nbsp;
+
+## Screenshots
+
+![Desktop View](/documentation/images/Desktop.png)
+![Mobile View](/documentation/images/Mobile.png)
+
+## Smart Session Algorithm
+
+### `determineSmartSession` Function
+
+The `determineSmartSession` function generates a smart exercise session based on user preferences, such as focus areas, exercise types, and session duration. It returns an array of exercise objects representing the session.
+
+- **Function Signature:** `(sessionForm: sessionFormType.SessionForm) => Promise<tableTypes.Exercise[]>`
+
+#### Algorithm Explanation
+
+1. The function starts by extracting relevant data from the `sessionForm` parameter, such as `focusAndTypeChoice` (user-selected exercise types and focuses) and `timeInMinutes` (session duration).
+
+2. If the `timeInMinutes` is less than 10 minutes, the function throws an error since a session must be at least 10 minutes long.
+
+3. The function then selects a warm-up and cooldown exercise from the database, each lasting 5 minutes, if the session duration is greater than 10 minutes.
+
+4. If the session duration is exactly 10 minutes, it returns the warm-up and cooldown exercises as the entire session.
+
+5. Next, the function prepares an object `chosenTypes` to categorize the selected exercise types and their associated focuses.
+
+6. If the session duration is 15 minutes, it selects a random exercise of a specific type and focus.
+
+7. If no exercise types with focuses are selected, the function throws an error.
+
+8. The function calculates the `timePerType` based on the remaining session duration after warm-up and cooldown, divided by the number of selected types.
+
+9. It then initializes an empty array `drumSession` to store exercises.
+
+10. The function iterates through each selected exercise type, and for each type, it iterates through its associated focuses.
+
+11. For each focus, it queries the database for exercises of the specified type and focus, ordered randomly.
+
+12. It adds exercises to `drumSession` until the time limit for that focus is reached.
+
+13. The function calculates the total duration of the generated `drumSession`.
+
+14. If the session duration is less than the time limit, it adds a random exercise to `drumSession`.
+
+15. If the session duration exceeds the time limit, it removes an exercise from `drumSession`.
+
+16. Finally, the function returns the complete session array, including warm-up and cooldown exercises.
+
+### `createDrumSession` Function
+
+The `createDrumSession` function orchestrates the creation of a drumming exercise session for a user based on their preferences and returns a `sessionObjectType.SessionObject`.
+
+- **Function Signature:** `(sessionForm: sessionFormType.SessionForm, userId: number) => Promise<sessionObjectType.SessionObject>`
+
+#### Algorithm Explanation
+
+1. The function begins by calling `determineSmartSession` to generate a smart exercise session.
+
+2. It checks if the generated session data is empty and throws an error if it is.
+
+3. The function calculates the total exercise duration of the session.
+
+4. If the total exercise duration is less than 10 minutes, it throws an error.
+
+5. It then inserts a new session record into the `USER_SESSIONS` table, including the user ID, session duration, and completion status.
+
+6. The function iterates through the generated exercise session data and inserts each exercise into the `USER_SESSION_EXERCISES` table, associating it with the user session and specifying the exercise order.
+
+7. It creates a `sessionObj` object that includes session details, user ID, exercise duration, exercises, and completion status.
+
+8. Finally, it returns the `sessionObj` representing the user's session.
+
+#### Example Usage
+
+```javascript
+const sessionForm = {
+  focusAndTypeChoice: {
+    1: [1, 2], // Example: Exercise type 1 with focuses 1 and 2
+    // ...
+  },
+  timeInMinutes: 30, // Example: Session duration in minutes
+};
+
+const userId = 123; // Example: User's ID
+
+const sessionObj = await createDrumSession(sessionForm, userId);
+```
+
+## Api Endpoints
 
 ### User API Documentation
 
