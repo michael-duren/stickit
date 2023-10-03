@@ -4,8 +4,8 @@ footer {
   padding-bottom: 2rem;
   text-align: center;
   /* position: relative; */
-  position: absolute;
-  width: 100%;
+  /* position: absolute; */
+  /* width: 100%; */
   bottom: 0;
   left: 0;
   /* font-size: 0.7rem; */
