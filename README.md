@@ -45,8 +45,8 @@ Before you get started, make sure you have the following software installed on y
 
 ## Deployment
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
+- Run `npm run build` to place the React build in the `build` folder. Test the build with `npm run start`
+- Deploy to hosting service of choice
 - You will have to rebuild database for production.
 
 ## Project Structure
