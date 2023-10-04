@@ -12,16 +12,16 @@ RUN npm install
 
 # copy cient and server
 COPY ./src ./src
+COPY ./public ./public
 COPY ./server ./server
 
 # build react app 
 RUN npm run build
 
 # Expose the port for app
-EXPOSE 3000
+EXPOSE 8002
 
-# Start the node app
-RUN npm run start
+CMD [ "npm", "run", "start" ]
 
 
 
